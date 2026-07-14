@@ -1,0 +1,28 @@
+.agents/
+.codex/
+tmp/
+Niveaustufen.png
+Interaktive Lernpakete/Archiv/
+
+# Nur die zehn von den interaktiven Paketen verlinkten Lernpaket-PDFs veröffentlichen.
+Pakete/**
+!Pakete/1. Die Welt des _Sonnenkönigs_.pdf
+!Pakete/2. Die Idee der Aufklärung.pdf
+!Pakete/3. Die Ständeordnung.pdf
+!Pakete/4. Frankreich in der Krise.pdf
+!Pakete/5. Der Beginn der Revolution.pdf
+!Pakete/6. Die Erklärung der Menschenrechte.pdf
+!Pakete/7. Frankreich auf dem Weg zur Republik.pdf
+!Pakete/8. Die Napoleonische Herrschaft.pdf
+!Pakete/9. Vom Wiener Kongress zum Hambacher Fest.pdf
+!Pakete/10. Die Revolution von 1848.pdf
+
+# Nur die fertige gemeinsame Verlaufsplan-PDF veröffentlichen.
+output/**
+!output/pdf/
+!output/pdf/Alternative Inputverlaufsplaene - Franzoesische Revolution.pdf
+
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
