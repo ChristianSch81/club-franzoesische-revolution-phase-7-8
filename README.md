@@ -14,9 +14,9 @@ Offline nutzbare, differenzierte Lernpakete zur Französischen Revolution für d
 
 ## Verwendung
 
-Die Datei [`Interaktive Lernpakete/index.html`](Interaktive%20Lernpakete/index.html) lokal in einem aktuellen Browser öffnen. Eine Internetverbindung ist für die Lernpakete nicht erforderlich.
+Die veröffentlichte Lernplattform ist über [GitHub Pages](https://christiansch81.github.io/club-franzoesische-revolution-phase-7-8/) erreichbar. Alternativ kann die Datei [`docs/index.html`](docs/index.html) lokal in einem aktuellen Browser geöffnet werden. Eine Internetverbindung ist für die Lernpakete selbst nicht erforderlich.
 
-Die HTML-Pakete verlinken auf die zugehörigen PDFs im Ordner `Pakete`.
+Die Übersichtsseite führt zu allen zehn Lernpaketen. Diese verlinken auf die zugehörigen PDFs im Ordner `docs/material`. Der Ordner `Interaktive Lernpakete` enthält die Arbeits- und Quelldateien.
 
 ## Lernpfad
 
@@ -30,10 +30,12 @@ Voraussetzung: Node.js.
 
 ```powershell
 node "Interaktive Lernpakete/src/build.mjs"
+node "Interaktive Lernpakete/src/build-docs.mjs"
 node "Interaktive Lernpakete/src/qa.mjs"
+node "Interaktive Lernpakete/src/qa-docs.mjs"
 ```
 
-Der Generator erzeugt die Paketübersicht und alle zehn Paketdateien aus den gemeinsamen Quelldateien in `Interaktive Lernpakete/src`.
+Der erste Generator erzeugt die lokalen Arbeitsfassungen aus den gemeinsamen Quelldateien in `Interaktive Lernpakete/src`. `build-docs.mjs` erstellt daraus die vollständig portierbare GitHub-Pages-Ausgabe in `docs` einschließlich Übersichtsseite, Bilddateien, Lernpaketen und PDF-Materialien.
 
 Die separate Verlaufsplan-PDF kann mit dem Python-Skript `Interaktive Lernpakete/src/build-verlaufsplaene-pdf.py` neu erzeugt werden. Dafür werden ReportLab, Pillow, pypdf, pdfplumber, Node.js und optional Poppler benötigt. Abweichende Programmpfade können über `NODE_BINARY` und `PDFTOPPM_BINARY` gesetzt werden.
 

@@ -1,0 +1,1448 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interaktive Aufgaben zu Paket 07: Frankreich auf dem Weg zur Republik">
+  <title>Paket 07: Frankreich auf dem Weg zur Republik · Französische Revolution</title>
+  <style>:root {
+  color-scheme: light dark;
+  --page-width: 74rem;
+  --space-1: 0.35rem;
+  --space-2: 0.65rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2.25rem;
+  --radius: 0.8rem;
+  --border: ButtonBorder;
+  --surface: Canvas;
+  --surface-raised: Field;
+  --text: CanvasText;
+  --muted: GrayText;
+  --accent: AccentColor;
+  --accent-text: AccentColorText;
+  --header-bg: #d8bd9a;
+  --header-text: #2d2117;
+  --header-muted: #554330;
+  --header-border: #a48767;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --header-bg: #5a4330;
+    --header-text: #fff7ed;
+    --header-muted: #ead8c4;
+    --header-border: #947354;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--text);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  touch-action: manipulation;
+}
+
+a {
+  color: LinkText;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-block-start: 0;
+}
+
+h1,
+h2,
+h3,
+strong,
+.button,
+.badge {
+  font-weight: 500;
+}
+
+h1 {
+  max-width: 26ch;
+  margin-block-end: var(--space-2);
+  font-size: clamp(1.7rem, 4vw, 2.65rem);
+  line-height: 1.12;
+}
+
+h2 {
+  margin-block-end: var(--space-3);
+  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+  line-height: 1.2;
+}
+
+h3 {
+  margin-block-end: var(--space-2);
+  font-size: 1.08rem;
+}
+
+.skip-link {
+  position: absolute;
+  inset-inline-start: var(--space-3);
+  inset-block-start: -10rem;
+  z-index: 100;
+  padding: var(--space-2) var(--space-3);
+  background: var(--accent);
+  color: var(--accent-text);
+}
+
+.skip-link:focus {
+  inset-block-start: var(--space-3);
+}
+
+.site-header {
+  border-block-end: 1px solid var(--header-border);
+  background: var(--header-bg);
+  color: var(--header-text);
+}
+
+.header-inner,
+.page,
+.footer-inner {
+  width: min(100% - 2rem, var(--page-width));
+  margin-inline: auto;
+}
+
+.header-inner {
+  padding-block: var(--space-4);
+}
+
+.series-title {
+  max-width: 48ch;
+  margin-block-end: var(--space-3);
+  color: var(--header-text);
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.site-header .eyebrow,
+.site-header .subtitle {
+  color: var(--header-muted);
+}
+
+.site-header .button.ghost {
+  border-color: var(--header-border);
+  color: var(--header-text);
+}
+
+.header-topline,
+.action-row,
+.task-meta,
+.task-nav,
+.index-meta,
+.standard-key,
+.level-card-head,
+.chooser-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+}
+
+.header-topline {
+  justify-content: space-between;
+  margin-block-end: var(--space-3);
+}
+
+.eyebrow,
+.subtitle,
+.muted,
+.counter,
+.task-position {
+  color: var(--muted);
+}
+
+.eyebrow {
+  margin: 0;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.subtitle {
+  max-width: 72ch;
+  margin: 0;
+}
+
+.page {
+  padding-block: var(--space-5);
+}
+
+.button {
+  min-height: 2.75rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 0.55rem;
+  background: ButtonFace;
+  color: ButtonText;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button.primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-text);
+}
+
+.button.ghost {
+  background: transparent;
+  color: var(--text);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.button.small {
+  min-height: 2.3rem;
+  padding: 0.4rem 0.65rem;
+}
+
+.level-grid,
+.package-grid,
+.key-grid {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.level-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-block: var(--space-4);
+}
+
+.package-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-block: var(--space-4);
+}
+
+.key-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.level-card,
+.package-card,
+.task-card,
+.completion-box,
+.key-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+}
+
+.level-card,
+.package-card,
+.key-item {
+  padding: var(--space-4);
+}
+
+.level-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.level-card.is-locked {
+  border-style: dashed;
+}
+
+.level-card-head {
+  width: 100%;
+  justify-content: space-between;
+  margin-block-end: var(--space-3);
+}
+
+.level-status {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.level-meter {
+  width: 100%;
+  margin-block: auto var(--space-3);
+}
+
+.level-detail {
+  min-height: 3.2em;
+  margin-block: var(--space-1) 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.level-card .button {
+  width: 100%;
+}
+
+.package-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.package-card .action-row {
+  margin-block-start: auto;
+}
+
+.task-card {
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+.task-meta {
+  justify-content: space-between;
+  margin-block-end: var(--space-3);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.8rem;
+  padding: 0.15rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.progress-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin-block-end: var(--space-4);
+}
+
+.progress-block {
+  display: grid;
+  align-content: start;
+  gap: var(--space-1);
+}
+
+progress {
+  width: 100%;
+  height: 0.8rem;
+  accent-color: var(--accent);
+}
+
+.material-box,
+.feedback,
+.starter-box {
+  margin-block: var(--space-3);
+  padding: var(--space-3);
+  border-inline-start: 0.3rem solid var(--accent);
+  background: var(--surface);
+}
+
+.material-box p:last-child,
+.feedback p:last-child,
+.starter-box p:last-child {
+  margin-block-end: 0;
+}
+
+.answer-area {
+  margin-block-start: var(--space-4);
+}
+
+.option-list,
+.match-list,
+.sort-list,
+.criteria-list,
+.planning-list {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.planning-list {
+  padding-inline-start: 1.4rem;
+  list-style: decimal;
+}
+
+.option-row,
+.match-row,
+.sort-row,
+.criterion-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: 0.55rem;
+  background: var(--surface);
+}
+
+.option-row input,
+.criterion-row input {
+  flex: 0 0 auto;
+  margin-block-start: 0.25rem;
+  accent-color: var(--accent);
+}
+
+.match-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(12rem, 1fr);
+  align-items: center;
+}
+
+select,
+textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 0.45rem;
+  background: Field;
+  color: FieldText;
+}
+
+select {
+  min-height: 2.65rem;
+  padding: 0.45rem 0.6rem;
+}
+
+textarea {
+  min-height: 10rem;
+  padding: var(--space-3);
+  resize: vertical;
+}
+
+.field-label,
+legend {
+  display: block;
+  margin-block-end: var(--space-2);
+  font-weight: 500;
+}
+
+fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.sort-row {
+  align-items: center;
+  cursor: default;
+}
+
+.sort-row.dragging {
+  opacity: 0.55;
+}
+
+.sort-handle {
+  display: inline-grid;
+  flex: 0 0 2.75rem;
+  width: 2.75rem;
+  min-height: 2.75rem;
+  place-items: center;
+  color: var(--muted);
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.sort-row.dragging .sort-handle {
+  cursor: grabbing;
+}
+
+.sort-text {
+  flex: 1 1 18rem;
+}
+
+.sort-actions {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.counter {
+  margin-block: var(--space-1) var(--space-3);
+  text-align: end;
+}
+
+.feedback {
+  min-height: 3rem;
+}
+
+.feedback[hidden],
+[hidden] {
+  display: none !important;
+}
+
+.task-nav {
+  justify-content: space-between;
+  margin-block-start: var(--space-4);
+}
+
+.completion-box {
+  padding: var(--space-4);
+}
+
+.site-footer {
+  margin-block-start: var(--space-5);
+  border-block-start: 1px solid var(--border);
+}
+
+.footer-inner {
+  padding-block: var(--space-4);
+  color: var(--muted);
+}
+
+.footer-author {
+  margin-block-end: var(--space-1);
+  color: var(--text);
+  font-weight: 500;
+}
+
+.footer-note {
+  margin: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.index-intro {
+  max-width: 72ch;
+}
+
+.index-meta {
+  margin-block: var(--space-2) var(--space-3);
+}
+
+.chooser-actions {
+  justify-content: space-between;
+}
+
+.chooser-actions p {
+  margin: 0;
+}
+
+.standard-key {
+  align-items: stretch;
+  margin-block: var(--space-4);
+}
+
+.standard-key > * {
+  flex: 1 1 15rem;
+}
+
+@media (max-width: 760px) {
+  .level-grid,
+  .package-grid,
+  .key-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .match-row {
+    grid-template-columns: 1fr;
+  }
+
+  .progress-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-inner,
+  .page,
+  .footer-inner {
+    width: min(100% - 1.2rem, var(--page-width));
+  }
+
+  .task-nav,
+  .task-nav .action-row {
+    align-items: stretch;
+  }
+
+  .task-nav {
+    display: grid;
+  }
+
+  .task-nav .button,
+  .header-topline .button {
+    width: 100%;
+  }
+
+  .sort-row {
+    flex-wrap: wrap;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .page,
+  .header-inner,
+  .footer-inner {
+    width: 100%;
+  }
+}
+
+  body { font-size: 1.075rem; }
+  .header-brand-row { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-block-end:1rem; }
+  .header-brand-row .series-title { margin:0; }
+  .docs-asw-link { display:grid; flex:0 0 auto; width:5.5rem; height:4.8rem; place-items:center; overflow:hidden; border:1px solid var(--header-border); border-radius:.75rem; background:rgba(255,255,255,.9); }
+  .docs-asw-logo { display:block; width:4.9rem; height:4.3rem; object-fit:contain; }
+  .docs-asw-link:focus-visible { outline:.2rem solid var(--header-text); outline-offset:.2rem; }
+  @media (max-width:480px) { body { font-size:1rem; } .header-brand-row { align-items:flex-start; } .docs-asw-link { width:4.7rem; height:4.2rem; } .docs-asw-logo { width:4.1rem; height:3.7rem; } }
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand-row">
+      <p class="series-title">Geschichte Phase 7/8: Die Französische Revolution</p>
+      <a class="docs-asw-link" href="https://asw-wutoeschingen.de" target="_blank" rel="noopener" aria-label="Website der Alemannenschule Wutöschingen öffnen">
+        <img class="docs-asw-logo" src="../assets/asw-logo.png" alt="Logo der Alemannenschule Wutöschingen">
+      </a>
+    </div>
+      <div class="header-topline no-print">
+        <a class="button ghost" href="../index.html">← Paketübersicht</a>
+        <a class="button ghost" href="../material/7. Frankreich auf dem Weg zur Republik.pdf" target="_blank" rel="noopener">Analoges Lernpaket (PDF)</a>
+      </div>
+      <p class="eyebrow">Paket 07 · Interaktiver Lernbegleiter</p>
+      <h1>Frankreich auf dem Weg zur Republik</h1>
+      <p class="subtitle">Von der Flucht Ludwigs XVI. bis zu Napoleons Staatsstreich</p>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <section id="tasks-view" aria-labelledby="tasks-heading">
+      <div id="level-chooser">
+        <h2 id="tasks-heading">Euer Lernpfad durch die Niveaustufen</h2>
+        <p>Beginnt mit dem Mindeststandard. Die nächste Stufe wird freigeschaltet, wenn alle Aufgaben der vorherigen Stufe mindestens einmal bearbeitet und mindestens 80&nbsp;% erfolgreich abgeschlossen wurden. Fehlversuche können jederzeit verbessert werden.</p>
+        <div class="level-grid">
+          <article class="level-card" data-level-card="M">
+            <div class="level-card-head">
+              <span class="badge">M8</span>
+              <span id="level-status-M" class="level-status">Freigeschaltet</span>
+            </div>
+            <h3>Mindeststandard</h3>
+            <p>Grundbegriffe sichern, Materialien erschließen und zentrale Zusammenhänge wiedergeben.</p>
+            <p id="count-M" class="muted"></p>
+            <div class="level-meter">
+              <label class="sr-only" for="level-progress-M">Erfolgreiche Aufgaben im Mindeststandard</label>
+              <progress id="level-progress-M" value="0" max="1"></progress>
+              <p id="level-detail-M" class="level-detail"></p>
+            </div>
+            <button class="button primary" type="button" data-level="M" aria-describedby="level-detail-M">M8 starten</button>
+          </article>
+          <article class="level-card is-locked" data-level-card="R" aria-disabled="true">
+            <div class="level-card-head">
+              <span class="badge">R8</span>
+              <span id="level-status-R" class="level-status">Noch gesperrt</span>
+            </div>
+            <h3>Regelstandard</h3>
+            <p>Hintergründe rekonstruieren, Quellen erklären und begründete Zusammenhänge herstellen.</p>
+            <p id="count-R" class="muted"></p>
+            <div class="level-meter">
+              <label class="sr-only" for="level-progress-R">Erfolgreiche Aufgaben im Regelstandard</label>
+              <progress id="level-progress-R" value="0" max="1"></progress>
+              <p id="level-detail-R" class="level-detail"></p>
+            </div>
+            <button class="button primary" type="button" data-level="R" aria-describedby="level-detail-R" disabled>R8 noch gesperrt</button>
+          </article>
+          <article class="level-card is-locked" data-level-card="E" aria-disabled="true">
+            <div class="level-card-head">
+              <span class="badge">E8</span>
+              <span id="level-status-E" class="level-status">Noch gesperrt</span>
+            </div>
+            <h3>Expertenstandard</h3>
+            <p>Urteile bilden, Perspektiven vergleichen und historische Einsichten auf neue Fälle übertragen.</p>
+            <p id="count-E" class="muted"></p>
+            <div class="level-meter">
+              <label class="sr-only" for="level-progress-E">Erfolgreiche Aufgaben im Expertenstandard</label>
+              <progress id="level-progress-E" value="0" max="1"></progress>
+              <p id="level-detail-E" class="level-detail"></p>
+            </div>
+            <button class="button primary" type="button" data-level="E" aria-describedby="level-detail-E" disabled>E8 noch gesperrt</button>
+          </article>
+        </div>
+        <div class="chooser-actions">
+          <button id="reset-progress" class="button ghost" type="button">Fortschritt dieses Pakets zurücksetzen</button>
+          <p id="reset-status" class="muted" role="status" aria-live="polite" hidden></p>
+        </div>
+      </div>
+
+      <div id="task-workspace" hidden>
+        <div class="task-meta">
+          <span id="active-level-label" class="badge"></span>
+          <button id="change-level" class="button ghost" type="button">Niveaustufe wechseln</button>
+        </div>
+
+        <div id="task-session">
+          <div class="progress-grid">
+            <div class="progress-block">
+              <label id="attempt-progress-text" for="attempt-progress"></label>
+              <progress id="attempt-progress" value="0" max="1"></progress>
+            </div>
+            <div class="progress-block">
+              <label id="progress-text" for="task-progress"></label>
+              <progress id="task-progress" value="0" max="1"></progress>
+            </div>
+          </div>
+
+          <article class="task-card">
+            <div class="task-meta">
+              <span id="task-tag" class="badge"></span>
+              <span id="task-position" class="task-position"></span>
+            </div>
+            <h2 id="task-title"></h2>
+            <p id="task-prompt"></p>
+            <div id="material-box" class="material-box" hidden>
+              <strong>Materialgrundlage</strong>
+              <p id="task-material"></p>
+            </div>
+            <div id="answer-area" class="answer-area"></div>
+            <div id="feedback" class="feedback" role="status" aria-live="polite" hidden></div>
+          </article>
+
+          <div class="task-nav">
+            <button id="prev-task" class="button" type="button">← Vorherige Aufgabe</button>
+            <button id="next-task" class="button primary" type="button">Nächste Aufgabe</button>
+          </div>
+        </div>
+
+        <section id="completion-view" class="completion-box" hidden>
+          <h2 id="completion-title"></h2>
+          <p id="completion-text"></p>
+          <p class="muted">Offene Arbeitsprodukte werden anhand der angegebenen Kriterien selbst geprüft; für eine inhaltliche Rückmeldung nutzt ihr Material, Lösung oder Lehrkraftfeedback.</p>
+          <div class="action-row">
+            <button id="review-level" class="button" type="button">Aufgaben noch einmal ansehen</button>
+            <button id="choose-level-after" class="button" type="button">Zur Stufenübersicht</button>
+            <button id="start-next-level" class="button primary" type="button" hidden>Nächste Niveaustufe starten</button>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-author">Autor: Christian Schwend</p>
+      <p class="footer-note">Offline-Lernbegleiter zur Unterrichtsreihe „Französische Revolution“ · Fortschritt und Textentwürfe bleiben nach Möglichkeit lokal im Browser.</p>
+    </div>
+  </footer>
+  <script>const PACKAGE = {"id":"p07","number":7,"slug":"frankreich-auf-dem-weg-zur-republik","title":"Frankreich auf dem Weg zur Republik","subtitle":"Von der Flucht Ludwigs XVI. bis zu Napoleons Staatsstreich","focus":"Verfassung von 1791, Republik, Terrorherrschaft und historisches Urteil","tasks":[{"id":"p07-a01","number":1,"tag":"(M8)","levels":["M"],"kind":"order","title":"Warum Ludwig XVI. fliehen wollte","prompt":"Bringe Absicht, Flucht und Folgen in die richtige Reihenfolge.","material":"Am 21. Juni 1791 versuchte die königliche Familie, in die Österreichischen Niederlande zu gelangen. Ludwig XVI. hoffte auf Unterstützung benachbarter Monarchien gegen die Revolution.","hint":"Beginne mit dem politischen Ziel des Königs und ende mit der Wirkung des gescheiterten Versuchs.","success":"Die Kette zeigt: Ludwig wollte mithilfe anderer Monarchien die Revolution beseitigen und die alte Ordnung wiederherstellen. Das Scheitern beschädigte sein Ansehen und stärkte republikanische Forderungen.","items":["Ludwig XVI. will die Revolution zurückdrängen und die alte monarchische Ordnung wiederherstellen.","Die Familie versucht, in die Österreichischen Niederlande zu fliehen und dort Verbündete zu gewinnen.","Die Reisenden werden erkannt und nach Paris zurückgebracht.","Der König muss die Verfassung anerkennen; seine Flucht wird von vielen als Verrat gedeutet.","Das Vertrauen in den König sinkt und die Forderung nach einer Republik erhält Auftrieb."]},{"id":"p07-a02","number":2,"tag":"(M/R8)","levels":["M","R"],"kind":"text","title":"Das Verfassungsschema von 1791 erklären","prompt":"Erläutere das Zusammenwirken der Verfassungsorgane in eigenen Worten. Verwende Legislative, Exekutive und Judikative.","material":"Steuerzahlende Männer über 25 galten als Aktivbürger. Sie wählten Beamte und Richter sowie über Wahlmänner die Nationalversammlung. Der König ernannte Minister und besaß gegenüber Gesetzen ein aufschiebendes, nicht endgültiges Veto. Politische Teilhabe war an Geschlecht, Alter, Steuerleistung und für Abgeordnete zusätzlich an Vermögen gebunden.","hint":"Erkläre zuerst jede Gewalt und dann mindestens drei Beziehungen wie wählen, ernennen, kontrollieren oder Veto einlegen.","success":"Eine tragfähige Erklärung benennt die drei Gewalten, beschreibt ihre Beziehungen, zeigt die Begrenzung der Königsmacht und erwähnt die sozial eingeschränkte Teilhabe.","minChars":260,"starter":"Die Legislative liegt 1791 bei ...","planning":["Legislative: Nationalversammlung und Gesetzgebung","Exekutive: König, Minister und Verwaltung","Judikative: Richter, Berufungsgericht und Hochgericht","Wahlen, Ernennungen, Kontrollen und aufschiebendes Veto","Grenzen der politischen Teilhabe"],"criteria":["Ich verwende Legislative, Exekutive und Judikative sachlich richtig.","Ich erkläre mindestens drei Beziehungen zwischen Volk, Parlament, König und Gerichten.","Ich zeige, wie die Verfassung die Macht des Königs begrenzt.","Ich erwähne, dass nicht alle Einwohner politisch gleichberechtigt waren."]},{"id":"p07-a03","number":3,"tag":"(R8)","levels":["R"],"kind":"text","title":"Die Sicht absolutistischer Herrscher rekonstruieren","prompt":"Begründe, wie die französische Verfassung von 1791 auf andere absolutistische Herrscher gewirkt haben dürfte.","material":"Die Verfassung band die Herrschaft an Regeln, übertrug die Gesetzgebung einer gewählten Nationalversammlung und teilte staatliche Macht. Eine konkrete Reaktionsquelle ist im Paket nicht enthalten: Formuliere deshalb eine materialgestützte Vermutung, keine angeblich sichere Tatsache.","hint":"Baue jeden Gedankenschritt so: Verfassungsänderung - bedrohtes Herrscherinteresse - mögliche Reaktion - Beleg.","success":"Plausibel ist, dass absolutistische Herrscher die Verfassung als Bedrohung sahen, weil sie Macht begrenzte und politische Mitwirkung stärkte. Entscheidend ist die nachvollziehbare Begründung als Vermutung.","minChars":240,"starter":"Auf einen absolutistischen Herrscher dürfte besonders ... bedrohlich gewirkt haben, weil ...","planning":["Wähle drei Veränderungen der Verfassung.","Ordne jeder Veränderung ein bedrohtes Machtinteresse zu.","Leite eine mögliche Reaktion ab.","Kennzeichne Vermutungen sprachlich."],"criteria":["Ich nenne mindestens zwei konkrete Verfassungsänderungen.","Ich erkläre, welches Interesse des Herrschers jeweils berührt wird.","Ich formuliere eine plausible Reaktion mit Materialbezug.","Ich unterscheide Vermutung und belegte Tatsache."]},{"id":"p07-a04","number":4,"tag":"(M8)","levels":["M"],"kind":"match","title":"Sansculotten: Ziele und Unzufriedenheit","prompt":"Ordne jede Aussage der passenden Kategorie zu.","material":"Die Sansculotten vertraten vor allem Teile der einfachen Pariser Bevölkerung. Hohe Lebensmittelpreise, das eingeschränkte Wahlrecht und das Misstrauen gegenüber dem König prägten ihre Haltung.","hint":"Frage bei jeder Karte: Geht es um ein politisches Ziel, die Lebenslage, die Verfassung oder den König?","success":"Die Sansculotten verbanden soziale Not mit der Forderung nach stärkerer Volksherrschaft und der Kritik am privilegierten Wahlrecht sowie am König.","choices":["Politisches Ziel","Soziale Lage","Kritik an der Verfassung","Kritik am König"],"items":[{"prompt":"Frankreich soll eine Republik werden, in der das Volk herrscht.","answer":"Politisches Ziel"},{"prompt":"Steigende Preise für Grundnahrungsmittel treffen die einfache Bevölkerung besonders.","answer":"Soziale Lage"},{"prompt":"Nur wohlhabende Aktivbürger verfügen über politische Mitwirkung.","answer":"Kritik an der Verfassung"},{"prompt":"Ludwig XVI. unternimmt aus ihrer Sicht zu wenig gegen die Krise.","answer":"Kritik am König"},{"prompt":"Der Fluchtversuch verstärkt das Misstrauen gegen die Monarchie.","answer":"Kritik am König"}]},{"id":"p07-a05","number":5,"tag":"(M8)","levels":["M"],"kind":"match","title":"Robespierre im Überblick","prompt":"Ordne die Angaben zu Robespierre den Steckbrieffeldern zu.","material":"Der Pakettext beschreibt Maximilien de Robespierre als Rechtsanwalt, führenden Revolutionär der Jakobiner und einflussreiche Figur des Wohlfahrtsausschusses während der Terrorherrschaft. Er wurde im Juli 1794 hingerichtet.","hint":"Unterscheide Beruf, politische Gruppe, Funktion, Wirkung und Ende.","success":"Robespierre war kein König und kein General, sondern Jurist und führender Jakobiner. Seine Politik prägte die Terrorherrschaft; 1794 wurde er selbst hingerichtet.","choices":["Beruf","Politische Gruppe","Funktion","Einfluss","Ende"],"items":[{"prompt":"französischer Rechtsanwalt","answer":"Beruf"},{"prompt":"führender Jakobiner","answer":"Politische Gruppe"},{"prompt":"prägende Rolle im Wohlfahrtsausschuss","answer":"Funktion"},{"prompt":"maßgebliche Mitverantwortung für die Terrorherrschaft","answer":"Einfluss"},{"prompt":"Hinrichtung im Juli 1794","answer":"Ende"}]},{"id":"p07-a06","number":6,"tag":"(M8)","levels":["M"],"kind":"order","title":"Das Ende der Französischen Revolution","prompt":"Ordne die Stationen vom Sturz der Monarchie bis zum Staatsstreich Napoleons.","material":"Zwischen 1792 und 1799 wechselten Republik, Terrorherrschaft, Krieg und politische Führung rasch. Der Staatsstreich Napoleons von 1799 gilt häufig als Ende der Revolution; zum Kaiser krönte er sich erst 1804.","hint":"Achte auf die Jahreszahlen 1792, 1793, 1794 und 1799.","success":"Die Revolution endete nicht mit einem einzigen Ereignis: Auf Republik und Terror folgten das Ende Robespierres, weitere Kriege und schließlich Napoleons Machtübernahme 1799.","items":["1792: Die Monarchie wird gestürzt und Frankreich wird Republik.","21. Januar 1793: Ludwig XVI. wird hingerichtet.","1793-1794: Der Wohlfahrtsausschuss prägt die Terrorherrschaft.","Juli 1794: Robespierre wird hingerichtet; die Terrorherrschaft endet.","In den Koalitionskriegen steigt General Napoleon Bonaparte auf.","1799: Napoleon übernimmt durch einen Staatsstreich die Macht."]},{"id":"p07-a07","number":7,"tag":"(M8)","levels":["M"],"kind":"text","title":"Steckbrief: Napoleon Bonaparte","prompt":"Erstelle einen knappen, quellengebundenen Steckbrief zu Napoleon Bonaparte.","material":"Napoleon Bonaparte lebte von 1769 bis 1821, stammte aus Korsika, stieg in der Revolutionsarmee zum General auf und gewann in den Koalitionskriegen Einfluss. 1799 übernahm er durch einen Staatsstreich die Macht in Frankreich.","hint":"Ein Steckbrief nennt überprüfbare Fakten in übersichtlicher Form und trennt Lebensdaten, Laufbahn und historische Bedeutung.","success":"Der Steckbrief enthält die zentralen Lebensdaten, Herkunft, militärische Rolle und Machtübernahme 1799. Eigene Ergänzungen brauchen einen nachvollziehbaren Quellenhinweis.","minChars":170,"starter":"Name: Napoleon Bonaparte\nLebensdaten: ...\nHerkunft: ...","planning":["Lebensdaten und Herkunft","Rolle in Revolutions- und Koalitionskriegen","Machtübernahme 1799","Bedeutung für das Ende der Revolution","Quelle der Angaben"],"criteria":["Ich nenne 1769-1821 und Korsika.","Ich beschreibe Napoleons militärischen Aufstieg.","Ich ordne den Staatsstreich in das Jahr 1799 ein.","Ich nenne mindestens einen Material- oder Quellenbeleg."]},{"id":"p07-a08","number":8,"tag":"(E8)","levels":["E"],"kind":"text","title":"Historisches Urteil: War die Revolution ein Erfolg?","prompt":"Begründe ein differenziertes Urteil darüber, ob die Französische Revolution erfolgreich war.","material":"Mögliche Belege reichen von Menschenrechten, Ende ständischer Privilegien und Verfassung bis zu eingeschränkter Teilhabe, Terror, Krieg und Napoleons Machtübernahme. Erfolg hängt von offengelegten Kriterien und dem betrachteten Zeitraum ab.","hint":"Entscheide nicht zuerst mit Ja oder Nein. Lege Kriterien fest, prüfe Belege dafür und dagegen und gewichte sie am Ende.","success":"Ein Expertenurteil macht Kriterien sichtbar, verwendet mehrere konkrete Belege, berücksichtigt Gegenargumente und erklärt Reichweite sowie Grenzen des Ergebnisses.","minChars":420,"starter":"Ob die Revolution als Erfolg gelten kann, hängt zunächst davon ab, ...","planning":["Eigene Erfolgskriterien festlegen","Politische, gesellschaftliche und langfristige Belege sammeln","Erfolge und Misserfolge gewichten","Ein starkes Gegenargument prüfen","Urteil mit zeitlicher Reichweite formulieren"],"criteria":["Ich lege mindestens drei nachvollziehbare Erfolgskriterien offen.","Ich nutze mindestens vier konkrete historische Belege.","Ich berücksichtige Erfolge und Misserfolge.","Ich entkräfte oder begrenze ein Gegenargument.","Mein Schluss beantwortet die Leitfrage differenziert."]}],"sourceFile":"../Pakete/7. Frankreich auf dem Weg zur Republik.pdf","filename":"paket-07-frankreich-auf-dem-weg-zur-republik.html"};</script>
+  <script>(function () {
+  "use strict";
+
+  const LEVELS = {
+    M: { name: "Mindeststandard", short: "M" },
+    R: { name: "Regelstandard", short: "R" },
+    E: { name: "Expertenstandard", short: "E" }
+  };
+  const LEVEL_SEQUENCE = ["M", "R", "E"];
+  const PASS_RATIO = 0.8;
+
+  const byId = (id) => document.getElementById(id);
+  const storageKey = `franzrev-interaktiv:${PACKAGE.id}`;
+  const knownIds = new Set(PACKAGE.tasks.map((task) => task.id));
+  const knownKeys = new Set(PACKAGE.tasks.flatMap((task) => task.levels.map((level) => `${level}:${task.id}`)));
+  const state = {
+    level: null,
+    current: 0,
+    tasks: [],
+    attempted: new Set(),
+    passed: new Set(),
+    drafts: {},
+    showingSummary: false
+  };
+
+  function loadState() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(storageKey) || "{}");
+      if (Array.isArray(parsed.attempted)) {
+        parsed.attempted.filter((key) => knownKeys.has(key)).forEach((key) => state.attempted.add(key));
+      }
+      if (Array.isArray(parsed.passed)) {
+        parsed.passed.filter((key) => knownKeys.has(key)).forEach((key) => {
+          state.passed.add(key);
+          state.attempted.add(key);
+        });
+      } else if (Array.isArray(parsed.completed)) {
+        // Ã„ltere, noch nicht niveaubezogene Fortschritte werden der niedrigsten
+        // passenden Stufe zugeordnet. So bleibt Arbeit erhalten, ohne Stufen zu Ã¼berspringen.
+        parsed.completed.filter((id) => knownIds.has(id)).forEach((id) => {
+          const task = PACKAGE.tasks.find((candidate) => candidate.id === id);
+          const level = LEVEL_SEQUENCE.find((candidate) => task.levels.includes(candidate));
+          const key = `${level}:${id}`;
+          state.attempted.add(key);
+          state.passed.add(key);
+        });
+      }
+      if (parsed.drafts && typeof parsed.drafts === "object") {
+        Object.entries(parsed.drafts).forEach(([id, value]) => {
+          if (knownIds.has(id) && typeof value === "string") state.drafts[id] = value;
+        });
+      }
+    } catch (_error) {
+      // Die Dateien funktionieren auch, wenn ein Browser file:-Speicherung unterbindet.
+    }
+  }
+
+  function persistState() {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify({
+        version: 2,
+        attempted: Array.from(state.attempted),
+        passed: Array.from(state.passed),
+        drafts: state.drafts
+      }));
+    } catch (_error) {
+      // Fortschritt bleibt in diesem Fall nur bis zum Schließen der Seite erhalten.
+    }
+  }
+
+  function levelTasks(level) {
+    return PACKAGE.tasks.filter((task) => task.levels.includes(level));
+  }
+
+  function taskCountFor(level) {
+    return levelTasks(level).length;
+  }
+
+  function progressKey(level, task) {
+    return `${level}:${task.id}`;
+  }
+
+  function requiredPasses(level) {
+    return Math.ceil(taskCountFor(level) * PASS_RATIO);
+  }
+
+  function progressFor(level) {
+    const tasks = levelTasks(level);
+    const attempted = tasks.filter((task) => state.attempted.has(progressKey(level, task))).length;
+    const passed = tasks.filter((task) => state.passed.has(progressKey(level, task))).length;
+    return {
+      total: tasks.length,
+      attempted,
+      passed,
+      required: requiredPasses(level)
+    };
+  }
+
+  function hasMastery(level) {
+    const progress = progressFor(level);
+    return progress.attempted === progress.total && progress.passed >= progress.required;
+  }
+
+  function previousLevel(level) {
+    const index = LEVEL_SEQUENCE.indexOf(level);
+    return index > 0 ? LEVEL_SEQUENCE[index - 1] : null;
+  }
+
+  function nextLevel(level) {
+    const index = LEVEL_SEQUENCE.indexOf(level);
+    return index >= 0 && index < LEVEL_SEQUENCE.length - 1 ? LEVEL_SEQUENCE[index + 1] : null;
+  }
+
+  function isLevelUnlocked(level) {
+    const previous = previousLevel(level);
+    return previous === null || (isLevelUnlocked(previous) && hasMastery(previous));
+  }
+
+  function isCurrentTaskAttempted(task) {
+    return state.attempted.has(progressKey(state.level, task));
+  }
+
+  function isCurrentTaskPassed(task) {
+    return state.passed.has(progressKey(state.level, task));
+  }
+
+  function updateLevelChooser() {
+    LEVEL_SEQUENCE.forEach((level) => {
+      const progress = progressFor(level);
+      const unlocked = isLevelUnlocked(level);
+      const mastered = hasMastery(level);
+      const card = document.querySelector(`[data-level-card="${level}"]`);
+      const button = document.querySelector(`[data-level="${level}"]`);
+      const status = byId(`level-status-${level}`);
+      const detail = byId(`level-detail-${level}`);
+      const meter = byId(`level-progress-${level}`);
+
+      card.classList.toggle("is-locked", !unlocked);
+      card.setAttribute("aria-disabled", String(!unlocked));
+      button.disabled = !unlocked;
+      meter.max = progress.total;
+      meter.value = progress.passed;
+
+      if (unlocked) {
+        status.textContent = mastered ? "80-%-Ziel erreicht" : "Freigeschaltet";
+        detail.textContent = `${progress.attempted} von ${progress.total} bearbeitet · ${progress.passed} erfolgreich · ${progress.required} benötigt`;
+        button.textContent = mastered ? `${level}8 wiederholen` : progress.attempted > 0 ? `${level}8 fortsetzen` : `${level}8 starten`;
+      } else {
+        const prerequisite = previousLevel(level);
+        const prerequisiteProgress = progressFor(prerequisite);
+        status.textContent = "Noch gesperrt";
+        detail.textContent = `Zuerst ${prerequisite}8: ${prerequisiteProgress.attempted} von ${prerequisiteProgress.total} bearbeitet · ${prerequisiteProgress.passed} erfolgreich · ${prerequisiteProgress.required} benötigt`;
+        button.textContent = `${level}8 noch gesperrt`;
+      }
+    });
+  }
+
+  function selectLevel(level) {
+    if (!LEVELS[level] || !isLevelUnlocked(level)) {
+      updateLevelChooser();
+      return;
+    }
+    state.level = level;
+    state.tasks = levelTasks(level);
+    const firstUnattempted = state.tasks.findIndex((task) => !state.attempted.has(progressKey(level, task)));
+    const firstUnpassed = state.tasks.findIndex((task) => !state.passed.has(progressKey(level, task)));
+    state.current = firstUnattempted >= 0 ? firstUnattempted : firstUnpassed >= 0 ? firstUnpassed : 0;
+    state.showingSummary = false;
+    byId("level-chooser").hidden = true;
+    byId("task-workspace").hidden = false;
+    byId("active-level-label").textContent = LEVELS[level].name;
+    byId("task-session").hidden = false;
+    byId("completion-view").hidden = true;
+    renderTask();
+  }
+
+  function showLevelChooser() {
+    state.level = null;
+    state.tasks = [];
+    state.current = 0;
+    byId("task-workspace").hidden = true;
+    byId("level-chooser").hidden = false;
+    updateLevelChooser();
+  }
+
+  function updateProgress() {
+    const progress = progressFor(state.level);
+    byId("attempt-progress").max = progress.total;
+    byId("attempt-progress").value = progress.attempted;
+    byId("attempt-progress-text").textContent = `${progress.attempted} von ${progress.total} Aufgaben mindestens einmal bearbeitet`;
+    byId("task-progress").max = progress.total;
+    byId("task-progress").value = progress.passed;
+    byId("progress-text").textContent = `${progress.passed} von ${progress.total} Aufgaben erfolgreich · ${progress.required} für mindestens 80 % benötigt`;
+  }
+
+  function clearFeedback() {
+    const feedback = byId("feedback");
+    feedback.hidden = true;
+    feedback.replaceChildren();
+  }
+
+  function showFeedback(kind, message) {
+    const feedback = byId("feedback");
+    const lead = document.createElement("strong");
+    lead.textContent = kind === "success" ? "Erledigt: " : kind === "error" ? "Noch nicht: " : "Hinweis: ";
+    const text = document.createElement("span");
+    text.textContent = message;
+    feedback.replaceChildren(lead, text);
+    feedback.hidden = false;
+  }
+
+  function completeTask(task, message) {
+    const masteredBefore = hasMastery(state.level);
+    state.attempted.add(progressKey(state.level, task));
+    state.passed.add(progressKey(state.level, task));
+    persistState();
+    updateProgress();
+    updateLevelChooser();
+    byId("next-task").disabled = false;
+    let feedback = message || task.success || "Die Aufgabe ist erfolgreich abgeschlossen.";
+    if (!masteredBefore && hasMastery(state.level)) {
+      const following = nextLevel(state.level);
+      feedback += following
+        ? ` Das 80-%-Ziel ist erreicht: ${LEVELS[following].name} ist jetzt freigeschaltet.`
+        : " Das 80-%-Ziel ist erreicht: Du hast den gesamten Lernpfad abgeschlossen.";
+    }
+    showFeedback("success", feedback);
+  }
+
+  function recordUnsuccessfulAttempt(task, message) {
+    state.attempted.add(progressKey(state.level, task));
+    persistState();
+    updateProgress();
+    updateLevelChooser();
+    byId("next-task").disabled = false;
+    showFeedback("error", `${message} Du kannst die Aufgabe jetzt erneut versuchen oder zunächst weitergehen.`);
+  }
+
+  function addCheckButton(container, label, handler) {
+    const row = document.createElement("div");
+    row.className = "action-row";
+    row.style.marginBlockStart = "1rem";
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "button primary";
+    button.textContent = label;
+    button.addEventListener("click", handler);
+    row.append(button);
+    container.append(row);
+  }
+
+  function renderChoice(task, container) {
+    const fieldset = document.createElement("fieldset");
+    const legend = document.createElement("legend");
+    legend.textContent = task.multiple ? "Wähle alle zutreffenden Antworten." : "Wähle eine Antwort.";
+    fieldset.append(legend);
+    const list = document.createElement("div");
+    list.className = "option-list";
+
+    task.options.forEach((option, index) => {
+      const label = document.createElement("label");
+      label.className = "option-row";
+      const input = document.createElement("input");
+      input.type = task.multiple ? "checkbox" : "radio";
+      input.name = `choice-${task.id}`;
+      input.value = String(index);
+      const span = document.createElement("span");
+      span.textContent = option.text;
+      label.append(input, span);
+      list.append(label);
+    });
+
+    fieldset.append(list);
+    container.append(fieldset);
+    addCheckButton(container, "Antwort prüfen", () => {
+      const inputs = Array.from(list.querySelectorAll("input"));
+      if (!inputs.some((input) => input.checked)) {
+        showFeedback("error", "Wähle zuerst mindestens eine Antwort aus.");
+        return;
+      }
+      const exact = inputs.every((input, index) => input.checked === Boolean(task.options[index].correct));
+      if (exact) completeTask(task, task.success);
+      else recordUnsuccessfulAttempt(task, task.hint || "Prüfe die Aussagen noch einmal am Material.");
+    });
+  }
+
+  function renderMatch(task, container) {
+    const instruction = document.createElement("p");
+    instruction.textContent = "Ordne jeder Aussage den passenden Begriff zu.";
+    container.append(instruction);
+    const list = document.createElement("div");
+    list.className = "match-list";
+
+    task.items.forEach((item, index) => {
+      const row = document.createElement("div");
+      row.className = "match-row";
+      const label = document.createElement("label");
+      const selectId = `match-${task.id}-${index}`;
+      label.setAttribute("for", selectId);
+      label.textContent = item.prompt;
+      const select = document.createElement("select");
+      select.id = selectId;
+      const placeholder = document.createElement("option");
+      placeholder.value = "";
+      placeholder.textContent = "Bitte auswählen";
+      select.append(placeholder);
+      task.choices.forEach((choice) => {
+        const option = document.createElement("option");
+        option.value = choice;
+        option.textContent = choice;
+        select.append(option);
+      });
+      row.append(label, select);
+      list.append(row);
+    });
+
+    container.append(list);
+    addCheckButton(container, "Zuordnung prüfen", () => {
+      const selects = Array.from(list.querySelectorAll("select"));
+      if (selects.some((select) => !select.value)) {
+        showFeedback("error", "Vervollständige zuerst alle Zuordnungen.");
+        return;
+      }
+      const correct = selects.filter((select, index) => select.value === task.items[index].answer).length;
+      if (correct === task.items.length) completeTask(task, task.success);
+      else recordUnsuccessfulAttempt(task, `${correct} von ${task.items.length} Zuordnungen passen. ${task.hint || "Prüfe die übrigen noch einmal."}`);
+    });
+  }
+
+  function hashText(text) {
+    let hash = 0;
+    for (let index = 0; index < text.length; index += 1) hash = ((hash << 5) - hash + text.charCodeAt(index)) | 0;
+    return Math.abs(hash);
+  }
+
+  function shuffled(items, seedText) {
+    const result = items.slice();
+    let seed = hashText(seedText) || 1;
+    for (let index = result.length - 1; index > 0; index -= 1) {
+      seed = (seed * 9301 + 49297) % 233280;
+      const swap = Math.floor((seed / 233280) * (index + 1));
+      [result[index], result[swap]] = [result[swap], result[index]];
+    }
+    if (result.length > 1 && result.every((item, index) => item === items[index])) result.push(result.shift());
+    return result;
+  }
+
+  function syncSortButtons(list) {
+    const rows = Array.from(list.children);
+    rows.forEach((row, index) => {
+      row.querySelector("[data-move='up']").disabled = index === 0;
+      row.querySelector("[data-move='down']").disabled = index === rows.length - 1;
+    });
+  }
+
+  function moveSortRow(list, row, offset) {
+    const rows = Array.from(list.children);
+    const index = rows.indexOf(row);
+    const target = rows[index + offset];
+    if (!target) return;
+    if (offset < 0) list.insertBefore(row, target);
+    else list.insertBefore(target, row);
+    syncSortButtons(list);
+  }
+
+  function renderOrder(task, container) {
+    const instruction = document.createElement("p");
+    instruction.id = `sort-instructions-${task.id}`;
+    instruction.textContent = "Bringe die Karten in die richtige Reihenfolge: am Griff ☰ ziehen oder mit den Schaltflächen verschieben.";
+    container.append(instruction);
+    const list = document.createElement("ol");
+    list.className = "sort-list";
+    const liveStatus = document.createElement("p");
+    liveStatus.className = "sr-only";
+    liveStatus.setAttribute("role", "status");
+    liveStatus.setAttribute("aria-live", "polite");
+    let dragState = null;
+
+    function announcePosition(row) {
+      const position = Array.from(list.children).indexOf(row) + 1;
+      liveStatus.textContent = `Karte an Position ${position} von ${list.children.length} verschoben.`;
+    }
+
+    function finishPointerDrag(event) {
+      if (!dragState || (event && event.pointerId !== dragState.pointerId)) return;
+      const active = dragState;
+      dragState = null;
+      active.row.classList.remove("dragging");
+      try {
+        if (active.handle.hasPointerCapture(active.pointerId)) active.handle.releasePointerCapture(active.pointerId);
+      } catch (_error) {
+        // Bei einem bereits verlorenen Pointer-Capture ist keine weitere Aktion nötig.
+      }
+      syncSortButtons(list);
+      announcePosition(active.row);
+    }
+
+    shuffled(task.items, task.id).forEach((item) => {
+      const row = document.createElement("li");
+      row.className = "sort-row";
+      row.dataset.item = item;
+      row.setAttribute("aria-describedby", instruction.id);
+
+      const handle = document.createElement("span");
+      handle.className = "sort-handle";
+      handle.dataset.dragHandle = "true";
+      handle.setAttribute("aria-hidden", "true");
+      handle.textContent = "☰";
+      const text = document.createElement("span");
+      text.className = "sort-text";
+      text.textContent = item;
+      const actions = document.createElement("span");
+      actions.className = "sort-actions";
+      const up = document.createElement("button");
+      up.type = "button";
+      up.className = "button small";
+      up.dataset.move = "up";
+      up.textContent = "Nach oben";
+      up.addEventListener("click", () => {
+        moveSortRow(list, row, -1);
+        announcePosition(row);
+      });
+      const down = document.createElement("button");
+      down.type = "button";
+      down.className = "button small";
+      down.dataset.move = "down";
+      down.textContent = "Nach unten";
+      down.addEventListener("click", () => {
+        moveSortRow(list, row, 1);
+        announcePosition(row);
+      });
+      actions.append(up, down);
+      row.append(handle, text, actions);
+
+      handle.addEventListener("pointerdown", (event) => {
+        if (!event.isPrimary || dragState || (event.pointerType === "mouse" && event.button !== 0)) return;
+        dragState = { row, handle, pointerId: event.pointerId };
+        try {
+          handle.setPointerCapture(event.pointerId);
+        } catch (_error) {
+          // Die Verschiebeschaltflächen bleiben auch ohne Pointer-Capture nutzbar.
+        }
+        row.classList.add("dragging");
+        event.preventDefault();
+      });
+
+      handle.addEventListener("pointermove", (event) => {
+        if (!dragState || dragState.row !== row || dragState.pointerId !== event.pointerId) return;
+        event.preventDefault();
+        const previousIndex = Array.from(list.children).indexOf(row);
+        const otherRows = Array.from(list.children).filter((candidate) => candidate !== row);
+        const target = otherRows.find((candidate) => {
+          const rectangle = candidate.getBoundingClientRect();
+          return event.clientY < rectangle.top + rectangle.height / 2;
+        });
+        if (target) list.insertBefore(row, target);
+        else list.append(row);
+        if (Array.from(list.children).indexOf(row) !== previousIndex) syncSortButtons(list);
+      });
+
+      handle.addEventListener("pointerup", finishPointerDrag);
+      handle.addEventListener("pointercancel", finishPointerDrag);
+      handle.addEventListener("lostpointercapture", finishPointerDrag);
+      list.append(row);
+    });
+
+    container.append(list, liveStatus);
+    syncSortButtons(list);
+    addCheckButton(container, "Reihenfolge prüfen", () => {
+      const current = Array.from(list.children).map((row) => row.dataset.item);
+      const exact = current.every((item, index) => item === task.items[index]);
+      if (exact) completeTask(task, task.success);
+      else recordUnsuccessfulAttempt(task, task.hint || "Nutze Zeitangaben und Ursache-Folge-Beziehungen als Hinweise.");
+    });
+  }
+
+  function renderText(task, container) {
+    if (Array.isArray(task.planning) && task.planning.length) {
+      const heading = document.createElement("h3");
+      heading.textContent = "Planungshilfe";
+      const list = document.createElement("ul");
+      list.className = "planning-list";
+      task.planning.forEach((step) => {
+        const item = document.createElement("li");
+        item.textContent = step;
+        list.append(item);
+      });
+      container.append(heading, list);
+    }
+
+    if (task.starter) {
+      const starter = document.createElement("div");
+      starter.className = "starter-box";
+      const label = document.createElement("strong");
+      label.textContent = "Satzstarter: ";
+      const text = document.createElement("span");
+      text.textContent = task.starter;
+      starter.append(label, text);
+      container.append(starter);
+    }
+
+    const label = document.createElement("label");
+    label.className = "field-label";
+    label.setAttribute("for", `text-${task.id}`);
+    label.textContent = "Deine Ausarbeitung";
+    const textarea = document.createElement("textarea");
+    textarea.id = `text-${task.id}`;
+    textarea.value = state.drafts[task.id] || "";
+    const counter = document.createElement("p");
+    counter.className = "counter";
+    const updateCounter = () => {
+      counter.textContent = `${textarea.value.trim().length} von mindestens ${task.minChars} Zeichen`;
+      state.drafts[task.id] = textarea.value;
+      persistState();
+    };
+    textarea.addEventListener("input", updateCounter);
+    updateCounter();
+    container.append(label, textarea, counter);
+
+    const criteriaFieldset = document.createElement("fieldset");
+    const legend = document.createElement("legend");
+    legend.textContent = "Prüfe dein Arbeitsprodukt";
+    const criteriaList = document.createElement("div");
+    criteriaList.className = "criteria-list";
+    (task.criteria || []).forEach((criterion, index) => {
+      const row = document.createElement("label");
+      row.className = "criterion-row";
+      const input = document.createElement("input");
+      input.type = "checkbox";
+      input.value = String(index);
+      const text = document.createElement("span");
+      text.textContent = criterion;
+      row.append(input, text);
+      criteriaList.append(row);
+    });
+    criteriaFieldset.append(legend, criteriaList);
+    container.append(criteriaFieldset);
+
+    addCheckButton(container, "Arbeitsprodukt abschließen", () => {
+      const length = textarea.value.trim().length;
+      const criteria = Array.from(criteriaList.querySelectorAll("input"));
+      const allChecked = criteria.every((input) => input.checked);
+      if (length < task.minChars) {
+        showFeedback("error", `Ergänze noch mindestens ${task.minChars - length} Zeichen.`);
+        return;
+      }
+      if (!allChecked) {
+        showFeedback("error", "Bestätige alle Kriterien erst, nachdem du deinen Text entsprechend geprüft hast.");
+        return;
+      }
+      completeTask(task, task.success || "Das Arbeitsprodukt erfüllt die formalen Kriterien. Vergleicht es nun mit Material oder Lösung.");
+    });
+  }
+
+  function renderAnswer(task) {
+    const container = byId("answer-area");
+    container.replaceChildren();
+    if (task.kind === "choice") renderChoice(task, container);
+    else if (task.kind === "match") renderMatch(task, container);
+    else if (task.kind === "order") renderOrder(task, container);
+    else if (task.kind === "text") renderText(task, container);
+  }
+
+  function renderTask() {
+    const task = state.tasks[state.current];
+    if (!task) return;
+    state.showingSummary = false;
+    byId("task-session").hidden = false;
+    byId("completion-view").hidden = true;
+    const taskTag = task.tag || `${state.level}8`;
+    byId("task-tag").textContent = taskTag.startsWith("(") ? taskTag : `(${taskTag})`;
+    byId("task-position").textContent = `Aufgabe ${state.current + 1} von ${state.tasks.length}`;
+    byId("task-title").textContent = `${task.number ? `Aufgabe ${task.number}: ` : ""}${task.title}`;
+    byId("task-prompt").textContent = task.prompt;
+
+    const materialBox = byId("material-box");
+    if (task.material) {
+      byId("task-material").textContent = task.material;
+      materialBox.hidden = false;
+    } else {
+      materialBox.hidden = true;
+    }
+
+    clearFeedback();
+    renderAnswer(task);
+    byId("prev-task").disabled = state.current === 0;
+    byId("next-task").disabled = !isCurrentTaskAttempted(task);
+    byId("next-task").textContent = state.current === state.tasks.length - 1 ? "Abschluss anzeigen" : "Nächste Aufgabe";
+    updateProgress();
+    if (isCurrentTaskPassed(task)) {
+      showFeedback("info", "Diese Aufgabe wurde bereits erfolgreich abgeschlossen. Du kannst sie erneut bearbeiten oder weitergehen.");
+    } else if (isCurrentTaskAttempted(task)) {
+      showFeedback("info", "Diese Aufgabe wurde bereits geprüft, zählt aber noch nicht als erfolgreich. Du kannst sie erneut versuchen oder weitergehen.");
+    }
+  }
+
+  function showSummary() {
+    const progress = progressFor(state.level);
+    const mastered = hasMastery(state.level);
+    const missingAttempts = progress.total - progress.attempted;
+    const missingPasses = Math.max(0, progress.required - progress.passed);
+    const following = nextLevel(state.level);
+    state.showingSummary = true;
+    byId("task-session").hidden = true;
+    byId("completion-view").hidden = false;
+    byId("completion-title").textContent = mastered
+      ? `${LEVELS[state.level].name}: 80-%-Ziel erreicht`
+      : `${LEVELS[state.level].name}: Zwischenstand`;
+
+    if (mastered) {
+      byId("completion-text").textContent = following
+        ? `Alle ${progress.total} Aufgaben wurden mindestens einmal bearbeitet, ${progress.passed} davon erfolgreich. ${LEVELS[following].name} ist jetzt freigeschaltet.`
+        : `Alle ${progress.total} Aufgaben wurden mindestens einmal bearbeitet, ${progress.passed} davon erfolgreich. Du hast den gesamten Lernpfad abgeschlossen.`;
+    } else {
+      const parts = [];
+      if (missingAttempts > 0) parts.push(`${missingAttempts} Aufgabe${missingAttempts === 1 ? "" : "n"} noch mindestens einmal prüfen`);
+      if (missingPasses > 0) parts.push(`${missingPasses} weitere Aufgabe${missingPasses === 1 ? "" : "n"} erfolgreich lösen`);
+      byId("completion-text").textContent = `Aktuell: ${progress.attempted} von ${progress.total} bearbeitet und ${progress.passed} erfolgreich. Für die Freischaltung musst du ${parts.join(" und ")}.`;
+    }
+
+    const nextButton = byId("start-next-level");
+    nextButton.hidden = !(mastered && following);
+    if (mastered && following) {
+      nextButton.dataset.nextLevel = following;
+      nextButton.textContent = `${LEVELS[following].name} starten`;
+    }
+  }
+
+  function bindEvents() {
+    document.querySelectorAll("[data-level]").forEach((button) => {
+      button.addEventListener("click", () => selectLevel(button.dataset.level));
+    });
+    byId("change-level").addEventListener("click", showLevelChooser);
+    byId("prev-task").addEventListener("click", () => {
+      if (state.current > 0) {
+        state.current -= 1;
+        renderTask();
+      }
+    });
+    byId("next-task").addEventListener("click", () => {
+      if (state.current < state.tasks.length - 1) {
+        state.current += 1;
+        renderTask();
+      } else {
+        showSummary();
+      }
+    });
+    byId("review-level").addEventListener("click", () => {
+      state.current = 0;
+      renderTask();
+    });
+    byId("choose-level-after").addEventListener("click", showLevelChooser);
+    byId("start-next-level").addEventListener("click", (event) => {
+      selectLevel(event.currentTarget.dataset.nextLevel);
+    });
+    byId("reset-progress").addEventListener("click", () => {
+      if (!window.confirm("Fortschritt und Textentwürfe dieses Pakets wirklich zurücksetzen?")) return;
+      state.attempted.clear();
+      state.passed.clear();
+      state.drafts = {};
+      persistState();
+      showLevelChooser();
+      const status = byId("reset-status");
+      status.textContent = "Der Fortschritt dieses Pakets wurde zurückgesetzt.";
+      status.hidden = false;
+    });
+  }
+
+  function initializeCounts() {
+    Object.keys(LEVELS).forEach((level) => {
+      byId(`count-${level}`).textContent = `${taskCountFor(level)} Aufgaben`;
+    });
+  }
+
+  loadState();
+  persistState();
+  initializeCounts();
+  updateLevelChooser();
+  bindEvents();
+})();
+</script>
+</body>
+</html>
