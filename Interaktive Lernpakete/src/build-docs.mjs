@@ -505,7 +505,7 @@ function indexDocument() {
   <footer class="site-footer">
     <div class="footer-inner">
       <p class="footer-author">Autor: Christian Schwend</p>
-      <p>Alemannenschule Wutöschingen · Offline nutzbar · Fortschritt bleibt lokal</p>
+      <p>Alemannenschule Wutöschingen</p>
     </div>
   </footer>
 </body>

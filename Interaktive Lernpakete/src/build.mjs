@@ -310,7 +310,6 @@ function packageDocument(pkg) {
   <footer class="site-footer">
     <div class="footer-inner">
       <p class="footer-author">Autor: Christian Schwend</p>
-      <p class="footer-note">Offline-Lernbegleiter zur Unterrichtsreihe „Französische Revolution“ · Fortschritt und Textentwürfe bleiben nach Möglichkeit lokal im Browser.</p>
     </div>
   </footer>
   <script>const PACKAGE = ${serializedPackage(pkg)};</script>
