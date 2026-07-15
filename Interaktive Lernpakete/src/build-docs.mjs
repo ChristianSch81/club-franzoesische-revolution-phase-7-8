@@ -72,7 +72,7 @@ const pageStyles = `
   --accent-dark: #5c1f1f;
   --blue: #234a73;
   --line: rgba(76, 54, 38, 0.22);
-  --overlay: rgba(249, 246, 240, 0.86);
+  --overlay: rgba(249, 246, 240, 0.58);
   --shadow: 0 0.7rem 2rem rgba(54, 38, 25, 0.13);
   --radius: 1rem;
 }
@@ -89,7 +89,7 @@ const pageStyles = `
     --accent-dark: #f0aaa2;
     --blue: #91b9df;
     --line: rgba(241, 222, 202, 0.22);
-    --overlay: rgba(25, 21, 18, 0.88);
+    --overlay: rgba(25, 21, 18, 0.72);
     --shadow: 0 0.7rem 2rem rgba(0, 0, 0, 0.3);
   }
 }

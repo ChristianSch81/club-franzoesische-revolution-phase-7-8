@@ -44,6 +44,10 @@ const packageCards = overview.match(/class="package-card"/g) ?? [];
 
 if (packageCards.length !== 10) fail("Die Übersicht enthält nicht genau 10 Paketkarten.");
 if (!overview.includes('url("assets/revolution.jpg")')) fail("Das Hintergrundbild ist nicht eingebunden.");
+const overlayMatch = overview.match(/--overlay:\s*rgba\([^;]+,\s*([\d.]+)\);/);
+if (!overlayMatch || Number(overlayMatch[1]) > 0.7) {
+  fail("Das Hintergrundbild wird von der hellen Überlagerung zu stark verdeckt.");
+}
 if (!overview.includes(schoolUrl)) fail("Die ASW-Webseite ist in der Übersicht nicht verlinkt.");
 if (!overview.includes('src="assets/asw-logo.png"')) fail("Das ASW-Logo fehlt in der Übersicht.");
 if (!overview.includes("font-size: clamp(1rem")) fail("Die lesbare Basisschriftgröße ist nicht abgesichert.");
