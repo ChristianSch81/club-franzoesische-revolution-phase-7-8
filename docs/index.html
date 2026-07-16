@@ -270,11 +270,46 @@ h1, h2, h3, strong { font-weight: 650; }
 
 .package-content { min-width: 0; }
 
+.package-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .package-card h3 {
+  flex: 1 1 auto;
   margin-block-end: 0.5rem;
   font-size: clamp(1.18rem, 2vw, 1.42rem);
   line-height: 1.25;
   text-wrap: balance;
+}
+
+.package-preview-link {
+  display: block;
+  flex: 0 0 8.5rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 0.7rem;
+  background: var(--paper-strong);
+  box-shadow: 0 0.25rem 0.75rem rgba(54, 38, 25, 0.14);
+}
+
+.package-preview {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: transform 180ms ease;
+}
+
+.package-preview-link:hover .package-preview {
+  transform: scale(1.04);
+}
+
+.package-preview-link:focus-visible {
+  outline: 0.2rem solid var(--blue);
+  outline-offset: 0.2rem;
 }
 
 .package-description {
@@ -347,6 +382,7 @@ h1, h2, h3, strong { font-weight: 650; }
   .asw-logo { width: 4.4rem; height: 4rem; }
   .package-card { grid-template-columns: 3.4rem minmax(0, 1fr); padding: 1rem; }
   .package-number { width: 3.25rem; height: 3.25rem; font-size: 1.05rem; }
+  .package-preview-link { flex-basis: 6.7rem; }
   .section-heading { align-items: flex-start; flex-direction: column; }
 }
 
@@ -358,7 +394,8 @@ h1, h2, h3, strong { font-weight: 650; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .package-link { transition: none; }
+  .package-link,
+  .package-preview { transition: none; }
 }
 </style>
 </head>
@@ -402,7 +439,12 @@ h1, h2, h3, strong { font-weight: 650; }
           <div class="package-number" aria-hidden="true">01</div>
           <div class="package-content">
             <p class="eyebrow">Paket 01</p>
-            <h3>Die Welt des „Sonnenkönigs“</h3>
+            <div class="package-title-row">
+              <h3>Die Welt des „Sonnenkönigs“</h3>
+              <a class="package-preview-link" href="pakete/paket-01-sonnenkoenig.html" aria-label="Die Welt des „Sonnenkönigs“ öffnen">
+                <img class="package-preview" src="assets/paket-01-sonnenkoenig.jpg" alt="Porträt Ludwigs XIV. im Krönungsornat" width="204" height="136" loading="lazy">
+              </a>
+            </div>
             <p class="package-description">Absolutistische Herrschaft, Versailles und die Inszenierung Ludwigs XIV.</p>
             <a class="package-link" href="pakete/paket-01-sonnenkoenig.html">Lernpaket öffnen <span aria-hidden="true">→</span></a>
           </div>
@@ -411,7 +453,12 @@ h1, h2, h3, strong { font-weight: 650; }
           <div class="package-number" aria-hidden="true">02</div>
           <div class="package-content">
             <p class="eyebrow">Paket 02</p>
-            <h3>Die Ideen der Aufklärung</h3>
+            <div class="package-title-row">
+              <h3>Die Ideen der Aufklärung</h3>
+              <a class="package-preview-link" href="pakete/paket-02-aufklaerung.html" aria-label="Die Ideen der Aufklärung öffnen">
+                <img class="package-preview" src="assets/paket-02-aufklaerung.jpg" alt="Gesellschaftlicher Salon im Zeitalter der Aufklärung" width="204" height="136" loading="lazy">
+              </a>
+            </div>
             <p class="package-description">Freiheit, gleiche Rechte, Gewaltenteilung und Volkssouveränität</p>
             <a class="package-link" href="pakete/paket-02-aufklaerung.html">Lernpaket öffnen <span aria-hidden="true">→</span></a>
           </div>
@@ -420,7 +467,9 @@ h1, h2, h3, strong { font-weight: 650; }
           <div class="package-number" aria-hidden="true">03</div>
           <div class="package-content">
             <p class="eyebrow">Paket 03</p>
-            <h3>Die Ständeordnung</h3>
+            <div class="package-title-row">
+              <h3>Die Ständeordnung</h3>
+            </div>
             <p class="package-description">Privilegien, Steuerlast und politische Unterrepräsentation vor 1789</p>
             <a class="package-link" href="pakete/paket-03-staendeordnung.html">Lernpaket öffnen <span aria-hidden="true">→</span></a>
           </div>
@@ -429,7 +478,12 @@ h1, h2, h3, strong { font-weight: 650; }
           <div class="package-number" aria-hidden="true">04</div>
           <div class="package-content">
             <p class="eyebrow">Paket 04</p>
-            <h3>Frankreich in der Krise</h3>
+            <div class="package-title-row">
+              <h3>Frankreich in der Krise</h3>
+              <a class="package-preview-link" href="pakete/paket-04-frankreich-in-der-krise.html" aria-label="Frankreich in der Krise öffnen">
+                <img class="package-preview" src="assets/paket-04-frankreich-krise.jpg" alt="Darstellung hungernder Menschen während der Versorgungskrise" width="204" height="136" loading="lazy">
+              </a>
+            </div>
             <p class="package-description">Warum geriet die alte Ordnung 1788/1789 unter Druck?</p>
             <a class="package-link" href="pakete/paket-04-frankreich-in-der-krise.html">Lernpaket öffnen <span aria-hidden="true">→</span></a>
           </div>
@@ -438,7 +492,12 @@ h1, h2, h3, strong { font-weight: 650; }
           <div class="package-number" aria-hidden="true">05</div>
           <div class="package-content">
             <p class="eyebrow">Paket 05</p>
-            <h3>Der Beginn der Revolution</h3>
+            <div class="package-title-row">
+              <h3>Der Beginn der Revolution</h3>
+              <a class="package-preview-link" href="pakete/paket-05-beginn-der-revolution.html" aria-label="Der Beginn der Revolution öffnen">
+                <img class="package-preview" src="assets/paket-05-beginn-revolution.jpg" alt="Die Bastille während der Französischen Revolution" width="204" height="136" loading="lazy">
+              </a>
+            </div>
             <p class="package-description">Von den Generalständen zum Sturm auf die Bastille</p>
             <a class="package-link" href="pakete/paket-05-beginn-der-revolution.html">Lernpaket öffnen <span aria-hidden="true">→</span></a>
           </div>
@@ -447,7 +506,12 @@ h1, h2, h3, strong { font-weight: 650; }
           <div class="package-number" aria-hidden="true">06</div>
           <div class="package-content">
             <p class="eyebrow">Paket 06</p>
-            <h3>Die Erklärung der Menschenrechte</h3>
+            <div class="package-title-row">
+              <h3>Die Erklärung der Menschenrechte</h3>
+              <a class="package-preview-link" href="pakete/paket-06-erklaerung-der-menschenrechte.html" aria-label="Die Erklärung der Menschenrechte öffnen">
+                <img class="package-preview" src="assets/paket-06-menschenrechte.jpg" alt="Darstellung der Erklärung der Menschen- und Bürgerrechte" width="204" height="136" loading="lazy">
+              </a>
+            </div>
             <p class="package-description">Freiheit und Gleichheit – Anspruch, Wirkung und Grenzen</p>
             <a class="package-link" href="pakete/paket-06-erklaerung-der-menschenrechte.html">Lernpaket öffnen <span aria-hidden="true">→</span></a>
           </div>
@@ -456,7 +520,9 @@ h1, h2, h3, strong { font-weight: 650; }
           <div class="package-number" aria-hidden="true">07</div>
           <div class="package-content">
             <p class="eyebrow">Paket 07</p>
-            <h3>Frankreich auf dem Weg zur Republik</h3>
+            <div class="package-title-row">
+              <h3>Frankreich auf dem Weg zur Republik</h3>
+            </div>
             <p class="package-description">Von der Flucht Ludwigs XVI. bis zu Napoleons Staatsstreich</p>
             <a class="package-link" href="pakete/paket-07-frankreich-auf-dem-weg-zur-republik.html">Lernpaket öffnen <span aria-hidden="true">→</span></a>
           </div>
@@ -465,7 +531,12 @@ h1, h2, h3, strong { font-weight: 650; }
           <div class="package-number" aria-hidden="true">08</div>
           <div class="package-content">
             <p class="eyebrow">Paket 08</p>
-            <h3>Die Napoleonische Herrschaft</h3>
+            <div class="package-title-row">
+              <h3>Die Napoleonische Herrschaft</h3>
+              <a class="package-preview-link" href="pakete/paket-08-die-napoleonische-herrschaft.html" aria-label="Die Napoleonische Herrschaft öffnen">
+                <img class="package-preview" src="assets/paket-08-napoleon.jpg" alt="Porträt Napoleons in Uniform" width="204" height="136" loading="lazy">
+              </a>
+            </div>
             <p class="package-description">Europäische Vorherrschaft, Neuordnung und Untergang</p>
             <a class="package-link" href="pakete/paket-08-die-napoleonische-herrschaft.html">Lernpaket öffnen <span aria-hidden="true">→</span></a>
           </div>
@@ -474,7 +545,9 @@ h1, h2, h3, strong { font-weight: 650; }
           <div class="package-number" aria-hidden="true">09</div>
           <div class="package-content">
             <p class="eyebrow">Paket 09</p>
-            <h3>Vom Wiener Kongress zum Hambacher Fest</h3>
+            <div class="package-title-row">
+              <h3>Vom Wiener Kongress zum Hambacher Fest</h3>
+            </div>
             <p class="package-description">Restauration, Deutscher Bund und Freiheitsbewegung 1815-1832</p>
             <a class="package-link" href="pakete/paket-09-vom-wiener-kongress-zum-hambacher-fest.html">Lernpaket öffnen <span aria-hidden="true">→</span></a>
           </div>
@@ -483,7 +556,12 @@ h1, h2, h3, strong { font-weight: 650; }
           <div class="package-number" aria-hidden="true">10</div>
           <div class="package-content">
             <p class="eyebrow">Paket 10</p>
-            <h3>Die Revolution von 1848</h3>
+            <div class="package-title-row">
+              <h3>Die Revolution von 1848</h3>
+              <a class="package-preview-link" href="pakete/paket-10-die-revolution-von-1848.html" aria-label="Die Revolution von 1848 öffnen">
+                <img class="package-preview" src="assets/paket-10-revolution-1848.jpg" alt="Barrikade während der Revolution von 1848" width="204" height="136" loading="lazy">
+              </a>
+            </div>
             <p class="package-description">Einigkeit, Recht und Freiheit zwischen Hoffnung und Scheitern</p>
             <a class="package-link" href="pakete/paket-10-die-revolution-von-1848.html">Lernpaket öffnen <span aria-hidden="true">→</span></a>
           </div>

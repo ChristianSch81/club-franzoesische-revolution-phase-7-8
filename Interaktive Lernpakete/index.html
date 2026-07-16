@@ -325,6 +325,43 @@ h3 {
   flex-direction: column;
 }
 
+.package-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.package-title-row h2 {
+  flex: 1 1 auto;
+}
+
+.package-preview-link {
+  display: block;
+  flex: 0 0 8.5rem;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  background: var(--surface);
+}
+
+.package-preview {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: transform 180ms ease;
+}
+
+.package-preview-link:hover .package-preview {
+  transform: scale(1.04);
+}
+
+.package-preview-link:focus-visible {
+  outline: 0.2rem solid var(--accent);
+  outline-offset: 0.18rem;
+}
+
 .package-card .action-row {
   margin-block-start: auto;
 }
@@ -602,6 +639,10 @@ fieldset {
     width: min(100% - 1.2rem, var(--page-width));
   }
 
+  .package-preview-link {
+    flex-basis: 6.7rem;
+  }
+
   .task-nav,
   .task-nav .action-row {
     align-items: stretch;
@@ -661,7 +702,12 @@ fieldset {
       <div class="package-grid">
         <article class="package-card">
       <p class="eyebrow">Paket 01</p>
-      <h2>Die Welt des „Sonnenkönigs“</h2>
+      <div class="package-title-row">
+        <h2>Die Welt des „Sonnenkönigs“</h2>
+        <a class="package-preview-link" href="paket-01-sonnenkoenig.html" aria-label="Die Welt des „Sonnenkönigs“ öffnen">
+          <img class="package-preview" src="assets/overview/paket-01-sonnenkoenig.jpg" alt="Porträt Ludwigs XIV. im Krönungsornat" width="204" height="136" loading="lazy">
+        </a>
+      </div>
       <p>Absolutistische Herrschaft, Versailles und die Inszenierung Ludwigs XIV.</p>
       <p class="muted">Herrschaftsrechte, Hofstaat, Versailles, Herrscherbild und demokratischer Bildtransfer</p>
       <div class="index-meta">
@@ -673,7 +719,12 @@ fieldset {
     </article>
 <article class="package-card">
       <p class="eyebrow">Paket 02</p>
-      <h2>Die Ideen der Aufklärung</h2>
+      <div class="package-title-row">
+        <h2>Die Ideen der Aufklärung</h2>
+        <a class="package-preview-link" href="paket-02-aufklaerung.html" aria-label="Die Ideen der Aufklärung öffnen">
+          <img class="package-preview" src="assets/overview/paket-02-aufklaerung.jpg" alt="Gesellschaftlicher Salon im Zeitalter der Aufklärung" width="204" height="136" loading="lazy">
+        </a>
+      </div>
       <p>Freiheit, gleiche Rechte, Gewaltenteilung und Volkssouveränität</p>
       <p class="muted">Kritik am Absolutismus, Rousseau, Gewaltenteilung, Grundgesetz und Widerstandsrecht</p>
       <div class="index-meta">
@@ -685,7 +736,9 @@ fieldset {
     </article>
 <article class="package-card">
       <p class="eyebrow">Paket 03</p>
-      <h2>Die Ständeordnung</h2>
+      <div class="package-title-row">
+        <h2>Die Ständeordnung</h2>
+      </div>
       <p>Privilegien, Steuerlast und politische Unterrepräsentation vor 1789</p>
       <p class="muted">Gottesgnadentum, drei Stände, Finanzkrise, Generalstände und Karikaturanalyse</p>
       <div class="index-meta">
@@ -697,7 +750,12 @@ fieldset {
     </article>
 <article class="package-card">
       <p class="eyebrow">Paket 04</p>
-      <h2>Frankreich in der Krise</h2>
+      <div class="package-title-row">
+        <h2>Frankreich in der Krise</h2>
+        <a class="package-preview-link" href="paket-04-frankreich-in-der-krise.html" aria-label="Frankreich in der Krise öffnen">
+          <img class="package-preview" src="assets/overview/paket-04-frankreich-krise.jpg" alt="Darstellung hungernder Menschen während der Versorgungskrise" width="204" height="136" loading="lazy">
+        </a>
+      </div>
       <p>Warum geriet die alte Ordnung 1788/1789 unter Druck?</p>
       <p class="muted">Wirtschaftliche, soziale und politische Krisenursachen, Steuerkonflikt, Generalstände und Beschwerdebriefe</p>
       <div class="index-meta">
@@ -709,7 +767,12 @@ fieldset {
     </article>
 <article class="package-card">
       <p class="eyebrow">Paket 05</p>
-      <h2>Der Beginn der Revolution</h2>
+      <div class="package-title-row">
+        <h2>Der Beginn der Revolution</h2>
+        <a class="package-preview-link" href="paket-05-beginn-der-revolution.html" aria-label="Der Beginn der Revolution öffnen">
+          <img class="package-preview" src="assets/overview/paket-05-beginn-revolution.jpg" alt="Die Bastille während der Französischen Revolution" width="204" height="136" loading="lazy">
+        </a>
+      </div>
       <p>Von den Generalständen zum Sturm auf die Bastille</p>
       <p class="muted">Nationalversammlung, Ballhausschwur, Bastillesturm, politischer Wandel und das Verhalten Ludwigs XVI.</p>
       <div class="index-meta">
@@ -721,7 +784,12 @@ fieldset {
     </article>
 <article class="package-card">
       <p class="eyebrow">Paket 06</p>
-      <h2>Die Erklärung der Menschenrechte</h2>
+      <div class="package-title-row">
+        <h2>Die Erklärung der Menschenrechte</h2>
+        <a class="package-preview-link" href="paket-06-erklaerung-der-menschenrechte.html" aria-label="Die Erklärung der Menschenrechte öffnen">
+          <img class="package-preview" src="assets/overview/paket-06-menschenrechte.jpg" alt="Darstellung der Erklärung der Menschen- und Bürgerrechte" width="204" height="136" loading="lazy">
+        </a>
+      </div>
       <p>Freiheit und Gleichheit – Anspruch, Wirkung und Grenzen</p>
       <p class="muted">Gutsherrschaft, Unabhängigkeitserklärung von 1776, Menschen- und Bürgerrechte von 1789, Olympe de Gouges, Grundgesetz und Zug der Frauen nach Versailles</p>
       <div class="index-meta">
@@ -733,7 +801,9 @@ fieldset {
     </article>
 <article class="package-card">
       <p class="eyebrow">Paket 07</p>
-      <h2>Frankreich auf dem Weg zur Republik</h2>
+      <div class="package-title-row">
+        <h2>Frankreich auf dem Weg zur Republik</h2>
+      </div>
       <p>Von der Flucht Ludwigs XVI. bis zu Napoleons Staatsstreich</p>
       <p class="muted">Verfassung von 1791, Republik, Terrorherrschaft und historisches Urteil</p>
       <div class="index-meta">
@@ -745,7 +815,12 @@ fieldset {
     </article>
 <article class="package-card">
       <p class="eyebrow">Paket 08</p>
-      <h2>Die Napoleonische Herrschaft</h2>
+      <div class="package-title-row">
+        <h2>Die Napoleonische Herrschaft</h2>
+        <a class="package-preview-link" href="paket-08-die-napoleonische-herrschaft.html" aria-label="Die Napoleonische Herrschaft öffnen">
+          <img class="package-preview" src="assets/overview/paket-08-napoleon.jpg" alt="Porträt Napoleons in Uniform" width="204" height="136" loading="lazy">
+        </a>
+      </div>
       <p>Europäische Vorherrschaft, Neuordnung und Untergang</p>
       <p class="muted">Kriege, Kontinentalsperre, Rheinbund, deutsche Nationalbewegung und Erinnerungskultur</p>
       <div class="index-meta">
@@ -757,7 +832,9 @@ fieldset {
     </article>
 <article class="package-card">
       <p class="eyebrow">Paket 09</p>
-      <h2>Vom Wiener Kongress zum Hambacher Fest</h2>
+      <div class="package-title-row">
+        <h2>Vom Wiener Kongress zum Hambacher Fest</h2>
+      </div>
       <p>Restauration, Deutscher Bund und Freiheitsbewegung 1815-1832</p>
       <p class="muted">Neuordnung Europas, Metternichs Politik und der Konflikt um Einheit und Freiheit</p>
       <div class="index-meta">
@@ -769,7 +846,12 @@ fieldset {
     </article>
 <article class="package-card">
       <p class="eyebrow">Paket 10</p>
-      <h2>Die Revolution von 1848</h2>
+      <div class="package-title-row">
+        <h2>Die Revolution von 1848</h2>
+        <a class="package-preview-link" href="paket-10-die-revolution-von-1848.html" aria-label="Die Revolution von 1848 öffnen">
+          <img class="package-preview" src="assets/overview/paket-10-revolution-1848.jpg" alt="Barrikade während der Revolution von 1848" width="204" height="136" loading="lazy">
+        </a>
+      </div>
       <p>Einigkeit, Recht und Freiheit zwischen Hoffnung und Scheitern</p>
       <p class="muted">Liedanalyse, Revolutionsursachen, Forderungen, Quellenkritik und politische Kommunikation</p>
       <div class="index-meta">

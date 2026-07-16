@@ -325,6 +325,43 @@ h3 {
   flex-direction: column;
 }
 
+.package-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.package-title-row h2 {
+  flex: 1 1 auto;
+}
+
+.package-preview-link {
+  display: block;
+  flex: 0 0 8.5rem;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  background: var(--surface);
+}
+
+.package-preview {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: transform 180ms ease;
+}
+
+.package-preview-link:hover .package-preview {
+  transform: scale(1.04);
+}
+
+.package-preview-link:focus-visible {
+  outline: 0.2rem solid var(--accent);
+  outline-offset: 0.18rem;
+}
+
 .package-card .action-row {
   margin-block-start: auto;
 }
@@ -600,6 +637,10 @@ fieldset {
   .page,
   .footer-inner {
     width: min(100% - 1.2rem, var(--page-width));
+  }
+
+  .package-preview-link {
+    flex-basis: 6.7rem;
   }
 
   .task-nav,

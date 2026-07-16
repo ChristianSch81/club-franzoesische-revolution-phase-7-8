@@ -31,7 +31,19 @@ if (pdfFiles.length !== 10) {
   fail(`10 PDF-Materialien erwartet, ${pdfFiles.length} gefunden.`);
 }
 
-for (const assetName of ["revolution.jpg", "asw-logo.png"]) {
+const expectedImageAssets = [
+  "revolution.jpg",
+  "asw-logo.png",
+  "paket-01-sonnenkoenig.jpg",
+  "paket-02-aufklaerung.jpg",
+  "paket-04-frankreich-krise.jpg",
+  "paket-05-beginn-revolution.jpg",
+  "paket-06-menschenrechte.jpg",
+  "paket-08-napoleon.jpg",
+  "paket-10-revolution-1848.jpg",
+];
+
+for (const assetName of expectedImageAssets) {
   const assetPath = path.join(assetsDir, assetName);
   if (!fs.existsSync(assetPath) || fs.statSync(assetPath).size === 0) {
     fail(`Bilddatei fehlt oder ist leer: assets/${assetName}`);
@@ -43,6 +55,9 @@ const overview = fs.readFileSync(path.join(docsDir, "index.html"), "utf8");
 const packageCards = overview.match(/class="package-card"/g) ?? [];
 
 if (packageCards.length !== 10) fail("Die Übersicht enthält nicht genau 10 Paketkarten.");
+if ((overview.match(/class="package-preview"/g) ?? []).length !== 7) {
+  fail("Die Übersicht enthält nicht genau sieben Paketbilder.");
+}
 if (overview.includes('class="level-counts"') || /M8\s*[·:]\s*\d/.test(overview)) {
   fail("Die Übersicht enthält noch Aufgabenzahlen nach Niveaustufe.");
 }

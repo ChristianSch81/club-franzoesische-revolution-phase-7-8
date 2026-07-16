@@ -50,6 +50,16 @@ const sourceFiles = new Map([
   [10, "../Pakete/10. Die Revolution von 1848.pdf"]
 ]);
 
+const overviewImages = new Map([
+  [1, { file: "paket-01-sonnenkoenig.jpg", alt: "Porträt Ludwigs XIV. im Krönungsornat" }],
+  [2, { file: "paket-02-aufklaerung.jpg", alt: "Gesellschaftlicher Salon im Zeitalter der Aufklärung" }],
+  [4, { file: "paket-04-frankreich-krise.jpg", alt: "Darstellung hungernder Menschen während der Versorgungskrise" }],
+  [5, { file: "paket-05-beginn-revolution.jpg", alt: "Die Bastille während der Französischen Revolution" }],
+  [6, { file: "paket-06-menschenrechte.jpg", alt: "Darstellung der Erklärung der Menschen- und Bürgerrechte" }],
+  [8, { file: "paket-08-napoleon.jpg", alt: "Porträt Napoleons in Uniform" }],
+  [10, { file: "paket-10-revolution-1848.jpg", alt: "Barrikade während der Revolution von 1848" }]
+]);
+
 function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
@@ -323,9 +333,18 @@ function indexDocument(packages) {
   const cards = packages.map((pkg) => {
     const number = String(pkg.number).padStart(2, "0");
     const focus = Array.isArray(pkg.focus) ? pkg.focus.join(" · ") : pkg.focus;
+    const image = overviewImages.get(pkg.number);
+    const imageMarkup = image
+      ? `
+        <a class="package-preview-link" href="${escapeHtml(pkg.filename)}" aria-label="${escapeHtml(pkg.title)} öffnen">
+          <img class="package-preview" src="assets/overview/${escapeHtml(image.file)}" alt="${escapeHtml(image.alt)}" width="204" height="136" loading="lazy">
+        </a>`
+      : "";
     return `<article class="package-card">
       <p class="eyebrow">Paket ${number}</p>
-      <h2>${escapeHtml(pkg.title)}</h2>
+      <div class="package-title-row">
+        <h2>${escapeHtml(pkg.title)}</h2>${imageMarkup}
+      </div>
       <p>${escapeHtml(pkg.subtitle)}</p>
       <p class="muted">${escapeHtml(focus)}</p>
       <div class="index-meta">

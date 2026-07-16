@@ -27,6 +27,16 @@ const sourceFiles = new Map([
   [10, "10. Die Revolution von 1848.pdf"]
 ]);
 
+const overviewImages = new Map([
+  [1, { file: "paket-01-sonnenkoenig.jpg", alt: "Porträt Ludwigs XIV. im Krönungsornat" }],
+  [2, { file: "paket-02-aufklaerung.jpg", alt: "Gesellschaftlicher Salon im Zeitalter der Aufklärung" }],
+  [4, { file: "paket-04-frankreich-krise.jpg", alt: "Darstellung hungernder Menschen während der Versorgungskrise" }],
+  [5, { file: "paket-05-beginn-revolution.jpg", alt: "Die Bastille während der Französischen Revolution" }],
+  [6, { file: "paket-06-menschenrechte.jpg", alt: "Darstellung der Erklärung der Menschen- und Bürgerrechte" }],
+  [8, { file: "paket-08-napoleon.jpg", alt: "Porträt Napoleons in Uniform" }],
+  [10, { file: "paket-10-revolution-1848.jpg", alt: "Barrikade während der Revolution von 1848" }]
+]);
+
 function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
@@ -323,11 +333,46 @@ h1, h2, h3, strong { font-weight: 650; }
 
 .package-content { min-width: 0; }
 
+.package-title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .package-card h3 {
+  flex: 1 1 auto;
   margin-block-end: 0.5rem;
   font-size: clamp(1.18rem, 2vw, 1.42rem);
   line-height: 1.25;
   text-wrap: balance;
+}
+
+.package-preview-link {
+  display: block;
+  flex: 0 0 8.5rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 0.7rem;
+  background: var(--paper-strong);
+  box-shadow: 0 0.25rem 0.75rem rgba(54, 38, 25, 0.14);
+}
+
+.package-preview {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: transform 180ms ease;
+}
+
+.package-preview-link:hover .package-preview {
+  transform: scale(1.04);
+}
+
+.package-preview-link:focus-visible {
+  outline: 0.2rem solid var(--blue);
+  outline-offset: 0.2rem;
 }
 
 .package-description {
@@ -400,6 +445,7 @@ h1, h2, h3, strong { font-weight: 650; }
   .asw-logo { width: 4.4rem; height: 4rem; }
   .package-card { grid-template-columns: 3.4rem minmax(0, 1fr); padding: 1rem; }
   .package-number { width: 3.25rem; height: 3.25rem; font-size: 1.05rem; }
+  .package-preview-link { flex-basis: 6.7rem; }
   .section-heading { align-items: flex-start; flex-direction: column; }
 }
 
@@ -411,17 +457,27 @@ h1, h2, h3, strong { font-weight: 650; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .package-link { transition: none; }
+  .package-link,
+  .package-preview { transition: none; }
 }
 `;
 
 function cardFor(pkg) {
   const number = String(pkg.number).padStart(2, "0");
+  const image = overviewImages.get(pkg.number);
+  const imageMarkup = image
+    ? `
+              <a class="package-preview-link" href="pakete/${escapeHtml(pkg.filename)}" aria-label="${escapeHtml(pkg.title)} öffnen">
+                <img class="package-preview" src="assets/${escapeHtml(image.file)}" alt="${escapeHtml(image.alt)}" width="204" height="136" loading="lazy">
+              </a>`
+    : "";
   return `<article class="package-card">
           <div class="package-number" aria-hidden="true">${number}</div>
           <div class="package-content">
             <p class="eyebrow">Paket ${number}</p>
-            <h3>${escapeHtml(pkg.title)}</h3>
+            <div class="package-title-row">
+              <h3>${escapeHtml(pkg.title)}</h3>${imageMarkup}
+            </div>
             <p class="package-description">${escapeHtml(pkg.subtitle)}</p>
             <a class="package-link" href="pakete/${escapeHtml(pkg.filename)}">Lernpaket öffnen <span aria-hidden="true">→</span></a>
           </div>
@@ -527,6 +583,13 @@ for (const asset of ["revolution.jpg", "asw-logo.png"]) {
   assert(content.length > 0, `Asset fehlt oder ist leer: docs/assets/${asset}`);
 }
 
+for (const { file } of overviewImages.values()) {
+  const source = join(interactiveDir, "assets", "overview", file);
+  const content = await readFile(source);
+  assert(content.length > 0, `Übersichtsbild fehlt oder ist leer: Interaktive Lernpakete/assets/overview/${file}`);
+  await copyFile(source, join(assetDir, file));
+}
+
 for (const pkg of preparedPackages) {
   const sourceHtml = await readFile(join(interactiveDir, pkg.filename), "utf8");
   await writeFile(join(packageDir, pkg.filename), transformPackageHtml(sourceHtml, pkg), "utf8");
@@ -538,10 +601,11 @@ for (const pkg of preparedPackages) {
 
 const indexHtml = indexDocument();
 assert((indexHtml.match(/class="package-card"/g) || []).length === 10, "Übersicht enthält nicht zehn Paketkarten.");
+assert((indexHtml.match(/class="package-preview"/g) || []).length === 7, "Übersicht enthält nicht sieben Paketbilder.");
 assert(indexHtml.includes("assets/revolution.jpg"), "Hintergrundbild fehlt in der Übersicht.");
 assert(indexHtml.includes(schoolUrl), "ASW-Link fehlt in der Übersicht.");
 
 await writeFile(join(docsDir, "index.html"), indexHtml, "utf8");
 await writeFile(join(docsDir, ".nojekyll"), "", "utf8");
 
-console.log(`docs erstellt: 1 Übersicht, ${preparedPackages.length} Lernpakete, ${preparedPackages.length} PDF-Materialien und 2 Bild-Assets.`);
+console.log(`docs erstellt: 1 Übersicht, ${preparedPackages.length} Lernpakete, ${preparedPackages.length} PDF-Materialien und 9 Bild-Assets.`);
