@@ -86,9 +86,20 @@ for (const filename of expectedFiles) {
     const target = decodeURIComponent(href.split("#")[0]);
     assert(existsSync(resolve(outputDir, target)), `${filename}: lokales Linkziel fehlt: ${href}`);
   }
+  const srcs = extractAttributes(html, "src");
+  for (const src of srcs) {
+    if (/^\w+:/.test(src)) continue;
+    const target = decodeURIComponent(src.split("#")[0]);
+    assert(existsSync(resolve(outputDir, target)), `${filename}: lokale Bild- oder Skriptdatei fehlt: ${src}`);
+  }
 
   if (filename === "index.html") {
-    assert(scripts.length === 0, "index.html: unerwartetes JavaScript.");
+    assert(scripts.length === 2, `index.html: erwartet Konfiguration und Dashboard-Runtime, erhalten ${scripts.length} Skripte.`);
+    assert(html.includes("const PROGRESS_CONFIG ="), "index.html: Fortschrittskonfiguration fehlt.");
+    assert(html.includes('id="dashboard-ring-test"'), "index.html: äußerer Abschlusstest-Kreis fehlt.");
+    assert(["M", "R", "E"].every((level) => html.includes(`id="dashboard-ring-${level}"`)), "index.html: M8-/R8-/E8-Innenkreise fehlen.");
+    assert(html.includes('id="export-progress"') && html.includes('id="import-progress"'), "index.html: Export- oder Import-Schaltfläche fehlt.");
+    assert(html.includes('href="abschlusstest.html"'), "index.html: Link zum Abschlusstest fehlt.");
     const packageLinks = hrefs.filter((href) => /^paket-\d{2}-.*\.html$/.test(href));
     assert(new Set(packageLinks).size === 10, `index.html: erwartet Links zu 10 verschiedenen Paketen, erhalten ${new Set(packageLinks).size}.`);
     assert(packageLinks.length === 19, `index.html: erwartet 10 Schaltflächen- und 9 Bildlinks, erhalten ${packageLinks.length}.`);
@@ -113,8 +124,46 @@ for (const filename of expectedFiles) {
   }
 }
 
+const finalTestPath = join(outputDir, "abschlusstest.html");
+assert(existsSync(finalTestPath), "abschlusstest.html: Datei fehlt.");
+const finalTestHtml = await readFile(finalTestPath, "utf8");
+const finalTestInfo = await stat(finalTestPath);
+assert(finalTestInfo.size < 2_000_000, "abschlusstest.html ist größer als 2 MB.");
+assert(/^<!doctype html>/i.test(finalTestHtml), "abschlusstest.html: doctype fehlt.");
+assert(/<html\s+lang="de">/i.test(finalTestHtml), "abschlusstest.html: Sprache de fehlt.");
+assert(/<meta\s+name="viewport"/i.test(finalTestHtml), "abschlusstest.html: viewport fehlt.");
+assert(!/\bfetch\s*\(|XMLHttpRequest|WebSocket/i.test(finalTestHtml), "abschlusstest.html enthält eine Netzwerkschnittstelle.");
+assert((finalTestHtml.match(/<fieldset[^>]*data-minimum-question=/g) || []).length === 10, "abschlusstest.html: 10 M8-Multiple-Choice-Aufgaben erwartet.");
+assert((finalTestHtml.match(/data-open-task="r\d+"/g) || []).length === 5, "abschlusstest.html: 5 operationalisierte R8-Aufgaben erwartet.");
+assert((finalTestHtml.match(/data-open-task="e1"/g) || []).length === 1, "abschlusstest.html: E8-Bildinterpretation fehlt.");
+assert(finalTestHtml.includes("verfassung-1791.png"), "abschlusstest.html: Verfassungsschaubild 1791 fehlt.");
+assert(finalTestHtml.includes("paket-01-sonnenkoenig.jpg"), "abschlusstest.html: Herrscherporträt fehlt.");
+const finalTestScripts = extractScripts(finalTestHtml);
+assert(finalTestScripts.length === 2, `abschlusstest.html: erwartet Daten und Runtime, erhalten ${finalTestScripts.length} Skripte.`);
+finalTestScripts.forEach((script, index) => {
+  try {
+    new vm.Script(script, { filename: `abschlusstest.html:script-${index + 1}` });
+  } catch (error) {
+    throw new Error(`abschlusstest.html: JavaScript-Syntaxfehler: ${error.message}`);
+  }
+});
+const finalTestSandbox = {};
+vm.runInNewContext(`${finalTestScripts[0]}; this.__data = FINAL_TEST_DATA;`, finalTestSandbox);
+assert(finalTestSandbox.__data.minimumQuestions.length === 10, "Abschlusstestdaten: 10 M8-Aufgaben erwartet.");
+assert(finalTestSandbox.__data.regularQuestions.length === 5, "Abschlusstestdaten: 5 R8-Aufgaben erwartet.");
+assert(finalTestSandbox.__data.regularQuestions.reduce((sum, question) => sum + question.criteria.length, 0) === 20, "Abschlusstestdaten: 20 R8-Kriterien erwartet.");
+assert(finalTestSandbox.__data.expertQuestion.criteria.length === 8, "Abschlusstestdaten: 8 E8-Kriterien erwartet.");
+for (const attribute of ["href", "src"]) {
+  for (const reference of extractAttributes(finalTestHtml, attribute)) {
+    if (reference.startsWith("#") || /^\w+:/.test(reference)) continue;
+    assert(existsSync(resolve(outputDir, decodeURIComponent(reference.split("#")[0]))), `abschlusstest.html: lokales Ziel fehlt: ${reference}`);
+  }
+}
+
 const runtime = await readFile(join(here, "app.js"), "utf8");
 const styles = await readFile(join(here, "styles.css"), "utf8");
+const dashboardRuntime = await readFile(join(here, "dashboard.js"), "utf8");
+const finalTestRuntime = await readFile(join(here, "final-test.js"), "utf8");
 assert(!/Inputverlaufsplan|Verlaufsplan|\binputPlan\b|plan-view|tab-plan/i.test(runtime), "app.js enthält noch Verlaufsplan-Runtime.");
 assert(/const PASS_RATIO = 0\.8;/.test(runtime), "app.js: 80-%-Schwelle fehlt.");
 assert(/progress\.attempted === progress\.total && progress\.passed >= progress\.required/.test(runtime), "app.js: Freischaltung prüft nicht Bearbeitung und Erfolgsquote.");
@@ -126,6 +175,10 @@ assert(/Karte an Position \$\{position\}/.test(runtime), "app.js: Positionsansag
 assert(!/addEventListener\("dragstart"|\.draggable\s*=\s*true/.test(runtime), "app.js: alte HTML5-Drag-and-drop-Logik ist noch aktiv.");
 assert(/\.sort-handle\s*\{[\s\S]*?touch-action:\s*none;/.test(styles), "styles.css: touch-action none am Sortiergriff fehlt.");
 assert(/\.sort-handle\s*\{[\s\S]*?min-height:\s*2\.75rem;/.test(styles), "styles.css: ausreichend große Touch-Zielfläche am Sortiergriff fehlt.");
+assert(/new Blob\(/.test(dashboardRuntime) && /downloadExport/.test(dashboardRuntime), "dashboard.js: Exportfunktion fehlt.");
+assert(/importProgress/.test(dashboardRuntime) && /application\/json/.test(dashboardRuntime), "dashboard.js: Importfunktion fehlt.");
+assert(/franzrev-abschlusstest/.test(finalTestRuntime) || /FINAL_TEST_DATA\.storageKey/.test(finalTestRuntime), "final-test.js: lokale Abschlusstest-Speicherung fehlt.");
+assert(/minimumEvaluated/.test(finalTestRuntime) && /openScore/.test(finalTestRuntime), "final-test.js: automatische und kriteriengestützte Bewertung fehlt.");
 const queriedIds = Array.from(runtime.matchAll(/byId\(["'`]([^"'`]+)["'`]\)/g), (match) => match[1]);
 const dynamicIdPrefixes = new Set(["count-"]);
 for (const id of queriedIds) {
@@ -134,4 +187,4 @@ for (const id of queriedIds) {
   assert(exists, `app.js fragt unbekannte statische ID ab: ${id}`);
 }
 
-console.log(`QA bestanden: ${expectedFiles.length} HTML-Dateien; Touch-Sortierung, 80-%-Lernpfad, Kopfzeile, Autor, planfreie Paketdaten, lokale Links, IDs, JavaScript-Syntax und Offline-Betrieb geprüft.`);
+console.log(`QA bestanden: ${expectedFiles.length + 1} HTML-Dateien; Lernpfad, Dashboard, Kreisstatistik, Abschlusstest, Export/Import, lokale Links, JavaScript-Syntax und Offline-Betrieb geprüft.`);

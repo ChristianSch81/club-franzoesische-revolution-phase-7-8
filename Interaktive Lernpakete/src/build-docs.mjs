@@ -4,6 +4,8 @@ import { fileURLToPath } from "node:url";
 import { packages as packages13 } from "./packages-1-3.mjs";
 import { packages as packages46 } from "./packages-4-6.mjs";
 import { packages as packages710 } from "./packages-7-10.mjs";
+import { renderProgressDashboard, serializeProgressConfig } from "./dashboard.mjs";
+import { renderFinalTestDocument } from "./final-test.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const interactiveDir = resolve(here, "..");
@@ -12,6 +14,10 @@ const docsDir = join(projectRoot, "docs");
 const packageDir = join(docsDir, "pakete");
 const materialDir = join(docsDir, "material");
 const assetDir = join(docsDir, "assets");
+const dashboardStyles = await readFile(join(here, "dashboard.css"), "utf8");
+const dashboardRuntime = await readFile(join(here, "dashboard.js"), "utf8");
+const finalTestStyles = await readFile(join(here, "final-test.css"), "utf8");
+const finalTestRuntime = await readFile(join(here, "final-test.js"), "utf8");
 
 const schoolUrl = "https://asw-wutoeschingen.de";
 const sourceFiles = new Map([
@@ -487,6 +493,8 @@ function cardFor(pkg) {
 }
 
 function indexDocument() {
+  const dashboard = renderProgressDashboard(preparedPackages, "abschlusstest.html");
+  const progressConfig = serializeProgressConfig(preparedPackages);
   return `<!doctype html>
 <html lang="de">
 <head>
@@ -494,7 +502,8 @@ function indexDocument() {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Interaktive Lernpakete zur Französischen Revolution für Geschichte Phase 7/8">
   <title>Club Französische Revolution · Phase 7/8</title>
-  <style>${pageStyles}</style>
+  <style>${pageStyles}
+${dashboardStyles}</style>
 </head>
 <body>
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
@@ -526,6 +535,8 @@ function indexDocument() {
       </ol>
     </section>
 
+    ${dashboard}
+
     <section aria-labelledby="packages-title">
       <div class="section-heading">
         <h2 id="packages-title">Lernpakete</h2>
@@ -543,6 +554,8 @@ function indexDocument() {
       <p>Alemannenschule Wutöschingen</p>
     </div>
   </footer>
+  <script>const PROGRESS_CONFIG = ${progressConfig};</script>
+  <script>${dashboardRuntime}</script>
 </body>
 </html>`;
 }
@@ -592,6 +605,11 @@ for (const { file } of overviewImages.values()) {
   await copyFile(source, join(assetDir, file));
 }
 
+await copyFile(
+  join(interactiveDir, "assets", "abschluss", "verfassung-1791.png"),
+  join(assetDir, "verfassung-1791.png")
+);
+
 for (const pkg of preparedPackages) {
   const sourceHtml = await readFile(join(interactiveDir, pkg.filename), "utf8");
   await writeFile(join(packageDir, pkg.filename), transformPackageHtml(sourceHtml, pkg), "utf8");
@@ -608,6 +626,15 @@ assert(indexHtml.includes("assets/revolution.jpg"), "Hintergrundbild fehlt in de
 assert(indexHtml.includes(schoolUrl), "ASW-Link fehlt in der Übersicht.");
 
 await writeFile(join(docsDir, "index.html"), indexHtml, "utf8");
+await writeFile(join(docsDir, "abschlusstest.html"), renderFinalTestDocument({
+  styles: finalTestStyles,
+  runtime: finalTestRuntime,
+  homeHref: "index.html",
+  constitutionSrc: "assets/verfassung-1791.png",
+  portraitSrc: "assets/paket-01-sonnenkoenig.jpg",
+  logoSrc: "assets/asw-logo.png",
+  schoolUrl
+}), "utf8");
 await writeFile(join(docsDir, ".nojekyll"), "", "utf8");
 
-console.log(`docs erstellt: 1 Übersicht, ${preparedPackages.length} Lernpakete, ${preparedPackages.length} PDF-Materialien und 11 Bild-Assets.`);
+console.log(`docs erstellt: Übersicht, Abschlusstest, ${preparedPackages.length} Lernpakete, ${preparedPackages.length} PDF-Materialien und 12 Bild-Assets.`);

@@ -9,6 +9,9 @@ Offline nutzbare, differenzierte Lernpakete zur Französischen Revolution für d
 - Freischaltung der nächsten Stufe nach vollständiger Erstbearbeitung und mindestens 80 % erfolgreichen Aufgaben
 - Multiple Choice, Zuordnungen, Sortieraufgaben mit Touch-Bedienung sowie offene Arbeitsprodukte
 - lokale Speicherung des Lernfortschritts ohne Anmeldung oder Datenübertragung
+- Startseiten-Dashboard mit Kreisstatistik für Abschlusstest sowie M8-, R8- und E8-Übungsrichtigkeit
+- Export und Import des vollständigen Lernfortschritts als lokale JSON-Datei
+- interaktiver Abschlusstest mit 10 M8-Multiple-Choice-Aufgaben, 5 operationalisierten R8-Aufgaben und einer kriteriengestützten E8-Bildinterpretation
 - zehn zugehörige analoge Lernpakete als PDF
 - gemeinsames PDF mit alternativen Inputverlaufsplänen für zehn Unterrichtseinheiten zu jeweils 180 Minuten
 
@@ -33,6 +36,7 @@ node "Interaktive Lernpakete/src/build.mjs"
 node "Interaktive Lernpakete/src/build-docs.mjs"
 node "Interaktive Lernpakete/src/qa.mjs"
 node "Interaktive Lernpakete/src/qa-docs.mjs"
+node "Interaktive Lernpakete/src/qa-progress.mjs"
 ```
 
 Der erste Generator erzeugt die lokalen Arbeitsfassungen aus den gemeinsamen Quelldateien in `Interaktive Lernpakete/src`. `build-docs.mjs` erstellt daraus die vollständig portierbare GitHub-Pages-Ausgabe in `docs` einschließlich Übersichtsseite, Bilddateien, Lernpaketen und PDF-Materialien.

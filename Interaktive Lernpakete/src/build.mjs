@@ -4,11 +4,17 @@ import { fileURLToPath } from "node:url";
 import { packages as packages13 } from "./packages-1-3.mjs";
 import { packages as packages46 } from "./packages-4-6.mjs";
 import { packages as packages710 } from "./packages-7-10.mjs";
+import { renderProgressDashboard, serializeProgressConfig } from "./dashboard.mjs";
+import { renderFinalTestDocument } from "./final-test.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const outputDir = dirname(here);
 const styles = await readFile(join(here, "styles.css"), "utf8");
 const runtime = await readFile(join(here, "app.js"), "utf8");
+const dashboardStyles = await readFile(join(here, "dashboard.css"), "utf8");
+const dashboardRuntime = await readFile(join(here, "dashboard.js"), "utf8");
+const finalTestStyles = await readFile(join(here, "final-test.css"), "utf8");
+const finalTestRuntime = await readFile(join(here, "final-test.js"), "utf8");
 const expectedTaskCounts = new Map([[1, 14], [2, 6], [3, 7], [4, 7], [5, 7], [6, 7], [7, 8], [8, 7], [9, 8], [10, 8]]);
 const expectedTaskNumbers = new Map([
   [1, [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15]],
@@ -332,6 +338,8 @@ function packageDocument(pkg) {
 
 function indexDocument(packages) {
   const totalTasks = packages.reduce((sum, pkg) => sum + pkg.tasks.length, 0);
+  const dashboard = renderProgressDashboard(packages, "abschlusstest.html");
+  const progressConfig = serializeProgressConfig(packages);
   const cards = packages.map((pkg) => {
     const number = String(pkg.number).padStart(2, "0");
     const focus = Array.isArray(pkg.focus) ? pkg.focus.join(" · ") : pkg.focus;
@@ -365,7 +373,8 @@ function indexDocument(packages) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Zehn interaktive Offline-Lernpakete zur Französischen Revolution für Geschichte Klasse 7/8">
   <title>Interaktive Lernpakete · Französische Revolution</title>
-  <style>${styles}</style>
+  <style>${styles}
+${dashboardStyles}</style>
 </head>
 <body>
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
@@ -389,6 +398,8 @@ function indexDocument(packages) {
       <article class="key-item"><span class="badge">E8</span><h3>Expertenstandard</h3><p>Historische Urteile bilden, transferieren und eigene Produkte gestalten.</p></article>
     </section>
 
+    ${dashboard}
+
     <section aria-labelledby="packages-heading">
       <h2 id="packages-heading">Paketübersicht</h2>
       <div class="package-grid">
@@ -403,6 +414,8 @@ function indexDocument(packages) {
       <p class="footer-note">Alle Dateien funktionieren ohne Internetverbindung. Für Quellenbilder und längere Materialien bleibt das jeweilige analoge PDF die Materialgrundlage.</p>
     </div>
   </footer>
+  <script>const PROGRESS_CONFIG = ${progressConfig};</script>
+  <script>${dashboardRuntime}</script>
 </body>
 </html>`;
 }
@@ -424,8 +437,16 @@ for (const pkg of preparedPackages) {
   await writeFile(join(outputDir, pkg.filename), packageDocument(pkg), "utf8");
 }
 await writeFile(join(outputDir, "index.html"), indexDocument(preparedPackages), "utf8");
+await writeFile(join(outputDir, "abschlusstest.html"), renderFinalTestDocument({
+  styles: finalTestStyles,
+  runtime: finalTestRuntime,
+  homeHref: "index.html",
+  constitutionSrc: "assets/abschluss/verfassung-1791.png",
+  portraitSrc: "assets/overview/paket-01-sonnenkoenig.jpg",
+  logoSrc: "assets/asw-logo.png"
+}), "utf8");
 
-console.log(`Erstellt: index.html und ${preparedPackages.length} Paketdateien mit ${seenIds.size} Aufgaben.`);
+console.log(`Erstellt: index.html, abschlusstest.html und ${preparedPackages.length} Paketdateien mit ${seenIds.size} Aufgaben.`);
 for (const pkg of preparedPackages) {
   const counts = ["M", "R", "E"].map((level) => `${level}:${pkg.tasks.filter((task) => task.levels.includes(level)).length}`).join(" ");
   console.log(`Paket ${String(pkg.number).padStart(2, "0")}: ${pkg.tasks.length} Aufgaben (${counts}) → ${pkg.filename}`);
