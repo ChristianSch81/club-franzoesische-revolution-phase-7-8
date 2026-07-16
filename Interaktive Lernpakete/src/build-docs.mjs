@@ -33,7 +33,9 @@ const overviewImages = new Map([
   [4, { file: "paket-04-frankreich-krise.jpg", alt: "Darstellung hungernder Menschen während der Versorgungskrise" }],
   [5, { file: "paket-05-beginn-revolution.jpg", alt: "Die Bastille während der Französischen Revolution" }],
   [6, { file: "paket-06-menschenrechte.jpg", alt: "Darstellung der Erklärung der Menschen- und Bürgerrechte" }],
+  [7, { file: "paket-07-weg-republik.jpeg", alt: "Ludwig XVI. auf dem Weg zu seiner Hinrichtung" }],
   [8, { file: "paket-08-napoleon.jpg", alt: "Porträt Napoleons in Uniform" }],
+  [9, { file: "paket-09-wiener-kongress.jpeg", alt: "Die europäischen Vertreter beim Wiener Kongress" }],
   [10, { file: "paket-10-revolution-1848.jpg", alt: "Barrikade während der Revolution von 1848" }]
 ]);
 
@@ -601,11 +603,11 @@ for (const pkg of preparedPackages) {
 
 const indexHtml = indexDocument();
 assert((indexHtml.match(/class="package-card"/g) || []).length === 10, "Übersicht enthält nicht zehn Paketkarten.");
-assert((indexHtml.match(/class="package-preview"/g) || []).length === 7, "Übersicht enthält nicht sieben Paketbilder.");
+assert((indexHtml.match(/class="package-preview"/g) || []).length === 9, "Übersicht enthält nicht neun Paketbilder.");
 assert(indexHtml.includes("assets/revolution.jpg"), "Hintergrundbild fehlt in der Übersicht.");
 assert(indexHtml.includes(schoolUrl), "ASW-Link fehlt in der Übersicht.");
 
 await writeFile(join(docsDir, "index.html"), indexHtml, "utf8");
 await writeFile(join(docsDir, ".nojekyll"), "", "utf8");
 
-console.log(`docs erstellt: 1 Übersicht, ${preparedPackages.length} Lernpakete, ${preparedPackages.length} PDF-Materialien und 9 Bild-Assets.`);
+console.log(`docs erstellt: 1 Übersicht, ${preparedPackages.length} Lernpakete, ${preparedPackages.length} PDF-Materialien und 11 Bild-Assets.`);
