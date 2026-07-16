@@ -43,6 +43,9 @@ const overview = fs.readFileSync(path.join(docsDir, "index.html"), "utf8");
 const packageCards = overview.match(/class="package-card"/g) ?? [];
 
 if (packageCards.length !== 10) fail("Die Übersicht enthält nicht genau 10 Paketkarten.");
+if (overview.includes('class="level-counts"') || /M8\s*[·:]\s*\d/.test(overview)) {
+  fail("Die Übersicht enthält noch Aufgabenzahlen nach Niveaustufe.");
+}
 if (!overview.includes('url("assets/revolution.jpg")')) fail("Das Hintergrundbild ist nicht eingebunden.");
 const overlayMatch = overview.match(/--overlay:\s*rgba\([^;]+,\s*([\d.]+)\);/);
 if (!overlayMatch || Number(overlayMatch[1]) > 0.7) {

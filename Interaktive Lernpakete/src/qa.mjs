@@ -59,6 +59,9 @@ for (const filename of expectedFiles) {
   assert(!/\bfetch\s*\(|XMLHttpRequest|WebSocket/i.test(html), `${filename}: enthält eine Netzwerkschnittstelle.`);
   assert((html.match(/Geschichte Phase 7\/8: Die Französische Revolution/g) || []).length === 1, `${filename}: Reihen-Kopfzeile fehlt oder ist doppelt.`);
   assert((html.match(/Autor: Christian Schwend/g) || []).length === 1, `${filename}: Autorennennung fehlt oder ist doppelt.`);
+  if (filename === "index.html") {
+    assert(!/M8:\s*\d+\s*·\s*R8:\s*\d+\s*·\s*E8:\s*\d+/.test(html), `${filename}: enthält noch Aufgabenzahlen nach Niveaustufe.`);
+  }
   if (filename.startsWith("paket-")) {
     assert((html.match(/class="button material-link"/g) || []).length === 1, `${filename}: grüner Link zum analogen Lernpaket fehlt oder ist doppelt.`);
   }

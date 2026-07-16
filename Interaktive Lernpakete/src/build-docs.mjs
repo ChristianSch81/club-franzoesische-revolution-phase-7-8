@@ -335,25 +335,6 @@ h1, h2, h3, strong { font-weight: 650; }
   color: var(--muted);
 }
 
-.level-counts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-block-end: 0.9rem;
-}
-
-.level-counts span {
-  display: inline-flex;
-  min-height: 2rem;
-  align-items: center;
-  padding: 0.25rem 0.58rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--paper-strong);
-  font-size: 0.94rem;
-  font-weight: 600;
-}
-
 .package-link {
   display: inline-flex;
   min-height: 3rem;
@@ -436,16 +417,12 @@ h1, h2, h3, strong { font-weight: 650; }
 
 function cardFor(pkg) {
   const number = String(pkg.number).padStart(2, "0");
-  const levelCounts = ["M", "R", "E"]
-    .map((level) => `<span>${level}8 · ${pkg.tasks.filter((task) => task.levels.includes(level)).length}</span>`)
-    .join("");
   return `<article class="package-card">
           <div class="package-number" aria-hidden="true">${number}</div>
           <div class="package-content">
             <p class="eyebrow">Paket ${number}</p>
             <h3>${escapeHtml(pkg.title)}</h3>
             <p class="package-description">${escapeHtml(pkg.subtitle)}</p>
-            <div class="level-counts" aria-label="Aufgaben nach Niveaustufe">${levelCounts}</div>
             <a class="package-link" href="pakete/${escapeHtml(pkg.filename)}">Lernpaket öffnen <span aria-hidden="true">→</span></a>
           </div>
         </article>`;

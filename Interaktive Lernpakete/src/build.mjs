@@ -323,7 +323,6 @@ function indexDocument(packages) {
   const cards = packages.map((pkg) => {
     const number = String(pkg.number).padStart(2, "0");
     const focus = Array.isArray(pkg.focus) ? pkg.focus.join(" · ") : pkg.focus;
-    const counts = ["M", "R", "E"].map((level) => `${level}8: ${pkg.tasks.filter((task) => task.levels.includes(level)).length}`).join(" · ");
     return `<article class="package-card">
       <p class="eyebrow">Paket ${number}</p>
       <h2>${escapeHtml(pkg.title)}</h2>
@@ -332,7 +331,6 @@ function indexDocument(packages) {
       <div class="index-meta">
         <span class="badge">${pkg.tasks.length} Aufgaben</span>
       </div>
-      <p class="muted">${escapeHtml(counts)}</p>
       <div class="action-row">
         <a class="button primary" href="${escapeHtml(pkg.filename)}">Paket öffnen</a>
       </div>
