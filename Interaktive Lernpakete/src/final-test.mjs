@@ -230,7 +230,8 @@ function criteriaMarkup(question) {
 
 function regularMarkup(question, index, constitutionSrc) {
   const image = question.image === "constitution"
-    ? `<figure class="test-figure">
+    ? `
+          <figure class="test-figure">
             <img src="${escapeHtml(constitutionSrc)}" alt="Schaubild zur französischen Verfassung von 1791 mit König, Nationalversammlung, Gerichten und eingeschränktem Wahlrecht" width="1220" height="960">
             <figcaption>Verfassungsschema 1791, nach der Darstellung aus Lernpaket 7.</figcaption>
           </figure>`
@@ -240,8 +241,7 @@ function regularMarkup(question, index, constitutionSrc) {
             <span class="operator">${escapeHtml(question.operator)}</span>
             <h3>${index + 1}. ${escapeHtml(question.prompt)}</h3>
           </div>
-          <p class="task-support">${escapeHtml(question.support)}</p>
-          ${image}
+          <p class="task-support">${escapeHtml(question.support)}</p>${image}
           <label class="textarea-label" for="draft-${question.id}">Deine Antwort</label>
           <textarea id="draft-${question.id}" data-draft="${question.id}" rows="8" spellcheck="true"></textarea>
           <button class="test-button secondary" type="button" data-show-rubric="${question.id}">Kriterien zur Selbstprüfung anzeigen</button>
