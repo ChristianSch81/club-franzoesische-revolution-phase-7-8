@@ -188,7 +188,7 @@ function packageDocument(pkg) {
       <p class="series-title">Geschichte Phase 7/8: Die Französische Revolution</p>
       <div class="header-topline no-print">
         <a class="button ghost" href="index.html">← Paketübersicht</a>
-        <a class="button ghost" href="${escapeHtml(pkg.sourceFile)}" target="_blank" rel="noopener">Analoges Lernpaket (PDF)</a>
+        <a class="button material-link" href="${escapeHtml(pkg.sourceFile)}" target="_blank" rel="noopener">Analoges Lernpaket (PDF)</a>
       </div>
       <p class="eyebrow">Paket ${packageNumber} · Interaktiver Lernbegleiter</p>
       <h1>${escapeHtml(pkg.title)}</h1>

@@ -60,6 +60,7 @@ for (const htmlPath of htmlFiles.slice(1)) {
   if (!html.includes('src="../assets/asw-logo.png"')) fail(`ASW-Logo fehlt in ${name}.`);
   if (!html.includes('href="../index.html"')) fail(`Rücklink zur Übersicht fehlt in ${name}.`);
   if (!html.includes('href="../material/')) fail(`Materiallink fehlt in ${name}.`);
+  if (!html.includes('class="button material-link"')) fail(`Grüner Materialbutton fehlt in ${name}.`);
   if (html.includes("Inputverlaufsplan")) fail(`Verlaufsplanung darf nicht in ${name} stehen.`);
   if (html.includes("Offline-Lernbegleiter zur Unterrichtsreihe")) fail(`Der entfernte Offline-Hinweis steht noch in ${name}.`);
 }
