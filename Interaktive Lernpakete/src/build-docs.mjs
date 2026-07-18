@@ -85,8 +85,8 @@ const pageStyles = `
   --muted: #66584d;
   --paper: rgba(255, 252, 247, 0.94);
   --paper-strong: #fffdf9;
-  --header: rgba(208, 178, 141, 0.96);
-  --header-border: #967353;
+  --header: rgba(190, 145, 94, 0.97);
+  --header-border: #825d38;
   --accent: #7c2d2d;
   --accent-dark: #5c1f1f;
   --blue: #234a73;
@@ -155,9 +155,13 @@ h1, h2, h3, strong { font-weight: 650; }
 .skip-link:focus { inset-block-start: 1rem; }
 
 .site-header {
-  border-block-end: 1px solid var(--header-border);
+  width: min(100% - 2rem, var(--page-width));
+  margin-inline: auto;
+  border: 1px solid var(--header-border);
+  border-block-start: 0;
+  border-radius: 0 0 1rem 1rem;
   background: var(--header);
-  box-shadow: 0 0.3rem 1.2rem rgba(59, 39, 24, 0.12);
+  box-shadow: 0 0.35rem 1.2rem rgba(59, 39, 24, 0.18);
 }
 
 .header-inner,
@@ -168,11 +172,12 @@ h1, h2, h3, strong { font-weight: 650; }
 }
 
 .header-inner {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  padding-block: 1.25rem;
+  padding: 1.25rem clamp(1rem, 2.5vw, 1.75rem);
 }
 
 .brand-copy { max-width: 58rem; }
@@ -462,6 +467,7 @@ h1, h2, h3, strong { font-weight: 650; }
 
 @media (max-width: 560px) {
   body { background-attachment: scroll; }
+  .site-header { width: min(100% - 1rem, var(--page-width)); }
   .header-inner { align-items: flex-start; }
   .asw-logo-link { width: 5rem; height: 4.6rem; }
   .asw-logo { width: 4.4rem; height: 4rem; }
