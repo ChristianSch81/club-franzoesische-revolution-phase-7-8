@@ -36,6 +36,7 @@ const sourceFiles = new Map([
 const overviewImages = new Map([
   [1, { file: "paket-01-sonnenkoenig.jpg", alt: "Porträt Ludwigs XIV. im Krönungsornat" }],
   [2, { file: "paket-02-aufklaerung.jpg", alt: "Gesellschaftlicher Salon im Zeitalter der Aufklärung" }],
+  [3, { file: "paket-03-staendeordnung.png", alt: "Ein Bauer trägt sinnbildlich die Last von Klerus und Adel" }],
   [4, { file: "paket-04-frankreich-krise.jpg", alt: "Darstellung hungernder Menschen während der Versorgungskrise" }],
   [5, { file: "paket-05-beginn-revolution.jpg", alt: "Die Bastille während der Französischen Revolution" }],
   [6, { file: "paket-06-menschenrechte.jpg", alt: "Darstellung der Erklärung der Menschen- und Bürgerrechte" }],
@@ -621,7 +622,7 @@ for (const pkg of preparedPackages) {
 
 const indexHtml = indexDocument();
 assert((indexHtml.match(/class="package-card"/g) || []).length === 10, "Übersicht enthält nicht zehn Paketkarten.");
-assert((indexHtml.match(/class="package-preview"/g) || []).length === 9, "Übersicht enthält nicht neun Paketbilder.");
+assert((indexHtml.match(/class="package-preview"/g) || []).length === 10, "Übersicht enthält nicht zehn Paketbilder.");
 assert(indexHtml.includes("assets/revolution.jpg"), "Hintergrundbild fehlt in der Übersicht.");
 assert(indexHtml.includes(schoolUrl), "ASW-Link fehlt in der Übersicht.");
 

@@ -61,7 +61,7 @@ for (const filename of expectedFiles) {
   assert((html.match(/Autor: Christian Schwend/g) || []).length === 1, `${filename}: Autorennennung fehlt oder ist doppelt.`);
   if (filename === "index.html") {
     assert(!/M8:\s*\d+\s*·\s*R8:\s*\d+\s*·\s*E8:\s*\d+/.test(html), `${filename}: enthält noch Aufgabenzahlen nach Niveaustufe.`);
-    assert((html.match(/class="package-preview"/g) || []).length === 9, `${filename}: neun Paketbilder erwartet.`);
+    assert((html.match(/class="package-preview"/g) || []).length === 10, `${filename}: zehn Paketbilder erwartet.`);
   }
   if (filename.startsWith("paket-")) {
     assert((html.match(/class="button material-link"/g) || []).length === 1, `${filename}: grüner Link zum analogen Lernpaket fehlt oder ist doppelt.`);
@@ -102,7 +102,8 @@ for (const filename of expectedFiles) {
     assert(html.includes('href="abschlusstest.html"'), "index.html: Link zum Abschlusstest fehlt.");
     const packageLinks = hrefs.filter((href) => /^paket-\d{2}-.*\.html$/.test(href));
     assert(new Set(packageLinks).size === 10, `index.html: erwartet Links zu 10 verschiedenen Paketen, erhalten ${new Set(packageLinks).size}.`);
-    assert(packageLinks.length === 19, `index.html: erwartet 10 Schaltflächen- und 9 Bildlinks, erhalten ${packageLinks.length}.`);
+    assert(packageLinks.length === 20, `index.html: erwartet 10 Schaltflächen- und 10 Bildlinks, erhalten ${packageLinks.length}.`);
+    assert(html.includes('class="progress-backup-help"'), "index.html: Erläuterung zu Export und Import fehlt.");
     assert(html.includes("mindestens 80&nbsp;% erfolgreich"), "index.html: Erklärung des 80-%-Lernpfads fehlt.");
   } else {
     assert(scripts.length === 2, `${filename}: erwartet zwei eingebettete Skripte, erhalten ${scripts.length}.`);
