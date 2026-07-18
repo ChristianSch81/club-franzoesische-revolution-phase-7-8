@@ -179,8 +179,22 @@ h3 {
 }
 
 .site-header .button.ghost {
-  border-color: var(--header-border);
-  color: var(--header-text);
+  border-color: #174d80;
+  background: #2367a3;
+  color: #ffffff;
+  box-shadow: 0 0.22rem 0.6rem rgba(21, 67, 109, 0.28);
+  font-weight: 650;
+}
+
+.site-header .button.ghost:hover {
+  border-color: #113d68;
+  background: #19568e;
+  color: #ffffff;
+}
+
+.site-header .button.ghost:focus-visible {
+  outline: 0.2rem solid #ffffff;
+  outline-offset: 0.18rem;
 }
 
 .site-header .button.material-link {
