@@ -171,10 +171,11 @@ h1, h2, h3, strong { font-weight: 650; }
   align-items: center;
   margin-block-end: 2.2rem;
   padding: clamp(1.25rem, 3vw, 2rem);
-  border: 1px solid var(--line);
+  border: 1px solid #9bcfbd;
+  border-inline-start: 0.42rem solid #2f8f73;
   border-radius: var(--radius);
-  background: var(--paper);
-  box-shadow: var(--shadow);
+  background: #eaf7f2;
+  box-shadow: 0 0.35rem 1.1rem rgba(35, 105, 84, 0.1);
   backdrop-filter: blur(7px);
 }
 
@@ -182,9 +183,20 @@ h1, h2, h3, strong { font-weight: 650; }
   margin-block-end: 0.65rem;
   font-size: clamp(1.55rem, 3vw, 2.2rem);
   line-height: 1.2;
+  color: #176b56;
 }
 
 .intro-card p:last-child { margin-block-end: 0; }
+
+@media (prefers-color-scheme: dark) {
+  .intro-card {
+    border-color: #467d6c;
+    border-inline-start-color: #72c5a8;
+    background: #19372f;
+  }
+
+  .intro-card h2 { color: #9de0c8; }
+}
 
 .level-path {
   display: grid;
