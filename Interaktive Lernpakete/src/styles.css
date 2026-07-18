@@ -128,6 +128,42 @@ h3 {
   padding-block: var(--space-4);
 }
 
+.header-brand-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-block-end: var(--space-3);
+}
+
+.header-brand-row .series-title {
+  margin-block-end: 0;
+}
+
+.header-asw-link {
+  display: grid;
+  width: 5.6rem;
+  height: 5rem;
+  flex: 0 0 auto;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--header-border);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.header-asw-logo {
+  display: block;
+  width: 4.9rem;
+  height: 4.4rem;
+  object-fit: contain;
+}
+
+.header-asw-link:focus-visible {
+  outline: 0.2rem solid #ffffff;
+  outline-offset: 0.2rem;
+}
+
 .series-title {
   max-width: 48ch;
   margin-block-end: var(--space-3);
@@ -631,6 +667,10 @@ fieldset {
   .footer-inner {
     width: min(100% - 1.2rem, var(--page-width));
   }
+
+  .header-brand-row { gap: var(--space-2); }
+  .header-asw-link { width: 4.8rem; height: 4.3rem; }
+  .header-asw-logo { width: 4.15rem; height: 3.7rem; }
 
   .package-preview-link {
     flex-basis: 6.7rem;

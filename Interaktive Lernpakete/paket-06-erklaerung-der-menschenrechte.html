@@ -135,6 +135,42 @@ h3 {
   padding-block: var(--space-4);
 }
 
+.header-brand-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-block-end: var(--space-3);
+}
+
+.header-brand-row .series-title {
+  margin-block-end: 0;
+}
+
+.header-asw-link {
+  display: grid;
+  width: 5.6rem;
+  height: 5rem;
+  flex: 0 0 auto;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--header-border);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.header-asw-logo {
+  display: block;
+  width: 4.9rem;
+  height: 4.4rem;
+  object-fit: contain;
+}
+
+.header-asw-link:focus-visible {
+  outline: 0.2rem solid #ffffff;
+  outline-offset: 0.2rem;
+}
+
 .series-title {
   max-width: 48ch;
   margin-block-end: var(--space-3);
@@ -639,6 +675,10 @@ fieldset {
     width: min(100% - 1.2rem, var(--page-width));
   }
 
+  .header-brand-row { gap: var(--space-2); }
+  .header-asw-link { width: 4.8rem; height: 4.3rem; }
+  .header-asw-logo { width: 4.15rem; height: 3.7rem; }
+
   .package-preview-link {
     flex-basis: 6.7rem;
   }
@@ -679,7 +719,12 @@ fieldset {
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
   <header class="site-header">
     <div class="header-inner">
-      <p class="series-title">Geschichte Phase 7/8: Die Französische Revolution</p>
+      <div class="header-brand-row">
+        <p class="series-title">Geschichte Phase 7/8: Die Französische Revolution</p>
+        <a class="header-asw-link" href="https://asw-wutoeschingen.de/" target="_blank" rel="noopener" aria-label="Website der Alemannenschule Wutöschingen öffnen">
+          <img class="header-asw-logo" src="assets/asw-logo.png" alt="Logo der Alemannenschule Wutöschingen">
+        </a>
+      </div>
       <div class="header-topline no-print">
         <a class="button ghost" href="index.html">← Paketübersicht</a>
         <a class="button material-link" href="../Pakete/6. Die Erklärung der Menschenrechte.pdf" target="_blank" rel="noopener">Analoges Lernpaket (PDF)</a>
@@ -804,6 +849,7 @@ fieldset {
   <footer class="site-footer">
     <div class="footer-inner">
       <p class="footer-author">Autor: Christian Schwend</p>
+      <p>Alemannenschule Wutöschingen</p>
     </div>
   </footer>
   <script>const PACKAGE = {"id":"paket-06","number":6,"slug":"erklaerung-der-menschenrechte","title":"Die Erklärung der Menschenrechte","subtitle":"Freiheit und Gleichheit – Anspruch, Wirkung und Grenzen","focus":"Gutsherrschaft, Unabhängigkeitserklärung von 1776, Menschen- und Bürgerrechte von 1789, Olympe de Gouges, Grundgesetz und Zug der Frauen nach Versailles","tasks":[{"id":"p06-a01","number":1,"tag":"M8","levels":["M"],"kind":"order","title":"Warum kam es auf dem Land zu Gewalt?","prompt":"Ordne die Ursache-Wirkungs-Kette. Erkläre anschließend in eigenen Worten, welche Rolle die Gutsherrschaft spielte.","material":"Gutsherrschaft bezeichnet die Abhängigkeit der Bauern von Grund- und Gutsherren, verbunden mit Abgaben, Diensten und Herrschaftsrechten. Viele Bauern profitierten zunächst kaum von den politischen Veränderungen und mussten weiterhin Lasten wie den Kirchenzehnt tragen.","hint":"Beginne mit der langfristigen Abhängigkeit und ende mit den Angriffen auf Herrschaftssitze.","success":"Die Kette unterscheidet Strukturursache, Belastung, Enttäuschung und Gewalthandlung.","items":["Die Gutsherrschaft bindet Bauern durch Abgaben, Dienste und adelige Herrschaftsrechte.","Hohe Belastungen und der Kirchenzehnt bestehen für viele Bauern zunächst weiter.","Die bisherigen Veränderungen erfüllen die Erwartungen armer Landbewohner nicht.","Wut und Existenznot richten sich gegen sichtbare Orte der Herrschaft.","Bauern greifen Schlösser und Klöster an und fordern das Ende der Gutsherrschaft."]},{"id":"p06-a02","number":2,"tag":"M8","levels":["M"],"kind":"choice","title":"Kernaussagen der Unabhängigkeitserklärung von 1776","prompt":"Wähle alle Aussagen aus, die zu den zentralen Gedanken der amerikanischen Unabhängigkeitserklärung von 1776 gehören.","material":"Die Erklärung begründete die Trennung der dreizehn Kolonien von Großbritannien. Sie verband unveräußerliche Rechte mit der Zustimmung der Regierten und einem Recht, eine dauerhaft schädliche Regierung zu verändern oder abzuschaffen.","hint":"Fünf Antworten passen. Achte auf natürliche Rechte, Herrschaftslegitimation und Widerstand gegen Tyrannei.","success":"Du hast Rechte, Zustimmung der Regierten und das Recht auf Veränderung einer schädlichen Regierung als Kerngedanken erkannt.","multiple":true,"options":[{"text":"Alle Menschen sind gleich geschaffen.","correct":true},{"text":"Zu den unveräußerlichen Rechten gehören Leben, Freiheit und das Streben nach Glück.","correct":true},{"text":"Regierungen sollen diese Rechte sichern.","correct":true},{"text":"Legitime Regierungsgewalt beruht auf der Zustimmung der Regierten.","correct":true},{"text":"Das Volk darf eine dauerhaft schädliche Regierung verändern oder abschaffen.","correct":true},{"text":"Königliche Macht ist immer von Gott gegeben und darf nie begrenzt werden.","correct":false},{"text":"Nur Menschen eines erblichen Adels besitzen politische Rechte.","correct":false},{"text":"Jede kleine Unzufriedenheit verpflichtet sofort zum gewaltsamen Umsturz.","correct":false}]},{"id":"p06-a03","number":3,"tag":"M8","levels":["M"],"kind":"match","title":"Freiheit, Gleichheit, Brüderlichkeit","prompt":"Ordne jedem Artikel die Schlagwort-Kombination zu, die im Lösungsmaterial vorgesehen ist. Manche Kombinationen kommen mehrfach vor.","material":"Lies die Artikel 1, 2, 3, 4, 6, 11 und 17 im Paket. Beachte: Die Zuordnung „Brüderlichkeit“ ist stärker deutungsabhängig als Freiheit und Gleichheit; hier wird der Lösungsschlüssel des Pakets verwendet.","hint":"Artikel 11 betrifft freie Meinungsäußerung. Artikel 1 spricht ausdrücklich von Freiheit und Gleichheit.","success":"Alle sieben Artikel sind einer passenden Kombination zugeordnet. Mehrfachzuordnungen wurden nicht auf ein einziges Schlagwort verkürzt.","items":[{"prompt":"Artikel 1","answer":"Freiheit und Gleichheit"},{"prompt":"Artikel 2","answer":"Freiheit und Brüderlichkeit"},{"prompt":"Artikel 3","answer":"Brüderlichkeit"},{"prompt":"Artikel 4","answer":"Freiheit und Gleichheit"},{"prompt":"Artikel 6","answer":"Gleichheit und Brüderlichkeit"},{"prompt":"Artikel 11","answer":"Freiheit"},{"prompt":"Artikel 17","answer":"Freiheit und Gleichheit"}],"choices":["Freiheit","Gleichheit","Brüderlichkeit","Freiheit und Gleichheit","Freiheit und Brüderlichkeit","Gleichheit und Brüderlichkeit"]},{"id":"p06-a04","number":4,"tag":"R8","levels":["R"],"kind":"text","title":"Menschenrechte gegen die alte Ordnung","prompt":"Erkläre die Bedeutung der Erklärung der Menschen- und Bürgerrechte für die bisherige Gesellschaftsordnung. Belege deine Antwort mit mindestens drei Artikeln und unterscheide Grundsatz, politische Folge und nicht sofort verwirklichte Realität.","material":"Beispiele: Freiheit und Gleichheit widersprechen ererbten Standesprivilegien; Souveränität der Nation widerspricht dem alleinigen absoluten Herrschaftsanspruch; gleiches Gesetz und Zugang zu Ämtern greifen Willkür und privilegierte Stellenvergabe an. Die Erklärung allein beseitigte nicht sofort alle Privilegien oder soziale Ungleichheit.","hint":"Nutze für jeden Beleg das Muster: Merkmal der alten Ordnung ↔ Artikelgrundsatz → mögliche Veränderung. Ergänze danach, was nicht sofort Wirklichkeit wurde.","success":"Deine Erklärung zeigt den revolutionären Rechtsanspruch, ohne ihn mit seiner vollständigen sofortigen Umsetzung zu verwechseln.","minChars":520,"starter":"In der alten Ordnung … . Artikel … erklärte dagegen … . Daraus folgte als Grundsatz … . Das bedeutete jedoch nicht, dass sofort …","planning":["Mindestens drei Merkmale der alten Ordnung","Zu jedem Merkmal ein Artikelbeleg","Grundsatz und mögliche politische Folge","Mindestens eine Grenze der sofortigen Umsetzung"],"criteria":["Ich nenne mindestens drei Artikelnummern.","Ich stelle alte Ordnung und neuen Rechtsgrundsatz gegenüber.","Ich unterscheide Verkündung, politische Folge und tatsächliche Umsetzung."]},{"id":"p06-a05","number":5,"tag":"R8","levels":["R"],"kind":"text","title":"Olympe de Gouges und die Lücke im Universalanspruch","prompt":"Erkläre, weshalb Olympe de Gouges 1791 eine eigene Erklärung der Rechte der Frau und Bürgerin verfasste. Vergleiche dazu den universalen Anspruch von 1789 mit der rechtlichen und politischen Praxis gegenüber Frauen.","material":"Die Erklärung von 1789 formulierte Rechte allgemein, doch Frauen waren in der politischen Staatsbürgerschaft nicht gleichgestellt und besaßen kein Wahlrecht; verheiratete Frauen waren rechtlich stark abhängig. De Gouges übernahm bewusst die Form von 1789 und schrieb die Gleichheit der Frau ausdrücklich fest.","hint":"Formuliere eine Ursache-Absicht-Kette: universaler Wortlaut → Ausschluss in der Praxis → bewusste sprachliche Veränderung → Ziel.","success":"Dein Text erklärt die Spannung zwischen universellem Anspruch und begrenzter Praxis präziser als der Satz „Die Rechte galten nur für Männer“.","minChars":360,"starter":"Die Erklärung von 1789 beanspruchte … . In der politischen und rechtlichen Praxis jedoch … . De Gouges übernahm … und veränderte …, um …","planning":["Universaler Anspruch von 1789","Konkrete politische oder rechtliche Ausgrenzung","Vergleich der Artikel 1 von 1789 und 1791","Absicht von de Gouges"],"criteria":["Ich unterscheide Wortlaut und historische Praxis.","Ich nenne mindestens eine konkrete Form der Ausgrenzung.","Ich erkläre die bewusste Übernahme und Veränderung der Erklärung."]},{"id":"p06-a06","number":6,"tag":"R8","levels":["R"],"kind":"text","title":"1789 und das Grundgesetz im Vergleich","prompt":"Vergleiche die ausgewählten Artikel von 1789 mit den Artikeln 1–19 des Grundgesetzes. Formuliere mindestens zwei Gemeinsamkeiten, zwei Unterschiede und ein begründetes Gesamtfazit mit Artikelangaben.","material":"Naheliegende Paare: 1789 Art. 2/4 ↔ GG Art. 2 (Freiheit); 1789 Art. 1/6 ↔ GG Art. 3 (Gleichheit); 1789 Art. 11 ↔ GG Art. 5 (Meinung und Presse); 1789 Art. 17 ↔ GG Art. 14 (Eigentum). Das GG stellt Menschenwürde und Bindung staatlicher Gewalt voran und nennt weitere Rechte. Volkssouveränität steht besonders in GG Art. 20 Abs. 2, Widerstandsrecht in Art. 20 Abs. 4 und Zugang zu öffentlichen Ämtern in Art. 33 Abs. 2 – außerhalb von Art. 1–19.","hint":"„Keine direkte Entsprechung in Art. 1–19“ kann eine richtige Beobachtung sein. Suche nicht für jede Aussage zwanghaft ein Paar.","success":"Dein Vergleich arbeitet Ähnlichkeiten, Erweiterungen und fehlende direkte Entsprechungen heraus und belegt sie mit Artikeln.","minChars":560,"starter":"Eine Gemeinsamkeit besteht zwischen 1789 Art. … und GG Art. …, denn … . Ein Unterschied ist … . Insgesamt fällt auf, dass …","planning":["Zwei passende Rechtepaare mit Artikelnummern","Zwei Unterschiede oder Erweiterungen","Mindestens eine fehlende direkte Entsprechung in Art. 1–19","Begründetes Gesamtfazit"],"criteria":["Ich nenne mindestens vier konkrete Artikelbezüge.","Ich formuliere zwei Gemeinsamkeiten und zwei Unterschiede.","Ich berücksichtige, dass wichtige Entsprechungen außerhalb von GG Art. 1–19 stehen können.","Mein Fazit vergleicht die Texte, statt nur Rechte aufzulisten."]},{"id":"p06-a07","number":7,"tag":"E8","levels":["E"],"kind":"text","title":"Ludwigs Tagebuch nach dem Zug nach Versailles","prompt":"Verfasse einen reflektierten Tagebucheintrag aus der Perspektive Ludwigs XVI. nach den Ereignissen vom 5./6. Oktober 1789. Verarbeite konkrete Ereignisse, plausible Beweggründe für sein Nachgeben und den Konflikt zwischen absolutistischem Selbstbild und wachsendem Druck.","material":"Etwa 6.000 Frauen zogen wegen der Versorgungskrise nach Versailles; Nationalgardisten folgten. Der König sagte Maßnahmen zur Brotversorgung zu, akzeptierte revolutionäre Beschlüsse beziehungsweise die Menschenrechtserklärung, und die königliche Familie wurde nach Paris gebracht. Ein Tagebucheintrag ist eine heutige Perspektivkonstruktion, keine überlieferte Quelle.","hint":"Schreibe nicht nur einen Ablaufbericht. Lass Ludwig abwägen: Gewaltgefahr, Hunger, Schutz seiner Familie, Sicherung seiner Stellung, Verlust von Handlungsspielraum und Hoffnung oder Furcht für die Zukunft.","success":"Der Eintrag verbindet Ereignisbelege mit einer ambivalenten, historisch plausiblen Selbstreflexion des Königs.","minChars":850,"starter":"Versailles/Paris, 6. Oktober 1789\nHeute …\nIch gab nach, weil …\nAls König glaube ich …, doch …\nNun fürchte/hoffe ich …","planning":["Mehrere konkrete Tagesereignisse","Mindestens drei plausible Druckfaktoren oder Motive","Spannung zwischen absolutistischem Selbstbild und Nachgeben","Reflektierter Ausblick auf die eigene Rolle und Frankreich"],"criteria":["Ich verwende mehrere überprüfbare Ereignisbelege.","Ich schreibe konsequent in der Ich-Perspektive und Tagebuchform.","Ich reflektiere Motive und innere Widersprüche, statt nur Ereignisse nachzuerzählen.","Ich kennzeichne keine erfundene Perspektive als echte Quelle."]}],"sourceFile":"../Pakete/6. Die Erklärung der Menschenrechte.pdf","filename":"paket-06-erklaerung-der-menschenrechte.html"};</script>

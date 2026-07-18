@@ -135,6 +135,42 @@ h3 {
   padding-block: var(--space-4);
 }
 
+.header-brand-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-block-end: var(--space-3);
+}
+
+.header-brand-row .series-title {
+  margin-block-end: 0;
+}
+
+.header-asw-link {
+  display: grid;
+  width: 5.6rem;
+  height: 5rem;
+  flex: 0 0 auto;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--header-border);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.header-asw-logo {
+  display: block;
+  width: 4.9rem;
+  height: 4.4rem;
+  object-fit: contain;
+}
+
+.header-asw-link:focus-visible {
+  outline: 0.2rem solid #ffffff;
+  outline-offset: 0.2rem;
+}
+
 .series-title {
   max-width: 48ch;
   margin-block-end: var(--space-3);
@@ -639,6 +675,10 @@ fieldset {
     width: min(100% - 1.2rem, var(--page-width));
   }
 
+  .header-brand-row { gap: var(--space-2); }
+  .header-asw-link { width: 4.8rem; height: 4.3rem; }
+  .header-asw-logo { width: 4.15rem; height: 3.7rem; }
+
   .package-preview-link {
     flex-basis: 6.7rem;
   }
@@ -1036,7 +1076,12 @@ fieldset {
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
   <header class="site-header">
     <div class="header-inner">
-      <p class="series-title">Geschichte Phase 7/8: Die Französische Revolution</p>
+      <div class="header-brand-row">
+        <p class="series-title">Geschichte Phase 7/8: Die Französische Revolution</p>
+        <a class="header-asw-link" href="https://asw-wutoeschingen.de/" target="_blank" rel="noopener" aria-label="Website der Alemannenschule Wutöschingen öffnen">
+          <img class="header-asw-logo" src="assets/asw-logo.png" alt="Logo der Alemannenschule Wutöschingen">
+        </a>
+      </div>
       <h1>Interaktive Lernpakete</h1>
       <p class="subtitle">Zehn offline nutzbare Einheiten mit 79 differenzierten Aufgaben für Mindest-, Regel- und Expertenstandard.</p>
     </div>
@@ -1459,6 +1504,7 @@ fieldset {
   <footer class="site-footer">
     <div class="footer-inner">
       <p class="footer-author">Autor: Christian Schwend</p>
+      <p>Alemannenschule Wutöschingen</p>
     </div>
   </footer>
   <script>const PROGRESS_CONFIG = {"application":"club-franzoesische-revolution-phase-7-8","version":1,"finalTestStorageKey":"franzrev-abschlusstest","packages":[{"id":"paket-01","number":1,"title":"Die Welt des „Sonnenkönigs“","storageKey":"franzrev-interaktiv:paket-01","totals":{"M":6,"R":7,"E":3}},{"id":"paket-02","number":2,"title":"Die Ideen der Aufklärung","storageKey":"franzrev-interaktiv:paket-02","totals":{"M":2,"R":3,"E":1}},{"id":"paket-03","number":3,"title":"Die Ständeordnung","storageKey":"franzrev-interaktiv:paket-03","totals":{"M":5,"R":1,"E":1}},{"id":"paket-04","number":4,"title":"Frankreich in der Krise","storageKey":"franzrev-interaktiv:paket-04","totals":{"M":2,"R":4,"E":1}},{"id":"paket-05","number":5,"title":"Der Beginn der Revolution","storageKey":"franzrev-interaktiv:paket-05","totals":{"M":3,"R":3,"E":1}},{"id":"paket-06","number":6,"title":"Die Erklärung der Menschenrechte","storageKey":"franzrev-interaktiv:paket-06","totals":{"M":3,"R":3,"E":1}},{"id":"p07","number":7,"title":"Frankreich auf dem Weg zur Republik","storageKey":"franzrev-interaktiv:p07","totals":{"M":6,"R":2,"E":1}},{"id":"p08","number":8,"title":"Die Napoleonische Herrschaft","storageKey":"franzrev-interaktiv:p08","totals":{"M":3,"R":2,"E":2}},{"id":"p09","number":9,"title":"Vom Wiener Kongress zum Hambacher Fest","storageKey":"franzrev-interaktiv:p09","totals":{"M":4,"R":3,"E":1}},{"id":"p10","number":10,"title":"Die Revolution von 1848","storageKey":"franzrev-interaktiv:p10","totals":{"M":4,"R":3,"E":1}}]};</script>

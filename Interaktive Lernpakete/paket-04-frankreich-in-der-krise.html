@@ -135,6 +135,42 @@ h3 {
   padding-block: var(--space-4);
 }
 
+.header-brand-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-block-end: var(--space-3);
+}
+
+.header-brand-row .series-title {
+  margin-block-end: 0;
+}
+
+.header-asw-link {
+  display: grid;
+  width: 5.6rem;
+  height: 5rem;
+  flex: 0 0 auto;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--header-border);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.header-asw-logo {
+  display: block;
+  width: 4.9rem;
+  height: 4.4rem;
+  object-fit: contain;
+}
+
+.header-asw-link:focus-visible {
+  outline: 0.2rem solid #ffffff;
+  outline-offset: 0.2rem;
+}
+
 .series-title {
   max-width: 48ch;
   margin-block-end: var(--space-3);
@@ -639,6 +675,10 @@ fieldset {
     width: min(100% - 1.2rem, var(--page-width));
   }
 
+  .header-brand-row { gap: var(--space-2); }
+  .header-asw-link { width: 4.8rem; height: 4.3rem; }
+  .header-asw-logo { width: 4.15rem; height: 3.7rem; }
+
   .package-preview-link {
     flex-basis: 6.7rem;
   }
@@ -679,7 +719,12 @@ fieldset {
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
   <header class="site-header">
     <div class="header-inner">
-      <p class="series-title">Geschichte Phase 7/8: Die Französische Revolution</p>
+      <div class="header-brand-row">
+        <p class="series-title">Geschichte Phase 7/8: Die Französische Revolution</p>
+        <a class="header-asw-link" href="https://asw-wutoeschingen.de/" target="_blank" rel="noopener" aria-label="Website der Alemannenschule Wutöschingen öffnen">
+          <img class="header-asw-logo" src="assets/asw-logo.png" alt="Logo der Alemannenschule Wutöschingen">
+        </a>
+      </div>
       <div class="header-topline no-print">
         <a class="button ghost" href="index.html">← Paketübersicht</a>
         <a class="button material-link" href="../Pakete/4. Frankreich in der Krise.pdf" target="_blank" rel="noopener">Analoges Lernpaket (PDF)</a>
@@ -804,6 +849,7 @@ fieldset {
   <footer class="site-footer">
     <div class="footer-inner">
       <p class="footer-author">Autor: Christian Schwend</p>
+      <p>Alemannenschule Wutöschingen</p>
     </div>
   </footer>
   <script>const PACKAGE = {"id":"paket-04","number":4,"slug":"frankreich-in-der-krise","title":"Frankreich in der Krise","subtitle":"Warum geriet die alte Ordnung 1788/1789 unter Druck?","focus":"Wirtschaftliche, soziale und politische Krisenursachen, Steuerkonflikt, Generalstände und Beschwerdebriefe","tasks":[{"id":"p04-a01","number":1,"tag":"M8","levels":["M"],"kind":"text","title":"Krisenübersicht 1788/1789","prompt":"Erstelle eine übersichtliche Liste der Probleme Frankreichs in den Jahren 1788/1789. Formuliere mindestens drei Ursache-Folge-Paare und decke wirtschaftliche, soziale und politische Aspekte ab.","material":"Materialanker: Missernte → steigender Brotpreis → Hunger; Ausgaben über Einnahmen und hohe Zinslast → drohende Zahlungsunfähigkeit; Hof, Heer und Kriege → hohe Staatsausgaben; Steuerprivilegien von Adel und Klerus → Lasten und Reformblockade. Die im Paket unklare Zahl zur Neuverschuldung wird nicht benötigt.","hint":"Nutze für jeden Punkt das Muster: Problem – Ursache – Folge. Ein bloßes Stichwort wie „Hunger“ reicht noch nicht.","success":"Deine Liste enthält mehrere belegte Ketten und unterscheidet mindestens drei Krisenbereiche.","minChars":180,"starter":"Wirtschaftlich: …, weil …, deshalb …\nSozial: …\nPolitisch: …","planning":["Mindestens eine Aussage zu Einnahmen und Ausgaben","Mindestens eine Aussage zu Missernte, Brotpreis und Hunger","Mindestens eine Aussage zu Privilegien oder politischer Blockade"],"criteria":["Ich habe mindestens drei Ursache-Folge-Paare formuliert.","Ich unterscheide wirtschaftliche, soziale und politische Probleme.","Ich nutze nur Angaben, die sich im Material belegen lassen."]},{"id":"p04-a02","number":2,"tag":"M8","levels":["M"],"kind":"order","title":"Warum wollte Ludwig XVI. die Steuern erhöhen?","prompt":"Bringe die Belege und Folgerungen in eine logische Reihenfolge. Lies die fertige Kette anschließend als Erklärung mit „weil“ und „deshalb“ vor.","material":"Im Paket stehen Gesamtausgaben von 610 Mio. Livres den Einnahmen von 472 Mio. Livres gegenüber. Ein großer Teil der Ausgaben entfiel auf Schuldzinsen; Adel und Klerus waren weitgehend steuerlich privilegiert.","hint":"Beginne mit der Lage der Staatskasse und ende mit der beabsichtigten Maßnahme des Königs.","success":"Die Kette zeigt: Die Ausgaben und Zinslast überstiegen die Einnahmen, ein Staatsbankrott drohte, deshalb sollten höhere beziehungsweise breiter erhobene Steuern neue Einnahmen bringen.","items":["Die Staatsausgaben und die hohe Zinslast übersteigen die Einnahmen.","Der Staat muss weiter Geld leihen und eine Zahlungsunfähigkeit droht.","Die bisherigen Steuereinnahmen reichen nicht aus; privilegierte Stände zahlen kaum Steuern.","Ludwig XVI. will die Steuereinnahmen erhöhen und alle Stände stärker heranziehen."]},{"id":"p04-a03","number":3,"tag":"R8","levels":["R"],"kind":"text","title":"Steuern aus drei Perspektiven","prompt":"Formuliere aus Sicht eines Bauern drei Argumente dafür, dass Adel und Klerus Steuern zahlen sollen. Formuliere anschließend aus Sicht der privilegierten Stände drei Gegenargumente. Entkräfte mindestens ein Gegenargument aus der Bauernperspektive.","material":"Bauern tragen Abgaben und Kirchenzehnt und leiden unter hohen Brotpreisen. Adel und Klerus verfügen über ererbte Steuerprivilegien und begründen ihre besondere Stellung mit Tradition, Rang und Diensten für Krone, Kirche und Gesellschaft.","hint":"Ein vollständiges Argument besteht aus Behauptung, Begründung und Materialbeleg. Perspektivtreue heißt nicht, dass du das Argument persönlich richtig finden musst.","success":"Du hast beide Rollen historisch plausibel rekonstruiert und mindestens einen echten Einwand beantwortet.","minChars":500,"starter":"Bauer: Ihr sollt Steuern zahlen, weil … Das zeigt sich an …\nAdel/Klerus: Wir lehnen das ab, weil …\nErwiderung des Bauern: …","planning":["Bauer: Gerechtigkeit, Leistungsfähigkeit und Staatsnot","Adel/Klerus: Privileg, Tradition und Standesstellung","Direkte Entkräftung eines Gegenarguments"],"criteria":["Ich habe je drei unterschiedliche Argumente formuliert.","Jedes Argument enthält eine Begründung oder einen Materialbeleg.","Ich bleibe in den historischen Rollen und entkräfte mindestens einen Einwand."]},{"id":"p04-a04","number":4,"tag":"R8","levels":["R"],"kind":"text","title":"Wirkung einer berühmten Legende","prompt":"Beschreibe, welche Reaktionen der Satz „Wenn die Leute kein Brot haben, sollen sie doch Kuchen essen“ bei hungernden Menschen ausgelöst haben könnte. Behandle den Satz ausdrücklich als später verbreitete, Marie Antoinette nicht sicher belegte Zuschreibung.","material":"1788 verteuerten Missernten das Brot stark; zeitweise konnte es einen sehr großen Teil des Einkommens einfacher Familien kosten. Hunger und Arbeitslosigkeit förderten Unruhen. Die Zuschreibung des Kuchen- beziehungsweise Brioche-Satzes an Marie Antoinette ist historisch nicht belegt.","hint":"Baue eine Kette aus Lebenslage → wahrgenommener Botschaft → Gefühl → möglicher politischer Reaktion. Trenne historische Wirkung und gesicherte Urheberschaft.","success":"Dein Text erklärt eine plausible Wirkung der Legende, ohne die ungesicherte Zuschreibung als Tatsache auszugeben.","minChars":260,"starter":"Für Menschen, die …, konnte der Satz wie … wirken. Das konnte … auslösen, weil … . Quellenkritisch ist zu beachten, dass …","planning":["Lebenslage der einfachen Bevölkerung","Mögliche Gefühle und ihre Ursache","Politische Folge wie Misstrauen oder Protest","Quellenkritischer Hinweis zur Zuschreibung"],"criteria":["Ich verknüpfe mindestens zwei Materialbelege kausal.","Ich beschreibe nicht nur Gefühle, sondern auch eine mögliche Folge.","Ich stelle die Legende nicht als sicher gesprochenes Zitat dar."]},{"id":"p04-a05","number":5,"tag":"E8","levels":["E"],"kind":"text","title":"Streitdialog: Bauer trifft Adligen","prompt":"Schreibt zu zweit einen Streitdialog über die geplante Ausweitung der Steuern. Verfasst mindestens sechs abwechselnde Redebeiträge, nutzt pro Rolle mindestens zwei historische Argumente und lasst die Figuren direkt aufeinander reagieren.","material":"Mögliche Belege: Staatsnot und drohende Zahlungsunfähigkeit; Steuerprivilegien von Adel und Klerus; Brotpreis, Hunger und bäuerliche Abgaben; Forderung nach gleicher Kopfsteuer; Beharren auf ererbten Rechten und Standesstellung.","hint":"Gebt keiner Rolle nur fertige Schlagworte. Jede Aussage sollte einen Grund enthalten; mindestens einmal muss eine Figur das vorherige Argument ausdrücklich aufgreifen.","success":"Der Dialog macht den Konflikt um Staatsnot, Gerechtigkeit und Privilegien sichtbar und bleibt in beiden Perspektiven plausibel.","minChars":850,"starter":"Bauer: …\nAdliger: Darauf erwidere ich …\nBauer: …","planning":["Je zwei historisch passende Argumente sammeln","Eine direkte Widerlegung und eine Rückfrage planen","Begründeten Ausgang oder offenen Streitpunkt festlegen"],"criteria":["Der Dialog enthält mindestens sechs abwechselnde Redebeiträge.","Beide Rollen verwenden Materialbelege und reagieren aufeinander.","Privilegien, Staatsnot und die Belastung der Bauern werden erkennbar.","Der Ausgang ist historisch plausibel und begründet."]},{"id":"p04-a06","number":6,"tag":"R8","levels":["R"],"kind":"text","title":"Wie gerecht waren die Generalstände?","prompt":"Erkläre, was die Generalständeversammlung war, wie 1789 abgestimmt wurde und ob dieses System die Verhältnisse gerecht abbildete. Nutze Bevölkerungsanteil und Stimmgewicht als zwei getrennte Kriterien.","material":"Der König berief die Versammlung der drei Stände ein. Geistlichkeit und Adel entsandten jeweils ungefähr 300, der Dritte Stand ungefähr 600 Abgeordnete. Trotzdem wurde nach Ständen abgestimmt: jeder Stand hatte eine Stimme. Der Dritte Stand vertrat laut Material ungefähr 98 Prozent der Bevölkerung.","hint":"Gliedere in Definition, Zusammensetzung, Abstimmung und Urteil. Verwechsle die Zahl der Abgeordneten nicht mit der Zahl der Standesstimmen.","success":"Deine Erklärung zeigt korrekt den Unterschied zwischen Repräsentation und Abstimmungsverfahren und begründet das Gerechtigkeitsurteil.","minChars":360,"starter":"Die Generalstände waren … . 1789 nahmen ungefähr … teil. Abgestimmt wurde … . Gemessen an … war das System …, weil …","planning":["Drei Stände und Einberufung durch den König","Abgeordnete: ungefähr 300 + 300 + 600","Stimmen: eine pro Stand","Urteil mit Bevölkerungsanteil und Stimmgewicht"],"criteria":["Ich erkläre die Versammlung und ihre Funktionsweise.","Ich nenne die Abgeordnetenzahlen korrekt.","Ich begründe mein Urteil mit zwei nachvollziehbaren Kriterien."]},{"id":"p04-a07","number":7,"tag":"R8","levels":["R"],"kind":"text","title":"Vier Beschwerdebriefe im Vergleich","prompt":"Stelle die Forderungen von Bauern, Stadtbürgertum, Adel und Klerus in Beziehung. Formuliere mindestens zwei direkte Vergleiche und fasse zusammen, welche Erwartungen die Gruppen an die Generalstände hatten.","material":"Bauern fordern unter anderem Abbau von Privilegien, Abgaben und Kirchenzehnt. Stadtbürger verlangen Rechte, Pressefreiheit und Zugang zu Ämtern. Der Adel will Herrschaftsrechte und Privilegien bewahren. Teile des Klerus fordern Schutz der katholischen Ordnung und Begrenzung von Presse und moderner Philosophie.","hint":"Nutze Vergleichswörter wie „während“, „hingegen“, „beide“ und „im Gegensatz dazu“. Ordne jede Forderung einer Richtung zu: einführen, abschaffen, bewahren oder beschränken.","success":"Dein Vergleich zeigt sowohl gemeinsame Interessen als auch konkrete Gegensätze, besonders bei Privilegien und Pressefreiheit.","minChars":430,"starter":"Bauern und Stadtbürger stimmen darin überein, dass … . Während … fordert, will … . Insgesamt erwartete der Dritte Stand …, die privilegierten Gruppen dagegen …","planning":["Für jede Gruppe mindestens eine konkrete Forderung","Zwei Übereinstimmungen oder Gegensätze","Zusammenfassung der grundlegenden Konfliktlinie"],"criteria":["Ich beziehe alle vier Perspektiven ein.","Ich formuliere mindestens zwei echte Vergleichssätze.","Ich benenne konkrete Konflikte statt nur „Veränderung gegen Bewahrung“."]}],"sourceFile":"../Pakete/4. Frankreich in der Krise.pdf","filename":"paket-04-frankreich-in-der-krise.html"};</script>

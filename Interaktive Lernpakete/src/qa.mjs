@@ -6,6 +6,7 @@ import vm from "node:vm";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const outputDir = dirname(here);
+const allowedExternalUrl = "https://asw-wutoeschingen.de/";
 const expectedFiles = [
   "index.html",
   "paket-01-sonnenkoenig.html",
@@ -55,10 +56,12 @@ for (const filename of expectedFiles) {
   assert(/^<!doctype html>/i.test(html), `${filename}: doctype fehlt.`);
   assert(/<html\s+lang="de">/i.test(html), `${filename}: Sprache de fehlt.`);
   assert(/<meta\s+name="viewport"/i.test(html), `${filename}: viewport fehlt.`);
-  assert(!/https?:\/\//i.test(html), `${filename}: enthält eine externe URL.`);
+  const externalUrls = html.match(/https?:\/\/[^"'\s<]+/gi) || [];
+  assert(externalUrls.every((url) => url === allowedExternalUrl), `${filename}: enthält eine nicht erlaubte externe URL.`);
   assert(!/\bfetch\s*\(|XMLHttpRequest|WebSocket/i.test(html), `${filename}: enthält eine Netzwerkschnittstelle.`);
   assert((html.match(/Geschichte Phase 7\/8: Die Französische Revolution/g) || []).length === 1, `${filename}: Reihen-Kopfzeile fehlt oder ist doppelt.`);
   assert((html.match(/Autor: Christian Schwend/g) || []).length === 1, `${filename}: Autorennennung fehlt oder ist doppelt.`);
+  assert(externalUrls.length === 1, `${filename}: ASW-Link fehlt oder ist doppelt.`);
   if (filename === "index.html") {
     assert(!/M8:\s*\d+\s*·\s*R8:\s*\d+\s*·\s*E8:\s*\d+/.test(html), `${filename}: enthält noch Aufgabenzahlen nach Niveaustufe.`);
     assert((html.match(/class="package-preview"/g) || []).length === 10, `${filename}: zehn Paketbilder erwartet.`);
