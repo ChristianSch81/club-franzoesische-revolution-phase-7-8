@@ -412,7 +412,6 @@ ${dashboardStyles}</style>
   <footer class="site-footer">
     <div class="footer-inner">
       <p class="footer-author">Autor: Christian Schwend</p>
-      <p class="footer-note">Alle Dateien funktionieren ohne Internetverbindung. Für Quellenbilder und längere Materialien bleibt das jeweilige analoge PDF die Materialgrundlage.</p>
     </div>
   </footer>
   <script>const PROGRESS_CONFIG = ${progressConfig};</script>
