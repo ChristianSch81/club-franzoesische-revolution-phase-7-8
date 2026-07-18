@@ -14,10 +14,10 @@
   --muted: GrayText;
   --accent: AccentColor;
   --accent-text: AccentColorText;
-  --header-bg: #d8bd9a;
+  --header-bg: #c49c6e;
   --header-text: #2d2117;
-  --header-muted: #554330;
-  --header-border: #a48767;
+  --header-muted: #493724;
+  --header-border: #8f6b45;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -112,9 +112,14 @@ h3 {
 }
 
 .site-header {
-  border-block-end: 1px solid var(--header-border);
+  width: min(100% - 2rem, var(--page-width));
+  margin-inline: auto;
+  border: 1px solid var(--header-border);
+  border-block-start: 0;
+  border-radius: 0 0 1rem 1rem;
   background: var(--header-bg);
   color: var(--header-text);
+  box-shadow: 0 0.35rem 1rem rgba(73, 49, 28, 0.14);
 }
 
 .header-inner,
@@ -125,6 +130,8 @@ h3 {
 }
 
 .header-inner {
+  width: 100%;
+  padding-inline: clamp(1rem, 2.5vw, 1.75rem);
   padding-block: var(--space-4);
 }
 
@@ -703,11 +710,15 @@ fieldset {
 }
 
 @media (max-width: 480px) {
+  .site-header { width: min(100% - 1rem, var(--page-width)); }
+
   .header-inner,
   .page,
   .footer-inner {
     width: min(100% - 1.2rem, var(--page-width));
   }
+
+  .site-header .header-inner { width: 100%; }
 
   .header-brand-row { gap: var(--space-2); }
   .header-asw-link { width: 4.8rem; height: 4.3rem; }
