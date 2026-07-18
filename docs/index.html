@@ -656,6 +656,67 @@ h1, h2, h3, strong { font-weight: 650; }
   font-weight: 750;
 }
 
+.progress-backup-help {
+  margin-block-start: 1.5rem;
+  padding: clamp(1rem, 2vw, 1.3rem);
+  border: 1px solid color-mix(in srgb, var(--ring-e-color) 38%, var(--dashboard-line));
+  border-inline-start: 0.38rem solid var(--ring-e-color);
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--ring-e-color) 7%, var(--dashboard-surface-strong));
+}
+
+.progress-backup-heading h3 { margin-block-end: 0.4rem; }
+
+.progress-backup-heading > p:last-child {
+  max-width: 78ch;
+  margin-block-end: 0;
+  color: var(--dashboard-muted);
+}
+
+.progress-backup-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-block-start: 1rem;
+}
+
+.progress-backup-steps section {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--dashboard-line);
+  border-radius: 0.7rem;
+  background: var(--dashboard-surface-strong);
+}
+
+.progress-backup-steps section > p:last-child,
+.progress-backup-note { margin-block-end: 0; }
+
+.progress-backup-step {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-block-end: 0.4rem;
+  color: var(--dashboard-primary);
+  font-weight: 750;
+}
+
+.progress-backup-step span {
+  display: inline-grid;
+  width: 1.65rem;
+  height: 1.65rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--dashboard-primary);
+  color: #fff;
+  font-size: 0.88rem;
+}
+
+.progress-backup-note {
+  margin-block-start: 0.85rem;
+  color: var(--dashboard-muted);
+  font-size: 0.93rem;
+}
+
 @media (prefers-color-scheme: dark) {
   .progress-dashboard {
     --dashboard-primary: #d18d86;
@@ -681,7 +742,8 @@ h1, h2, h3, strong { font-weight: 650; }
 }
 
 @media (max-width: 620px) {
-  .package-progress-grid {
+  .package-progress-grid,
+  .progress-backup-steps {
     grid-template-columns: 1fr;
   }
 }
@@ -928,6 +990,25 @@ h1, h2, h3, strong { font-weight: 650; }
           </div>
         </article>
       </div>
+
+      <aside class="progress-backup-help" aria-labelledby="progress-backup-title">
+        <div class="progress-backup-heading">
+          <p class="progress-dashboard-eyebrow">Fortschritt sichern</p>
+          <h3 id="progress-backup-title">So nimmst du deinen Lernstand mit</h3>
+          <p>Deine Ergebnisse werden nur in diesem Browser gespeichert. Mit einer Sicherungsdatei kannst du deinen gesamten Lernstand aufbewahren oder auf einem anderen Gerät wiederherstellen.</p>
+        </div>
+        <div class="progress-backup-steps">
+          <section>
+            <p class="progress-backup-step"><span aria-hidden="true">1</span> Exportieren und sichern</p>
+            <p>Wähle oben <strong>Export</strong>. Dein Browser lädt eine kleine JSON-Datei mit den Ergebnissen aller Lernpakete und des Abschlusstests herunter. Bewahre sie an einem Ort auf, den du wiederfindest.</p>
+          </section>
+          <section>
+            <p class="progress-backup-step"><span aria-hidden="true">2</span> Importieren und fortsetzen</p>
+            <p>Wähle oben <strong>Import</strong> und öffne deine zuvor exportierte JSON-Datei. Bestätige anschließend das Ersetzen des aktuellen Lernstands.</p>
+          </section>
+        </div>
+        <p class="progress-backup-note"><strong>Wichtig:</strong> Beim Import wird der momentan in diesem Browser gespeicherte Lernstand vollständig durch den Inhalt der Sicherungsdatei ersetzt.</p>
+      </aside>
     </section>
 
     <section aria-labelledby="packages-title">
@@ -970,6 +1051,9 @@ h1, h2, h3, strong { font-weight: 650; }
             <p class="eyebrow">Paket 03</p>
             <div class="package-title-row">
               <h3>Die Ständeordnung</h3>
+              <a class="package-preview-link" href="pakete/paket-03-staendeordnung.html" aria-label="Die Ständeordnung öffnen">
+                <img class="package-preview" src="assets/paket-03-staendeordnung.png" alt="Ein Bauer trägt sinnbildlich die Last von Klerus und Adel" width="204" height="136" loading="lazy">
+              </a>
             </div>
             <p class="package-description">Privilegien, Steuerlast und politische Unterrepräsentation vor 1789</p>
             <a class="package-link" href="pakete/paket-03-staendeordnung.html">Lernpaket öffnen <span aria-hidden="true">→</span></a>

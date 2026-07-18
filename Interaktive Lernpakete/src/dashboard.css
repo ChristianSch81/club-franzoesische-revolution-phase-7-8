@@ -256,6 +256,67 @@
   font-weight: 750;
 }
 
+.progress-backup-help {
+  margin-block-start: 1.5rem;
+  padding: clamp(1rem, 2vw, 1.3rem);
+  border: 1px solid color-mix(in srgb, var(--ring-e-color) 38%, var(--dashboard-line));
+  border-inline-start: 0.38rem solid var(--ring-e-color);
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--ring-e-color) 7%, var(--dashboard-surface-strong));
+}
+
+.progress-backup-heading h3 { margin-block-end: 0.4rem; }
+
+.progress-backup-heading > p:last-child {
+  max-width: 78ch;
+  margin-block-end: 0;
+  color: var(--dashboard-muted);
+}
+
+.progress-backup-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+  margin-block-start: 1rem;
+}
+
+.progress-backup-steps section {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--dashboard-line);
+  border-radius: 0.7rem;
+  background: var(--dashboard-surface-strong);
+}
+
+.progress-backup-steps section > p:last-child,
+.progress-backup-note { margin-block-end: 0; }
+
+.progress-backup-step {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-block-end: 0.4rem;
+  color: var(--dashboard-primary);
+  font-weight: 750;
+}
+
+.progress-backup-step span {
+  display: inline-grid;
+  width: 1.65rem;
+  height: 1.65rem;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--dashboard-primary);
+  color: #fff;
+  font-size: 0.88rem;
+}
+
+.progress-backup-note {
+  margin-block-start: 0.85rem;
+  color: var(--dashboard-muted);
+  font-size: 0.93rem;
+}
+
 @media (prefers-color-scheme: dark) {
   .progress-dashboard {
     --dashboard-primary: #d18d86;
@@ -281,7 +342,8 @@
 }
 
 @media (max-width: 620px) {
-  .package-progress-grid {
+  .package-progress-grid,
+  .progress-backup-steps {
     grid-template-columns: 1fr;
   }
 }

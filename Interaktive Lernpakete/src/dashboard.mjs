@@ -117,5 +117,24 @@ export function renderProgressDashboard(packages, finalTestHref) {
       <div class="package-progress-grid">
         ${packageCards}
       </div>
+
+      <aside class="progress-backup-help" aria-labelledby="progress-backup-title">
+        <div class="progress-backup-heading">
+          <p class="progress-dashboard-eyebrow">Fortschritt sichern</p>
+          <h3 id="progress-backup-title">So nimmst du deinen Lernstand mit</h3>
+          <p>Deine Ergebnisse werden nur in diesem Browser gespeichert. Mit einer Sicherungsdatei kannst du deinen gesamten Lernstand aufbewahren oder auf einem anderen Gerät wiederherstellen.</p>
+        </div>
+        <div class="progress-backup-steps">
+          <section>
+            <p class="progress-backup-step"><span aria-hidden="true">1</span> Exportieren und sichern</p>
+            <p>Wähle oben <strong>Export</strong>. Dein Browser lädt eine kleine JSON-Datei mit den Ergebnissen aller Lernpakete und des Abschlusstests herunter. Bewahre sie an einem Ort auf, den du wiederfindest.</p>
+          </section>
+          <section>
+            <p class="progress-backup-step"><span aria-hidden="true">2</span> Importieren und fortsetzen</p>
+            <p>Wähle oben <strong>Import</strong> und öffne deine zuvor exportierte JSON-Datei. Bestätige anschließend das Ersetzen des aktuellen Lernstands.</p>
+          </section>
+        </div>
+        <p class="progress-backup-note"><strong>Wichtig:</strong> Beim Import wird der momentan in diesem Browser gespeicherte Lernstand vollständig durch den Inhalt der Sicherungsdatei ersetzt.</p>
+      </aside>
     </section>`;
 }

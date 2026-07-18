@@ -36,6 +36,7 @@ const expectedImageAssets = [
   "asw-logo.png",
   "paket-01-sonnenkoenig.jpg",
   "paket-02-aufklaerung.jpg",
+  "paket-03-staendeordnung.png",
   "paket-04-frankreich-krise.jpg",
   "paket-05-beginn-revolution.jpg",
   "paket-06-menschenrechte.jpg",
@@ -58,8 +59,8 @@ const overview = fs.readFileSync(overviewPath, "utf8");
 const packageCards = overview.match(/class="package-card"/g) ?? [];
 
 if (packageCards.length !== 10) fail("Die Übersicht enthält nicht genau 10 Paketkarten.");
-if ((overview.match(/class="package-preview"/g) ?? []).length !== 9) {
-  fail("Die Übersicht enthält nicht genau neun Paketbilder.");
+if ((overview.match(/class="package-preview"/g) ?? []).length !== 10) {
+  fail("Die Übersicht enthält nicht genau zehn Paketbilder.");
 }
 if (overview.includes('class="level-counts"') || /M8\s*[·:]\s*\d/.test(overview)) {
   fail("Die Übersicht enthält noch Aufgabenzahlen nach Niveaustufe.");
