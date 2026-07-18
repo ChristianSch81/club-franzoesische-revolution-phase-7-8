@@ -135,6 +135,42 @@ h3 {
   padding-block: var(--space-4);
 }
 
+.header-brand-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-block-end: var(--space-3);
+}
+
+.header-brand-row .series-title {
+  margin-block-end: 0;
+}
+
+.header-asw-link {
+  display: grid;
+  width: 5.6rem;
+  height: 5rem;
+  flex: 0 0 auto;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--header-border);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.header-asw-logo {
+  display: block;
+  width: 4.9rem;
+  height: 4.4rem;
+  object-fit: contain;
+}
+
+.header-asw-link:focus-visible {
+  outline: 0.2rem solid #ffffff;
+  outline-offset: 0.2rem;
+}
+
 .series-title {
   max-width: 48ch;
   margin-block-end: var(--space-3);
@@ -592,7 +628,34 @@ fieldset {
 }
 
 .index-intro {
-  max-width: 72ch;
+  max-width: none;
+  padding: clamp(1.1rem, 2.5vw, 1.6rem);
+  border: 1px solid #a7d4c3;
+  border-inline-start: 0.4rem solid #2f8f73;
+  border-radius: 1rem;
+  background: #eaf7f2;
+  box-shadow: 0 0.3rem 1rem rgba(35, 105, 84, 0.08);
+  color: #183c32;
+}
+
+.index-intro h2 {
+  color: #176b56;
+}
+
+.index-intro p {
+  max-width: 76ch;
+  margin-block-end: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .index-intro {
+    border-color: #467d6c;
+    border-inline-start-color: #72c5a8;
+    background: #19372f;
+    color: #e7f6f0;
+  }
+
+  .index-intro h2 { color: #9de0c8; }
 }
 
 .index-meta {
@@ -639,6 +702,10 @@ fieldset {
     width: min(100% - 1.2rem, var(--page-width));
   }
 
+  .header-brand-row { gap: var(--space-2); }
+  .header-asw-link { width: 4.8rem; height: 4.3rem; }
+  .header-asw-logo { width: 4.15rem; height: 3.7rem; }
+
   .package-preview-link {
     flex-basis: 6.7rem;
   }
@@ -679,7 +746,12 @@ fieldset {
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
   <header class="site-header">
     <div class="header-inner">
-      <p class="series-title">Geschichte Phase 7/8: Die Französische Revolution</p>
+      <div class="header-brand-row">
+        <p class="series-title">Geschichte Phase 7/8: Die Französische Revolution</p>
+        <a class="header-asw-link" href="https://asw-wutoeschingen.de/" target="_blank" rel="noopener" aria-label="Website der Alemannenschule Wutöschingen öffnen">
+          <img class="header-asw-logo" src="assets/asw-logo.png" alt="Logo der Alemannenschule Wutöschingen">
+        </a>
+      </div>
       <div class="header-topline no-print">
         <a class="button ghost" href="index.html">← Paketübersicht</a>
         <a class="button material-link" href="../Pakete/9. Vom Wiener Kongress zum Hambacher Fest.pdf" target="_blank" rel="noopener">Analoges Lernpaket (PDF)</a>
@@ -804,6 +876,7 @@ fieldset {
   <footer class="site-footer">
     <div class="footer-inner">
       <p class="footer-author">Autor: Christian Schwend</p>
+      <p>Alemannenschule Wutöschingen</p>
     </div>
   </footer>
   <script>const PACKAGE = {"id":"p09","number":9,"slug":"vom-wiener-kongress-zum-hambacher-fest","title":"Vom Wiener Kongress zum Hambacher Fest","subtitle":"Restauration, Deutscher Bund und Freiheitsbewegung 1815-1832","focus":"Neuordnung Europas, Metternichs Politik und der Konflikt um Einheit und Freiheit","tasks":[{"id":"p09-a01","number":1,"tag":"(M8)","levels":["M"],"kind":"match","title":"Ergebnisse des Wiener Kongresses","prompt":"Ordne jedes Ergebnis dem passenden Grundprinzip zu.","material":"1814/15 verhandelten die europäischen Mächte unter maßgeblichem Einfluss Metternichs über Frieden und Grenzen nach Napoleon. Die Ordnung sollte Macht ausgleichen und monarchische Herrschaft sichern.","hint":"Frage: Geht es um Kräfteverteilung, Rückkehr monarchischer Ordnung, Grenzen oder Zusammenarbeit der Herrscher?","success":"Der Wiener Kongress verband Machtgleichgewicht, Restauration, territoriale Neuordnung und Bündnisse. Diese Ziele dienten Frieden, aber nicht demokratischer Mitbestimmung.","choices":["Machtgleichgewicht","Restauration","territoriale Neuordnung","Bündnispolitik"],"items":[{"prompt":"Frankreichs übermächtige Stellung wird begrenzt.","answer":"Machtgleichgewicht"},{"prompt":"Monarchische Herrschaft und Dynastien sollen wieder gefestigt werden.","answer":"Restauration"},{"prompt":"Der Rheinbund wird durch den Deutschen Bund ersetzt.","answer":"territoriale Neuordnung"},{"prompt":"Grenzen werden neu gezogen und Staaten wie Hannover aufgewertet.","answer":"territoriale Neuordnung"},{"prompt":"Herrscher vereinbaren Zusammenarbeit gegen neue Revolutionen.","answer":"Bündnispolitik"}]},{"id":"p09-a02","number":2,"tag":"(M8)","levels":["M"],"kind":"match","title":"Der Deutsche Bund","prompt":"Entscheide für die Beispiele, ob sie zum Deutschen Bund gehörten oder nicht.","material":"Der Deutsche Bund war von 1815 bis 1866 ein Staatenbund souveräner deutscher Fürsten und freier Städte. Österreich und Preußen gehörten ebenso dazu wie etwa Bayern, Baden, Württemberg und Luxemburg. Auch die Könige von Dänemark und der Niederlande waren wegen einzelner Territorien Bundesfürsten. Frankfurt am Main war Sitz der Bundesversammlung, nicht Hauptstadt eines Nationalstaats.","hint":"Nicht jede europäische Großmacht war Mitglied; bei Dänemark und den Niederlanden ging es um bestimmte deutsche Territorien.","success":"Der Deutsche Bund war kein deutscher Nationalstaat, sondern ein Bund souveräner Staaten und Territorien.","choices":["Mitglied oder mit einem Territorium vertreten","kein Mitglied"],"items":[{"prompt":"Österreich","answer":"Mitglied oder mit einem Territorium vertreten"},{"prompt":"Preußen","answer":"Mitglied oder mit einem Territorium vertreten"},{"prompt":"Bayern","answer":"Mitglied oder mit einem Territorium vertreten"},{"prompt":"Baden","answer":"Mitglied oder mit einem Territorium vertreten"},{"prompt":"Württemberg","answer":"Mitglied oder mit einem Territorium vertreten"},{"prompt":"Luxemburg","answer":"Mitglied oder mit einem Territorium vertreten"},{"prompt":"Dänischer König für Holstein und Lauenburg","answer":"Mitglied oder mit einem Territorium vertreten"},{"prompt":"Niederländischer König für Luxemburg","answer":"Mitglied oder mit einem Territorium vertreten"},{"prompt":"Frankreich","answer":"kein Mitglied"},{"prompt":"Russisches Kaiserreich","answer":"kein Mitglied"}]},{"id":"p09-a03","number":3,"tag":"(M8)","levels":["M"],"kind":"match","title":"Warum das Kongressergebnis enttäuschte","prompt":"Verbinde jede Hoffnung mit dem enttäuschenden Ergebnis von 1815.","material":"Viele Menschen hatten in den Befreiungskriegen auf nationale Einheit, Verfassungen und politische Freiheit gehofft. Der Wiener Kongress stärkte jedoch Fürstenherrschaft und einen lockeren Deutschen Bund.","hint":"Vergleiche jeweils Erwartung und tatsächliches Ergebnis.","success":"Enttäuschung entstand aus dem Gegensatz zwischen Hoffnungen auf Einheit und Freiheit und einer restaurativen Ordnung ohne deutschen Nationalstaat.","choices":["lockerer Staatenbund statt Nationalstaat","Stärkung der Fürstenherrschaft","Bekämpfung liberaler und nationaler Bewegungen"],"items":[{"prompt":"Hoffnung auf einen geeinten deutschen Nationalstaat","answer":"lockerer Staatenbund statt Nationalstaat"},{"prompt":"Hoffnung auf Verfassungen und politische Mitbestimmung","answer":"Stärkung der Fürstenherrschaft"},{"prompt":"Hoffnung auf Meinungsfreiheit und öffentliche Reformdebatten","answer":"Bekämpfung liberaler und nationaler Bewegungen"}]},{"id":"p09-a04","number":4,"tag":"(R8)","levels":["R"],"kind":"text","title":"Warum eine gemeinsame Schlussakte schwierig war","prompt":"Rekonstruiere, welche Schwierigkeiten die Einigung auf die Wiener Kongressakte verursachten.","material":"Etwa 200 Staaten und Territorien waren betroffen. Preußen wollte Sachsen gewinnen, Russland erhob Ansprüche auf Polen, kleinere Staaten fürchteten mächtige Nachbarn. Zugleich sollten Frieden, Restauration und Machtgleichgewicht gesichert werden.","hint":"Schreibe aus mehreren Perspektiven und erkläre mindestens einen möglichen Kompromiss samt Folge.","success":"Eine gute Rekonstruktion zeigt ungleiche Macht, konkrete Interessenkonflikte und die Schwierigkeit, Frieden und Gewinne einzelner Mächte auszubalancieren.","minChars":300,"starter":"Eine gemeinsame Kongressakte war schwer zu erreichen, weil ...","planning":["Interessen von Russland, Preußen und Österreich erfassen","Sorge eines kleineren Staates ergänzen","Mindestens zwei Konflikte erklären","Einen Kompromiss und seine Folgen prüfen"],"criteria":["Ich berücksichtige mindestens drei unterschiedliche Akteure.","Ich erläutere zwei konkrete Interessenkonflikte.","Ich beziehe das Machtgleichgewicht ein.","Ich erkläre die Folge eines möglichen Kompromisses."]},{"id":"p09-a05","number":5,"tag":"(R8)","levels":["R"],"kind":"text","title":"Die Heilige Allianz erklären","prompt":"Erkläre, weshalb die ursprünglichen Bündnispartner die Heilige Allianz schlossen und weshalb sie sich 'heilig' nannte.","material":"Die ursprünglichen Unterzeichner von 1815 waren Russland, Österreich und Preußen - nicht Frankreich. Sie wollten monarchische Ordnung sichern und sich gegen revolutionäre, liberale und nationale Bewegungen stützen. Die Bezeichnung 'heilig' verwies auf christliche Brüderlichkeit und eine religiöse Legitimation monarchischer Herrschaft, obwohl die Herrscher verschiedenen christlichen Konfessionen angehörten.","hint":"Beantworte beide Teile: politischer Zweck und religiös-monarchische Selbstdeutung.","success":"Die Allianz verband Macht- und Ordnungspolitik mit christlicher Legitimationssprache. Frankreich gehörte nicht zu den drei ursprünglichen Unterzeichnern.","minChars":240,"starter":"Russland, Österreich und Preußen schlossen die Allianz, um ... Der Name 'heilig' sollte ...","planning":["Ursprüngliche Unterzeichner korrekt nennen","Gemeinsame Bedrohung beschreiben","Politisches Ziel erklären","Religiöse Sprache deuten"],"criteria":["Ich nenne Russland, Österreich und Preußen als ursprüngliche Unterzeichner.","Ich erkläre die Sicherung monarchischer Ordnung.","Ich beziehe den Kampf gegen revolutionäre Bewegungen ein.","Ich deute 'heilig' als christliche Legitimationssprache."]},{"id":"p09-a06","number":6,"tag":"(M8)","levels":["M"],"kind":"order","title":"Freiheits- und Nationalbewegung bis 1832","prompt":"Ordne die Ereignisse chronologisch. Nutze die fertige Folge anschließend für eine mündliche Kurzbeschreibung.","material":"Nach 1815 standen studentische und bürgerliche Forderungen nach Einheit und Freiheit den restaurativen Maßnahmen Metternichs gegenüber.","hint":"Die Jahreszahlen 1815, 1817, 1819, 1830 und 1832 geben die Reihenfolge vor.","success":"Die Abfolge zeigt das Wechselspiel von Protest und Unterdrückung bis zum Hambacher Fest als europäischem Freiheitsfest.","items":["1815: Wiener Kongress und Deutscher Bund enttäuschen Hoffnungen auf Einheit und Freiheit.","1817: Beim Wartburgfest treten besonders Studenten für nationale und liberale Ziele ein.","1819: Nach der Ermordung Kotzebues verschärfen die Karlsbader Beschlüsse Überwachung und Pressezensur.","1830: Revolutionen in Frankreich und Unruhen in deutschen Staaten geben der Bewegung neuen Auftrieb.","1832: Beim Hambacher Fest demonstrieren Zehntausende mit Schwarz-Rot-Gold für Freiheit und nationale Einheit."]},{"id":"p09-a07","number":7,"tag":"(R8)","levels":["R"],"kind":"text","title":"Metternichs Krisendeutung untersuchen","prompt":"Begründe, was Metternich 1820 mit seinem Bild von 'morschen Gebäuden' und 'wiederaufbauen' ausdrücken wollte. Nutze konkrete Ereignisse.","material":"Metternich beschreibt 1820 seine Zeit als 'abscheuliche Periode' und sich selbst als jemanden, der 'morsche Gebäude' stützt. Er hatte Revolution und Napoleon erlebt und wollte 1815 monarchische Ordnung restaurieren. Wartburgfest und Karlsbader Beschlüsse lagen 1820 bereits zurück; Ereignisse von 1830 und 1832 können nur zeigen, dass die Spannung später fortbestand.","hint":"Trenne, was Metternich bis 1820 erlebt hatte, von späteren Beispielen, die seine Sorge nachträglich bestätigen.","success":"Die Begründung deutet das Gebäude-Bild als bedrohte alte Ordnung und verbindet es zeitlich korrekt mit Revolution, Napoleon, Restauration und fortbestehendem Liberalismus.","minChars":320,"starter":"Mit dem Bild der 'morschen Gebäude' meint Metternich ...","planning":["Schlüsselbilder des Zitats deuten","Revolution und Napoleon als Erfahrung einordnen","Wiener Kongress und Restauration verbinden","Mindestens ein Ereignis bis 1820 belegen","Spätere Beispiele ausdrücklich als spätere Bestätigung kennzeichnen"],"criteria":["Ich deute mindestens zwei Bilder aus dem Zitat.","Ich nutze zwei konkrete historische Ereignisse oder Entwicklungen.","Ich erkläre Metternichs Ziel der Restauration.","Ich ordne Beispiele vor und nach 1820 zeitlich sauber ein."]},{"id":"p09-a08","number":8,"tag":"(E8)","levels":["E"],"kind":"text","title":"Restauration oder großdeutsche Alternative?","prompt":"Beurteile, ob Restauration eine sinnvolle Neuordnung Europas war oder ob ein geeintes großdeutsches Reich die bessere Alternative gewesen wäre.","material":"Die Restauration versprach Ordnung und Machtgleichgewicht, begrenzte aber Teilhabe und nationale Selbstbestimmung. Ein großdeutsches Reich hätte Einheit ermöglicht, zugleich jedoch Machtgleichgewicht, Grenzen des Habsburgerreichs sowie die Stellung nichtdeutscher Bevölkerungen berührt.","hint":"Vergleiche keine Idealbilder. Prüfe für beide Optionen Wirkungen auf Frieden, Teilhabe, Einheit und verschiedene Bevölkerungsgruppen.","success":"Ein Expertenurteil arbeitet mit Kriterien, Folgen und Akteursperspektiven, prüft Gegenargumente und begründet, weshalb eine Option trotz ihrer Nachteile stärker wiegt.","minChars":450,"starter":"Für die Bewertung reichen Einheit und Ruhe als Schlagworte nicht aus. Entscheidend sind ...","planning":["Mindestens vier Bewertungskriterien festlegen","Folgen beider Optionen untersuchen","Perspektiven von Großmächten, kleineren Staaten und Bevölkerungen berücksichtigen","Drei Materialbelege nutzen","Gegenargument und gewichteten Schluss formulieren"],"criteria":["Ich lege meine Bewertungskriterien offen.","Ich prüfe Chancen und Risiken beider Optionen.","Ich verwende mindestens drei konkrete Materialbelege.","Ich berücksichtige mehr als die Perspektive deutscher Nationalbewegter.","Mein Urteil enthält ein Gegenargument und eine klare Gewichtung."]}],"sourceFile":"../Pakete/9. Vom Wiener Kongress zum Hambacher Fest.pdf","filename":"paket-09-vom-wiener-kongress-zum-hambacher-fest.html"};</script>

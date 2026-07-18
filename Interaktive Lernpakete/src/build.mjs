@@ -15,6 +15,7 @@ const dashboardStyles = await readFile(join(here, "dashboard.css"), "utf8");
 const dashboardRuntime = await readFile(join(here, "dashboard.js"), "utf8");
 const finalTestStyles = await readFile(join(here, "final-test.css"), "utf8");
 const finalTestRuntime = await readFile(join(here, "final-test.js"), "utf8");
+const schoolUrl = "https://asw-wutoeschingen.de/";
 const expectedTaskCounts = new Map([[1, 14], [2, 6], [3, 7], [4, 7], [5, 7], [6, 7], [7, 8], [8, 7], [9, 8], [10, 8]]);
 const expectedTaskNumbers = new Map([
   [1, [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15]],
@@ -204,7 +205,12 @@ function packageDocument(pkg) {
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
   <header class="site-header">
     <div class="header-inner">
-      <p class="series-title">Geschichte Phase 7/8: Die Französische Revolution</p>
+      <div class="header-brand-row">
+        <p class="series-title">Geschichte Phase 7/8: Die Französische Revolution</p>
+        <a class="header-asw-link" href="${schoolUrl}" target="_blank" rel="noopener" aria-label="Website der Alemannenschule Wutöschingen öffnen">
+          <img class="header-asw-logo" src="assets/asw-logo.png" alt="Logo der Alemannenschule Wutöschingen">
+        </a>
+      </div>
       <div class="header-topline no-print">
         <a class="button ghost" href="index.html">← Paketübersicht</a>
         <a class="button material-link" href="${escapeHtml(pkg.sourceFile)}" target="_blank" rel="noopener">Analoges Lernpaket (PDF)</a>
@@ -329,6 +335,7 @@ function packageDocument(pkg) {
   <footer class="site-footer">
     <div class="footer-inner">
       <p class="footer-author">Autor: Christian Schwend</p>
+      <p>Alemannenschule Wutöschingen</p>
     </div>
   </footer>
   <script>const PACKAGE = ${serializedPackage(pkg)};</script>
@@ -381,7 +388,12 @@ ${dashboardStyles}</style>
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
   <header class="site-header">
     <div class="header-inner">
-      <p class="series-title">Geschichte Phase 7/8: Die Französische Revolution</p>
+      <div class="header-brand-row">
+        <p class="series-title">Geschichte Phase 7/8: Die Französische Revolution</p>
+        <a class="header-asw-link" href="${schoolUrl}" target="_blank" rel="noopener" aria-label="Website der Alemannenschule Wutöschingen öffnen">
+          <img class="header-asw-logo" src="assets/asw-logo.png" alt="Logo der Alemannenschule Wutöschingen">
+        </a>
+      </div>
       <h1>Interaktive Lernpakete</h1>
       <p class="subtitle">Zehn offline nutzbare Einheiten mit ${totalTasks} differenzierten Aufgaben für Mindest-, Regel- und Expertenstandard.</p>
     </div>
@@ -412,7 +424,7 @@ ${dashboardStyles}</style>
   <footer class="site-footer">
     <div class="footer-inner">
       <p class="footer-author">Autor: Christian Schwend</p>
-      <p class="footer-note">Alle Dateien funktionieren ohne Internetverbindung. Für Quellenbilder und längere Materialien bleibt das jeweilige analoge PDF die Materialgrundlage.</p>
+      <p>Alemannenschule Wutöschingen</p>
     </div>
   </footer>
   <script>const PROGRESS_CONFIG = ${progressConfig};</script>
@@ -444,7 +456,8 @@ await writeFile(join(outputDir, "abschlusstest.html"), renderFinalTestDocument({
   homeHref: "index.html",
   constitutionSrc: "assets/abschluss/verfassung-1791.png",
   portraitSrc: "assets/overview/paket-01-sonnenkoenig.jpg",
-  logoSrc: "assets/asw-logo.png"
+  logoSrc: "assets/asw-logo.png",
+  schoolUrl
 }), "utf8");
 
 console.log(`Erstellt: index.html, abschlusstest.html und ${preparedPackages.length} Paketdateien mit ${seenIds.size} Aufgaben.`);

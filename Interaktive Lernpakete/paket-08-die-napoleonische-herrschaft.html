@@ -135,6 +135,42 @@ h3 {
   padding-block: var(--space-4);
 }
 
+.header-brand-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-block-end: var(--space-3);
+}
+
+.header-brand-row .series-title {
+  margin-block-end: 0;
+}
+
+.header-asw-link {
+  display: grid;
+  width: 5.6rem;
+  height: 5rem;
+  flex: 0 0 auto;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--header-border);
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.94);
+}
+
+.header-asw-logo {
+  display: block;
+  width: 4.9rem;
+  height: 4.4rem;
+  object-fit: contain;
+}
+
+.header-asw-link:focus-visible {
+  outline: 0.2rem solid #ffffff;
+  outline-offset: 0.2rem;
+}
+
 .series-title {
   max-width: 48ch;
   margin-block-end: var(--space-3);
@@ -592,7 +628,34 @@ fieldset {
 }
 
 .index-intro {
-  max-width: 72ch;
+  max-width: none;
+  padding: clamp(1.1rem, 2.5vw, 1.6rem);
+  border: 1px solid #a7d4c3;
+  border-inline-start: 0.4rem solid #2f8f73;
+  border-radius: 1rem;
+  background: #eaf7f2;
+  box-shadow: 0 0.3rem 1rem rgba(35, 105, 84, 0.08);
+  color: #183c32;
+}
+
+.index-intro h2 {
+  color: #176b56;
+}
+
+.index-intro p {
+  max-width: 76ch;
+  margin-block-end: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .index-intro {
+    border-color: #467d6c;
+    border-inline-start-color: #72c5a8;
+    background: #19372f;
+    color: #e7f6f0;
+  }
+
+  .index-intro h2 { color: #9de0c8; }
 }
 
 .index-meta {
@@ -639,6 +702,10 @@ fieldset {
     width: min(100% - 1.2rem, var(--page-width));
   }
 
+  .header-brand-row { gap: var(--space-2); }
+  .header-asw-link { width: 4.8rem; height: 4.3rem; }
+  .header-asw-logo { width: 4.15rem; height: 3.7rem; }
+
   .package-preview-link {
     flex-basis: 6.7rem;
   }
@@ -679,7 +746,12 @@ fieldset {
   <a class="skip-link" href="#main">Zum Inhalt springen</a>
   <header class="site-header">
     <div class="header-inner">
-      <p class="series-title">Geschichte Phase 7/8: Die Französische Revolution</p>
+      <div class="header-brand-row">
+        <p class="series-title">Geschichte Phase 7/8: Die Französische Revolution</p>
+        <a class="header-asw-link" href="https://asw-wutoeschingen.de/" target="_blank" rel="noopener" aria-label="Website der Alemannenschule Wutöschingen öffnen">
+          <img class="header-asw-logo" src="assets/asw-logo.png" alt="Logo der Alemannenschule Wutöschingen">
+        </a>
+      </div>
       <div class="header-topline no-print">
         <a class="button ghost" href="index.html">← Paketübersicht</a>
         <a class="button material-link" href="../Pakete/8. Die Napoleonische Herrschaft.pdf" target="_blank" rel="noopener">Analoges Lernpaket (PDF)</a>
@@ -804,6 +876,7 @@ fieldset {
   <footer class="site-footer">
     <div class="footer-inner">
       <p class="footer-author">Autor: Christian Schwend</p>
+      <p>Alemannenschule Wutöschingen</p>
     </div>
   </footer>
   <script>const PACKAGE = {"id":"p08","number":8,"slug":"die-napoleonische-herrschaft","title":"Die Napoleonische Herrschaft","subtitle":"Europäische Vorherrschaft, Neuordnung und Untergang","focus":"Kriege, Kontinentalsperre, Rheinbund, deutsche Nationalbewegung und Erinnerungskultur","tasks":[{"id":"p08-a01","number":1,"tag":"(M8)","levels":["M"],"kind":"choice","title":"Warum Napoleon Krieg führte","prompt":"Wähle alle Aussagen, die Napoleons Kriege materialgerecht erklären.","material":"Großbritannien und andere europäische Mächte bekämpften Frankreichs Vorherrschaft. Eine direkte Landung in Großbritannien war wegen der überlegenen britischen Flotte riskant; Napoleon griff deshalb kontinentale Gegner und britische Verbündete an und weitete seine Macht aus.","hint":"Mehrere Aussagen sind richtig. Prüfe außenpolitische Gegnerschaft, Strategie und Machtstreben.","success":"Napoleons Kriege entstanden aus europäischen Machtkonflikten, seiner Vorherrschaftspolitik und der Strategie, Großbritannien über dessen Verbündete und den Kontinent zu treffen.","multiple":true,"options":[{"text":"Europäische Mächte wollten die französische Vorherrschaft begrenzen.","correct":true},{"text":"Eine direkte Invasion Großbritanniens war wegen der starken britischen Flotte riskant.","correct":true},{"text":"Napoleon griff britische Verbündete auf dem Kontinent an und wollte seinen Machtbereich erweitern.","correct":true},{"text":"Napoleons einziges Kriegsziel war die selbstlose Verbreitung der Menschenrechte.","correct":false},{"text":"Frankreich führte Krieg, weil es selbst über keine Armee verfügte.","correct":false}]},{"id":"p08-a02","number":2,"tag":"(M8)","levels":["M"],"kind":"match","title":"Napoleons Herrschaftsgebiete mehrfach klassifizieren","prompt":"Ordne jede Länderkarte der im Material genannten Herrschaftsform zu. Dasselbe Land kann in mehreren Karten vorkommen.","material":"Die Legende unterscheidet bis 1812 eroberte Gebiete, von Verwandten regierte Staaten und andere von Frankreich abhängige Gebiete. Spanien und Italien erscheinen im Lösungstableau in mehr als einer Kategorie.","hint":"Behandle jede Zeile als eigene Aussage; die Kategorien sind nicht gegenseitig ausgeschlossen.","success":"Die Mehrfachzuordnung zeigt, dass Eroberung, Familienherrschaft und politische Abhängigkeit einander überlagern konnten.","choices":["bis 1812 erobert","von Verwandten regiert","anderweitig von Frankreich abhängig"],"items":[{"prompt":"Italien - territoriale Einordnung","answer":"bis 1812 erobert"},{"prompt":"Kroatien - territoriale Einordnung","answer":"bis 1812 erobert"},{"prompt":"Niederlande - territoriale Einordnung","answer":"bis 1812 erobert"},{"prompt":"Spanien - territoriale Einordnung","answer":"bis 1812 erobert"},{"prompt":"Slowenien - territoriale Einordnung","answer":"bis 1812 erobert"},{"prompt":"Spanien - Regierungsform","answer":"von Verwandten regiert"},{"prompt":"Italien - Regierungsform","answer":"von Verwandten regiert"},{"prompt":"Königreich Neapel - Regierungsform","answer":"von Verwandten regiert"},{"prompt":"Königreich Westphalen - Regierungsform","answer":"von Verwandten regiert"},{"prompt":"Schweiz - politische Stellung","answer":"anderweitig von Frankreich abhängig"},{"prompt":"Rheinbund - politische Stellung","answer":"anderweitig von Frankreich abhängig"},{"prompt":"Großherzogtum Warschau - politische Stellung","answer":"anderweitig von Frankreich abhängig"}]},{"id":"p08-a03","number":3,"tag":"(M8)","levels":["M"],"kind":"match","title":"Wie Napoleon Deutschland veränderte","prompt":"Ordne jede Veränderung dem passenden Fachbegriff oder Vorgang zu.","material":"1806 endete das Heilige Römische Reich. Kirchliche Herrschaften wurden aufgelöst, kleinere reichsunmittelbare Gebiete größeren Staaten eingegliedert und zahlreiche Territorien zusammengefasst. Viele deutsche Staaten traten dem Rheinbund unter Napoleons Einfluss bei.","hint":"Achte darauf, ob Besitz der Kirche, politische Selbstständigkeit, Staatsgröße, Bündnis oder das alte Reich gemeint ist.","success":"Napoleon veränderte Deutschland breiter als es die enge Musterlösung zeigt: durch Säkularisation, Mediatisierung, größere Territorien, Rheinbund und das Ende des Alten Reiches.","choices":["Säkularisation","Mediatisierung","territoriale Zusammenfassung","Rheinbund","Ende des Heiligen Römischen Reiches"],"items":[{"prompt":"Kirchen- und Klosterherrschaften werden aufgelöst und weltlichen Staaten zugeteilt.","answer":"Säkularisation"},{"prompt":"Kleinere reichsunmittelbare Herrschaften verlieren ihre Selbstständigkeit.","answer":"Mediatisierung"},{"prompt":"Aus vielen Kleinstaaten entstehen weniger, flächenmäßig größere Staaten.","answer":"territoriale Zusammenfassung"},{"prompt":"Deutsche Staaten schließen sich einem Bündnis unter französischem Einfluss an.","answer":"Rheinbund"},{"prompt":"Kaiser Franz II. legt 1806 die Reichskrone nieder.","answer":"Ende des Heiligen Römischen Reiches"}]},{"id":"p08-a04","number":4,"tag":"(R8)","levels":["R"],"kind":"text","title":"Napoleons Vorherrschaft als System erklären","prompt":"Erkläre, wie Napoleon seine Vorherrschaft in Europa sicherte und wie verschiedene Machtmittel zusammenwirkten.","material":"Zu Napoleons Machtmitteln gehörten militärische Siege, direkte Annexionen, Verwandte oder loyale Herrscher in abhängigen Staaten, der Rheinbund, territoriale Neuordnung und die Kontinentalsperre gegen Großbritannien.","hint":"Nenne nicht nur Maßnahmen. Verbinde mindestens drei davon in einer Kausalkette.","success":"Eine Regelerklärung zeigt an konkreten Beispielen, wie militärische, politische, territoriale und wirtschaftliche Instrumente einander stützten.","minChars":300,"starter":"Napoleon sicherte seine Vorherrschaft nicht nur durch militärische Siege, sondern ...","planning":["Mindestens drei unterschiedliche Machtmittel auswählen","Zu jedem Machtmittel ein Beispiel nennen","Wechselwirkungen erklären","Eine Grenze oder Schwachstelle des Systems benennen"],"criteria":["Ich verwende mindestens drei verschiedene Herrschaftsmechanismen.","Ich belege sie mit passenden Ländern, Regionen oder Bündnissen.","Ich erkläre mindestens zwei Ursache-Folge-Beziehungen.","Ich formuliere einen zusammenhängenden Erklärtext."]},{"id":"p08-a05","number":5,"tag":"(R8)","levels":["R"],"kind":"text","title":"Warum Napoleon unterlag","prompt":"Verfasse einen Fließtext von ungefähr 300 Wörtern zu den Ursachen von Napoleons Niederlage und belege deine Aussagen.","material":"Orientierung: Russlandfeldzug 1812 mit enormen Verlusten, Überdehnung und Nachschubprobleme, wachsender Widerstand, Bündnisbildung der Gegner, Niederlage bei Leipzig 1813, Abdankung und Verbannung nach Elba 1814, Rückkehr und endgültige Niederlage bei Waterloo 1815, danach St. Helena. Prüfe für Belege Autor oder Institution, Datum und Aussagewert einer Quelle.","hint":"Eine Liste reicht nicht: Erkläre, wie Ursachen einander verstärkten. 1814 war Elba; St. Helena folgte erst 1815.","success":"Der Text verbindet mindestens drei Ursachen kausal, bleibt chronologisch korrekt und weist nachvollziehbare Quellenbelege aus.","minChars":1200,"starter":"Napoleons Niederlage hatte nicht nur eine Ursache. Entscheidend war zunächst ...","planning":["Mindestens drei Ursachen mit Belegen auswählen","Kurz- und langfristige Ursachen unterscheiden","Wechselwirkungen markieren","Chronologie 1812-1815 prüfen","Mindestens zwei Quellen mit Autor oder Institution nennen"],"criteria":["Mein Text umfasst ungefähr 300 Wörter.","Ich erkläre mindestens drei Ursachen und ihre Zusammenhänge.","Ich ordne Elba 1814 und St. Helena 1815 korrekt ein.","Ich nutze mindestens zwei nachvollziehbar bezeichnete Quellen.","Ich belege wichtige Behauptungen statt nur Quellen am Ende aufzulisten."]},{"id":"p08-a06","number":6,"tag":"(E8)","levels":["E"],"kind":"text","title":"Das Völkerschlachtdenkmal beurteilen","prompt":"Erläutere die Funktion des Völkerschlachtdenkmals und beurteile, ob es die Völkerschlacht angemessen darstellt.","material":"Zusatzdossier: Das 91 Meter hohe Denkmal wurde nach Entwürfen Bruno Schmitz' von 1898 bis 1913 gebaut und am 18. Oktober 1913 eingeweiht. Es sollte der Toten von 1813 gedenken, wurde bei seiner Eröffnung aber zugleich zum nationalen und antifranzösischen Symbol. Monumentalfiguren verkörperten als deutsche Tugenden gedeutete Begriffe. Heute wird der Ort auch kritisch als Bildungs- und europäisches Friedensmonument erschlossen. Quelle des Dossiers: Stadtgeschichtliches Museum Leipzig und Förderverein Völkerschlachtdenkmal.","hint":"Trenne Ereignis 1813, Entstehungszeit 1898-1913 und heutige Nutzung. Lege eigene Kriterien für 'angemessen' offen.","success":"Ein Expertenurteil verbindet Gestaltung, Entstehungskontext und Erinnerungsfunktion, berücksichtigt Ein- und Ausschlüsse und wendet einen selbst begründeten Maßstab an.","minChars":440,"starter":"Ein Denkmal stellt Vergangenheit nicht neutral dar. Beim Völkerschlachtdenkmal zeigt sich das daran, dass ...","planning":["Mindestens zwei Gestaltungsmerkmale untersuchen","Funktionen 1913 und heute unterscheiden","Kriterien für eine angemessene Darstellung festlegen","Dargestellte und fehlende Perspektiven prüfen","Gegenargument und Schlussurteil formulieren"],"criteria":["Ich nutze mindestens zwei konkrete Merkmale des Denkmals.","Ich ordne Bauzeit und Einweihung historisch ein.","Ich unterscheide Gedenken, nationale Mobilisierung und heutige Bildungsfunktion.","Ich lege meinen Bewertungsmaßstab offen.","Mein Urteil enthält Gegenargument und begründeten Schluss."]},{"id":"p08-a07","number":7,"tag":"(E8)","levels":["E"],"kind":"text","title":"Flugblatt eines Studenten im Jahr 1812","prompt":"Entwirf aus der Perspektive eines jungen Studenten von 1812 ein Flugblatt für ein geeintes und von Napoleons Herrschaft befreites Deutschland. Reflektiere danach deine Gestaltung.","material":"1812 bestand kein deutscher Nationalstaat. Viele deutsche Gebiete waren im Rheinbund an Napoleon gebunden; der Russlandfeldzug weckte Hoffnung auf Befreiung. Einheit, politische Freiheit und Kampf gegen Fremdherrschaft konnten verbunden werden, waren aber nicht für alle Zeitgenossen gleichbedeutend.","hint":"Schreibe aus einer historischen Rolle, nicht aus heutiger Sicht. Nutze mindestens zwei konkrete Bezüge zum Jahr 1812.","success":"Das Flugblatt ist adressatenbezogen, historisch plausibel und eigenständig. Die Reflexion erklärt, welche Mittel überzeugen sollen und wo die Perspektive begrenzt ist.","minChars":420,"starter":"AN DIE STUDENTEN UND BÜRGER ...","planning":["Historische Sprecherrolle und Zielgruppe festlegen","Eine prägnante Überschrift entwickeln","Einheit und Befreiung begründen","Mindestens zwei Materialbezüge einbauen","Gestaltung und historische Plausibilität reflektieren"],"criteria":["Mein Text spricht aus der Perspektive eines Studenten um 1812.","Ich fordere nachvollziehbar Einheit und Befreiung.","Ich verwende mindestens zwei konkrete historische Bezüge.","Sprache und Aufruf passen zu Zielgruppe und Textsorte.","Ich reflektiere Wirkung und Grenzen meiner Darstellung."]}],"sourceFile":"../Pakete/8. Die Napoleonische Herrschaft.pdf","filename":"paket-08-die-napoleonische-herrschaft.html"};</script>

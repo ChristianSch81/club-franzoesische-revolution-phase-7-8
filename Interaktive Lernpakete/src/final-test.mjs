@@ -378,7 +378,7 @@ export function renderFinalTestDocument({
   </main>
 
   <footer class="test-footer">
-    <div>Autor: Christian Schwend</div>
+    <div>Autor: Christian Schwend · Alemannenschule Wutöschingen</div>
   </footer>
   <script>const FINAL_TEST_DATA = ${serialized};</script>
   <script>${runtime}</script>

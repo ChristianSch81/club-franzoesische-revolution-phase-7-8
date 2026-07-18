@@ -290,7 +290,8 @@ h1, h2, h3, strong { font-weight: 650; }
 
 .level-path strong,
 .level-path span { display: block; }
-.level-path span { color: var(--muted); }
+.level-path li div span { color: var(--muted); }
+.level-path .level-code { color: #fff; }
 
 .section-heading {
   display: flex;
@@ -580,7 +581,7 @@ function transformPackageHtml(html, pkg) {
     </div>`;
   const transformed = html
     .replace("</style>", `${packageBrandStyles}</style>`)
-    .replace(/<p class="series-title">[\s\S]*?<\/p>/, brandedHeader)
+    .replace(/<div class="header-brand-row">[\s\S]*?<\/div>/, brandedHeader)
     .replaceAll('href="index.html"', 'href="../index.html"')
     .replaceAll('href="../Pakete/', 'href="../material/');
 
